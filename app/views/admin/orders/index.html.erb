@@ -1,0 +1,26 @@
+<h2>
+<%= @order_status %>
+</h2>
+
+<%= link_to "Return to All Orders", admin_dashboard_index_path %><br />
+<%= link_to "Ordered", admin_orders_path(scope: "Ordered") %> |
+<%= link_to "Paid", admin_orders_path(scope: "Paid") %>  |
+<%= link_to "Cancelled", admin_orders_path(scope: "Cancelled") %> |
+<%= link_to "Complete", admin_orders_path(scope: "Complete") %><br /><br />
+
+<table class="striped">
+  <thead>
+    <tr>
+        <th data-field="id">Order ID</th>
+        <th data-field="name">Status</th>
+        <th data-field="price"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @orders == []  %>
+      <tr><td>No orders of this type</td></tr>
+    <% else %>
+      <%= render @orders %>
+    <% end %>
+  </tbody>
+</table>
