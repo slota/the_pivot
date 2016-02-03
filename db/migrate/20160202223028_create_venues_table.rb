@@ -8,6 +8,7 @@ class CreateVenuesTable < ActiveRecord::Migration
       t.string :state
       t.string :address
       t.string :description
+      t.string :url
     end
   end
 end

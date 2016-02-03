@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20160202223028) do
     t.string  "state"
     t.string  "address"
     t.string  "description"
+    t.string  "url"
   end
 
   add_foreign_key "chip_orders", "chips"
