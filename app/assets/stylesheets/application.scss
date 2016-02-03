@@ -21,9 +21,15 @@ body {
   flex-direction: column;
 }
 
+// .application-body{
+//   background-image: url("http://i.imgur.com/9olXuLe.jpg");
+//   opacity: 0.97
+// }
+
 .application-body{
-  background-image: url("http://i.imgur.com/9olXuLe.jpg");
-  opacity: 0.97
+  background-image: url("http://www.livedownloads.com/images/shows/wsp130627_01.jpg");
+  opacity: 0.97;
+  background-size: cover;
 }
 
 main {
@@ -42,4 +48,16 @@ main {
 #chip-picture {
   max-height: 240px;
   width: auto;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.select-wrapper input.select-dropdown {
+  margin: 0;
+}
+
+.no-margin {
+  margin-bottom: 0;
 }
