@@ -1,6 +1,6 @@
-  <h2 class="center satisfy-font white-text" style="text-shadow: 2px 2px black; text-decoration: underline; margin-bottom: -1%;">Ticket Maestro</h2>
+  <h2 class="center satisfy-font white-text black-shadow" style="text-decoration: underline; margin-bottom: -1%;">Ticket Maestro</h2>
   <h5 class="center satisfy-font white-text">Please review your cart and click submit for payment</h5>
-<div class="container" style="opacity:0.8; background-color: black; color:white;margin-bottom:10%">
+<div class="container opaque-background" style="margin-bottom:10%">
   <table class="bordered highlight responsive-table">
     <thead>
       <tr>
@@ -10,8 +10,6 @@
           <th data-field="Venue">Venue</th>
           <th data-field="Price">Price</th>
           <th data-field="Quantity">Quantity</th>
-
-
       </tr>
     </thead>
 
@@ -34,7 +32,7 @@
       </tr>
     </tbody>
   </table>
-  <h3 style="padding-right: 10%; text-align:right;">Total = $188</h3>
-  <h5 style="padding-right: 10%; text-align:right;"><i class="material-icons">thumb_up</i> <%= link_to("Checkout!", cart_path)%></h5>
+  <h3 class="cart-totals">Total = $188</h3>
+  <h5 class="cart-totals"><i class="material-icons">thumb_up</i> <%= link_to("Checkout!", cart_path)%></h5>
 
 </div>
