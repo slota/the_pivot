@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get "bluebird" => "pages#bluebird"
 
+  get "edward" => "pages#edward"
+
   post "notifications/notify" => "notifications#notify"
   post "twilio/voice" => "twilio#voice"
   root to: "pages#home"
