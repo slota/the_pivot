@@ -1,3 +1,182 @@
-<div class="image">
-  <center><a href="/chips"><img class="home-image" src="http://i.imgur.com/EyOvY4e.jpg"></a></center>
+
+  <div class="row valign-wrapper" style="height:500px;background-image:url(http://www.darindaymusic.co.uk/wp-content/uploads/disco.jpg);margin-top:30px;padding-left:70px;padding-right:70px;background-size:cover">
+    <%= form_for :session, html: {class: "col s12", style:"background-color:grey;border-radius:5px"} do |f| %>
+    <%= f.text_field "yeah" , placeholder: "City", class:"col s3",style:"min-width:300px"%>
+    <%= f.text_field "band" , placeholder: "Band", class:"col s3", style:"min-width:300px"%>
+    <%= f.text_field "bsdfand" , placeholder: "Baaasnd", class:"col s3", style:"min-width:300px"%>
+    <%= f.text_field "baggnd" , placeholder: "Bangad", class:"col s3", style:"min-width:300px"%>
+    <% end %>
+  </div>
+
+  ```<div class="container">
+  <div class="row">
+    <div class="input-field col s4 no-padding">
+      <input id="band_name" type="text" class="validate" style="background-color: black; color: white" placeholder="Band Name...">
+    </div>
+    <div class="input-field col s3 no-padding">
+      <input id="city" type="text" class="validate" style="background-color: black; color: white" placeholder="City...">
+    </div>
+    <div class="input-field col s3 no-padding" style="background-color: black; color: white">
+      <select multiple >
+        <option value="" disabled selected >Genre</option>
+        <option value="1">Rock</option>
+        <option value="2">Rap</option>
+        <option value="3">Indy</option>
+        <option value="4">House</option>
+        <option value="5">Reggae</option>
+        <option value="6">Bluegrass</option>
+        <option value="7">Country</option>
+        <option value="8">Classic Rock</option>
+        <option value="9">Folk</option>
+        <option value="10">Classical</option>
+      </select>
+    </div>
+    <div class="input-field col s2 no-padding">
+      <input id="date" type="text" class="validate" style="background-color: black; color: white" placeholder="Date">
+    </div>
+  </div>
+
+  <br>
+  <div class="row">
+    <div class="col s2" style="background-color: black; color: white">Date</div>
+    <div class="col s5" style="background-color: black; color: white">Band Name</div>
+    <div class="col s3" style="background-color: black; color: white">Venue</div>
+    <div class="col s2" style="background-color: black; color: white">Logo?</div>
+  </div>
+  <div class="row no-margin" id="display-concert">
+    <div class="col s2" style="background-color: black; color: white">12/31/1969</div>
+    <div class="col s5" style="background-color: black; color: white">The Beatles</div>
+    <div class="col s3" style="background-color: black; color: white">Obviously Red Rocks</div>
+    <div class="col s2" style="background-color: black; color: white">None Needed</div>
+  </div>
+  <div class="row no-margin" id="display-concert">
+    <div class="col s2" style="background-color: black; color: white">Crazy!!!</div>
+    <div class="col s5" style="background-color: black; color: white">Test!!!</div>
+    <div class="col s3" style="background-color: black; color: white">Data!!!</div>
+    <div class="col s2" style="background-color: black; color: white">Show is done!!</div>
+  </div>
+  <div class="row no-margin" id="display-concert">
+    <div class="col s2" style="background-color: black; color: white">Crazy!!!</div>
+    <div class="col s5" style="background-color: black; color: white">Test!!!</div>
+    <div class="col s3" style="background-color: black; color: white">Data!!!</div>
+    <div class="col s2" style="background-color: black; color: white">Show is done!!</div>
+  </div>
+  <div class="row no-margin" id="display-concert">
+    <div class="col s2" style="background-color: black; color: white">Crazy!!!</div>
+    <div class="col s5" style="background-color: black; color: white">Test!!!</div>
+    <div class="col s3" style="background-color: black; color: white">Data!!!</div>
+    <div class="col s2" style="background-color: black; color: white">Show is done!!</div>
+  </div>
+  <div class="row no-margin" id="display-concert">
+    <div class="col s2" style="background-color: black; color: white">Crazy!!!</div>
+    <div class="col s5" style="background-color: black; color: white">Test!!!</div>
+    <div class="col s3" style="background-color: black; color: white">Data!!!</div>
+    <div class="col s2" style="background-color: black; color: white">Show is done!!</div>
+  </div>
+  <div class="row no-margin" id="display-concert">
+    <div class="col s2" style="background-color: black; color: white">Crazy!!!</div>
+    <div class="col s5" style="background-color: black; color: white">Test!!!</div>
+    <div class="col s3" style="background-color: black; color: white">Data!!!</div>
+    <div class="col s2" style="background-color: black; color: white">Show is done!!</div>
+  </div>
+  <div class="row no-margin" id="display-concert">
+    <div class="col s2" style="background-color: black; color: white">Crazy!!!</div>
+    <div class="col s5" style="background-color: black; color: white">Test!!!</div>
+    <div class="col s3" style="background-color: black; color: white">Data!!!</div>
+    <div class="col s2" style="background-color: black; color: white">Show is done!!</div>
+  </div>
+  <div class="row no-margin" id="display-concert">
+    <div class="col s2" style="background-color: black; color: white">Crazy!!!</div>
+    <div class="col s5" style="background-color: black; color: white">Test!!!</div>
+    <div class="col s3" style="background-color: black; color: white">Data!!!</div>
+    <div class="col s2" style="background-color: black; color: white">Show is done!!</div>
+  </div>
+  <div class="row no-margin" id="display-concert">
+    <div class="col s2" style="background-color: black; color: white">Crazy!!!</div>
+    <div class="col s5" style="background-color: black; color: white">Test!!!</div>
+    <div class="col s3" style="background-color: black; color: white">Data!!!</div>
+    <div class="col s2" style="background-color: black; color: white">Show is done!!</div>
+  </div>
+  <div class="row no-margin" id="display-concert">
+    <div class="col s2" style="background-color: black; color: white">Crazy!!!</div>
+    <div class="col s5" style="background-color: black; color: white">Test!!!</div>
+    <div class="col s3" style="background-color: black; color: white">Data!!!</div>
+    <div class="col s2" style="background-color: black; color: white">Show is done!!</div>
+  </div>
+  <div class="row no-margin" id="display-concert">
+    <div class="col s2" style="background-color: black; color: white">Crazy!!!</div>
+    <div class="col s5" style="background-color: black; color: white">Test!!!</div>
+    <div class="col s3" style="background-color: black; color: white">Data!!!</div>
+    <div class="col s2" style="background-color: black; color: white">Show is done!!</div>
+  </div>
+  <div class="row no-margin" id="display-concert">
+    <div class="col s2" style="background-color: black; color: white">Crazy!!!</div>
+    <div class="col s5" style="background-color: black; color: white">Test!!!</div>
+    <div class="col s3" style="background-color: black; color: white">Data!!!</div>
+    <div class="col s2" style="background-color: black; color: white">Show is done!!</div>
+  </div>
+  <div class="row no-margin" id="display-concert">
+    <div class="col s2" style="background-color: black; color: white">Crazy!!!</div>
+    <div class="col s5" style="background-color: black; color: white">Test!!!</div>
+    <div class="col s3" style="background-color: black; color: white">Data!!!</div>
+    <div class="col s2" style="background-color: black; color: white">Show is done!!</div>
+  </div>
+  <div class="row no-margin" id="display-concert">
+    <div class="col s2" style="background-color: black; color: white">Crazy!!!</div>
+    <div class="col s5" style="background-color: black; color: white">Test!!!</div>
+    <div class="col s3" style="background-color: black; color: white">Data!!!</div>
+    <div class="col s2" style="background-color: black; color: white">Show is done!!</div>
+  </div>
+  <div class="row no-margin" id="display-concert">
+    <div class="col s2" style="background-color: black; color: white">Crazy!!!</div>
+    <div class="col s5" style="background-color: black; color: white">Test!!!</div>
+    <div class="col s3" style="background-color: black; color: white">Data!!!</div>
+    <div class="col s2" style="background-color: black; color: white">Show is done!!</div>
+  </div>
+  <div class="row no-margin" id="display-concert">
+    <div class="col s2" style="background-color: black; color: white">Crazy!!!</div>
+    <div class="col s5" style="background-color: black; color: white">Test!!!</div>
+    <div class="col s3" style="background-color: black; color: white">Data!!!</div>
+    <div class="col s2" style="background-color: black; color: white">Show is done!!</div>
+  </div>
+  <div class="row no-margin" id="display-concert">
+    <div class="col s2" style="background-color: black; color: white">Crazy!!!</div>
+    <div class="col s5" style="background-color: black; color: white">Test!!!</div>
+    <div class="col s3" style="background-color: black; color: white">Data!!!</div>
+    <div class="col s2" style="background-color: black; color: white">Show is done!!</div>
+  </div>
+  <div class="row no-margin" id="display-concert">
+    <div class="col s2" style="background-color: black; color: white">Crazy!!!</div>
+    <div class="col s5" style="background-color: black; color: white">Test!!!</div>
+    <div class="col s3" style="background-color: black; color: white">Data!!!</div>
+    <div class="col s2" style="background-color: black; color: white">Show is done!!</div>
+  </div>
+  <div class="row no-margin" id="display-concert">
+    <div class="col s2" style="background-color: black; color: white">Crazy!!!</div>
+    <div class="col s5" style="background-color: black; color: white">Test!!!</div>
+    <div class="col s3" style="background-color: black; color: white">Data!!!</div>
+    <div class="col s2" style="background-color: black; color: white">Show is done!!</div>
+  </div>
+  <div class="row no-margin" id="display-concert">
+    <div class="col s2" style="background-color: black; color: white">Crazy!!!</div>
+    <div class="col s5" style="background-color: black; color: white">Test!!!</div>
+    <div class="col s3" style="background-color: black; color: white">Data!!!</div>
+    <div class="col s2" style="background-color: black; color: white">Show is done!!</div>
+  </div>
+  <div class="row">
+
+    <div class="col s5 offset-s3">
+      <ul class="pagination" style="background-color: black">
+        <li class="disabled" style="color: white"><ahref="#!"><i class="material-icons">chevron_left</i></a></li>
+        <li class="active" style="color: white"><ahref="#!">1</a></li>
+        <li class="waves-effect" style="color: white"><ahref="#!">2</a></li>
+        <li class="waves-effect" style="color: white"><ahref="#!">3</a></li>
+        <li class="waves-effect" style="color: white"><ahref="#!">4</a></li>
+        <li class="waves-effect" style="color: white"><ahref="#!">5</a></li>
+        <li class="waves-effect" style="color: white"><ahref="#!"><i class="material-icons">chevron_right</i></a></li>
+      </ul>
+    </div>
+  </div>
+
 </div>
+```

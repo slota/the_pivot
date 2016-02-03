@@ -37,4 +37,8 @@ var loaded = function(){
   });
 }
 
+$(document).ready(function() {
+    $('select').material_select();
+});
+
 $(document).on("page:load ready", loaded);
