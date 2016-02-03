@@ -1,19 +1,5 @@
-<div class="row">
-  <div class="col s8 offset-s2">
-    <div class="card">
-      <div class="card-image">
-        <img src="http://assets.rollingstone.com/assets/images/list/rsz-homepage-largedb5c5b0e-1354052522.jpg">
-      </div>
-      <div class="card-content center venue-card">
-        <hr>
-        <p class="satisfy-font">Edward Sharpe and the Magnetic Zeroes</p>
-        <hr>
-
-      </div>
-    </div>
-  </div>
-</div>
-
+  <h2 class="center satisfy-font white-text" style="text-shadow: 2px 2px black; text-decoration: underline; margin-bottom: -1%;">Ticket Maestro</h2>
+  <h5 class="center satisfy-font white-text">Please review your cart and click submit for payment</h5>
 <div class="container" style="opacity:0.8; background-color: black; color:white;margin-bottom:10%">
   <table class="bordered highlight responsive-table">
     <thead>
@@ -36,11 +22,19 @@
         <td><%= link_to("Edward Sharpe and the Magnetic Zeros", edward_path) %></td>
         <td><%= link_to("BlueBird", bluebird_path) %></td>
         <td>$28</td>
-        <td><input type="number_field"></td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>02/10/16</td>
+        <td><%= image_tag("http://images.sk-static.com/images/media/profile_images/artists/348455/card_avatar") %></td>
+        <td><%= link_to("Avett Brothers", edward_path) %></td>
+        <td><%= link_to("Red Rocks", bluebird_path) %></td>
+        <td>$44</td>
+        <td>2</td>
       </tr>
     </tbody>
   </table>
-  <h3 style="padding-right: 10%; text-align:right;">Total = $28</h3>
-  <h5 style="padding-right: 10%; text-align:right;"><i class="material-icons">shopping_cart</i> <%= link_to("Add to Cart", cart_path)%></h5>
+  <h3 style="padding-right: 10%; text-align:right;">Total = $188</h3>
+  <h5 style="padding-right: 10%; text-align:right;"><i class="material-icons">thumb_up</i> <%= link_to("Checkout!", cart_path)%></h5>
 
 </div>
