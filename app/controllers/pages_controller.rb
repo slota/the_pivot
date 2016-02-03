@@ -1,9 +1,11 @@
 class PagesController < ApplicationController
   def home
-    render layout: 'wide'
+    # render layout: 'wide'
   end
 
   def about
+  end
 
+  def bluebird
   end
 end
