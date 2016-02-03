@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col s8 offset-s2">
+    <div class="card">
+      <div class="card-image">
+        <img src="http://assets.rollingstone.com/assets/images/list/rsz-homepage-largedb5c5b0e-1354052522.jpg">
+      </div>
+      <div class="card-content center venue-card">
+        <hr>
+        <p class="satisfy-font">Edward Sharpe and the Magnetic Zeroes</p>
+        <hr>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="opacity:0.8; background-color: black; color:white;margin-bottom:10%">
+  <table class="bordered highlight responsive-table">
+    <thead>
+      <tr>
+          <th data-field="Date">Date</th>
+          <th data-field="Logo">Logo</th>
+          <th data-field="Performer">Performer</th>
+          <th data-field="Venue">Venue</th>
+          <th data-field="Price">Price</th>
+          <th data-field="Quantity">Quantity</th>
+
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>02/09/16</td>
+        <td><%= image_tag("http://assets.rollingstone.com/assets/images/list/rsz-homepage-largedb5c5b0e-1354052522.jpg") %></td>
+        <td><%= link_to("Edward Sharpe and the Magnetic Zeros", edward_path) %></td>
+        <td><%= link_to("BlueBird", bluebird_path) %></td>
+        <td>$28</td>
+        <td><input type="number_field"></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 style="padding-right: 10%; text-align:right;">Total = $28</h3>
+  <h5 style="padding-right: 10%; text-align:right;"><i class="material-icons">shopping_cart</i> <%= link_to("Add to Cart", cart_chips_path)%></h5>
+
+</div>

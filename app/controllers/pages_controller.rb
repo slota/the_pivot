@@ -8,4 +8,7 @@ class PagesController < ApplicationController
 
   def bluebird
   end
+
+  def edward
+  end
 end
