@@ -5,5 +5,5 @@ class User < ActiveRecord::Base
   validates :username, presence: true,
                      uniqueness: true
 
-   enum role: %w(default admin)
+   enum role: %w(registered_user business_admin platform_admin)
 end
