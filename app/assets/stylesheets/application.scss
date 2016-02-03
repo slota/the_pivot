@@ -61,3 +61,41 @@ main {
 .no-margin {
   margin-bottom: 0;
 }
+
+tbody tr:hover {
+   color: black;
+   font-size: 1.2em;
+}
+
+td img {
+  height: 50px;
+  width: 50px;
+  alt: Logo;
+}
+
+.satisfy-font {
+font-family: 'Satisfy', cursive;
+}
+
+.search-bar {
+  opacity:0.8; 
+  background-color: black; 
+  border-radius: 10px; 
+  margin-top: 20px;
+  color: white;
+  input {
+    min-width: 300px;
+  }
+  ::-webkit-input-placeholder {
+  color: white;
+  }
+}
+
+.pagination {
+  background-color: black;
+  opacity: 0.8;
+  color: white;
+  li {
+    color:white;
+  }
+}
