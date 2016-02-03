@@ -1,14 +1,14 @@
 
-  <div class="row valign-wrapper" style="height:500px;background-image:url(http://www.darindaymusic.co.uk/wp-content/uploads/disco.jpg);margin-top:30px;padding-left:70px;padding-right:70px;background-size:cover">
-    <%= form_for :session, html: {class: "col s12", style:"background-color:grey;border-radius:5px"} do |f| %>
-    <%= f.text_field "yeah" , placeholder: "City", class:"col s3",style:"min-width:300px"%>
-    <%= f.text_field "band" , placeholder: "Band", class:"col s3", style:"min-width:300px"%>
+  <div class="row valign-wrapper" > <!-- style="height:500px;background-image:url(http://www.darindaymusic.co.uk/wp-content/uploads/disco.jpg);margin-top:30px;padding-left:70px;padding-right:70px;background-size:cover"> -->
+    <%= form_for :session, html: {class: "col s12", style: "opacity:0.8; background-color: white;color:black; border-radius:10px; margin-top:20px;"} do |f| %>
+    <%= f.text_field "City" , placeholder: "City", class:"col s3",style:"min-width:300px"%>
+    <%= f.text_field "Performer" , placeholder: "Band", class:"col s3", style:"min-width:300px"%>
     <%= f.text_field "bsdfand" , placeholder: "Baaasnd", class:"col s3", style:"min-width:300px"%>
     <%= f.text_field "baggnd" , placeholder: "Bangad", class:"col s3", style:"min-width:300px"%>
     <% end %>
   </div>
 
-  ```<div class="container">
+<!--   ```<div class="container">
   <div class="row">
     <div class="input-field col s4 no-padding">
       <input id="band_name" type="text" class="validate" style="background-color: black; color: white" placeholder="Band Name...">
@@ -34,10 +34,74 @@
     <div class="input-field col s2 no-padding">
       <input id="date" type="text" class="validate" style="background-color: black; color: white" placeholder="Date">
     </div>
-  </div>
+  </div> -->
 
   <br>
-  <div class="row">
+<div class="container" style="opacity:0.8; background-color: white;">
+  <table class="bordered highlight responsive-table">
+    <thead>
+      <tr>
+          <th data-field="Date">Date</th>
+          <th data-field="Logo">Logo</th>
+          <th data-field="Performer">Performer</th>
+          <th data-field="Venue">Venue</th>
+          <th data-field="Tickets">Tickets</th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>02/09/16</td>
+        <td><%= image_tag("http://assets.rollingstone.com/assets/images/list/rsz-homepage-largedb5c5b0e-1354052522.jpg", size: "50x50", alt: "Logo") %></td>
+        <td>Edward Sharpe and the Magnetic Zeros</td>
+        <td>BlueBird</td>
+        <td>Get Tickets!</td>
+
+      </tr>
+
+<!--       <tr>
+        <td>02/09/16</td>
+        <td><%= image_tag("http://cdn.pastemagazine.com/www/articles/edward-sharpe-and-the-magnetic-zeros-4.jpg", size: "50x50", alt: "Logo") %></td>
+        <td>Phil Collins</td>
+        <td>The Gothic</td>
+        <td>Get Tickets!</td>
+      </tr> -->
+
+      <tr>
+        <td>02/10/16</td>
+        <td><%= image_tag("http://images.sk-static.com/images/media/profile_images/artists/348455/card_avatar", size: "50x50", alt: "Logo") %></td>
+        <td>The Avett Brothers</td>
+        <td>Red Rocks</td>
+        <td>Get Tickets!</td>
+      </tr>
+
+      <tr>
+        <td>02/10/16</td>
+        <td><%= image_tag("http://cdn.redrocksonline.com/m83-tickets_06-01-16_23_56900160ac4b2.jpg?mtime=1452630988", size: "50x50", alt: "Logo") %></td>
+        <td>M83</td>
+        <td>The Ogden</td>
+        <td>Get Tickets!</td>
+      </tr>
+
+      <tr>
+        <td>02/10/16</td>
+        <td><%= image_tag("http://cdn.redrocksonline.com/string-cheese-incident-tickets_07-17-16_23_56afa7db6ab0b.jpg?mtime=1454365841", size: "50x50", alt: "Logo") %></td>
+        <td>The String Cheese Incident</td>
+        <td>Red Rocks</td>
+        <td>Get Tickets!</td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
+
+<!--   <div class="row">
     <div class="col s2" style="background-color: black; color: white">Date</div>
     <div class="col s5" style="background-color: black; color: white">Band Name</div>
     <div class="col s3" style="background-color: black; color: white">Venue</div>
@@ -163,7 +227,7 @@
     <div class="col s3" style="background-color: black; color: white">Data!!!</div>
     <div class="col s2" style="background-color: black; color: white">Show is done!!</div>
   </div>
-  <div class="row">
+  <div class="row"> -->
 
     <div class="col s5 offset-s3">
       <ul class="pagination" style="background-color: black">
