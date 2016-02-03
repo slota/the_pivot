@@ -1,12 +1,13 @@
 class CreateVenuesTable < ActiveRecord::Migration
   def change
-    create_table :venues_tables do |t|
+    create_table :venues do |t|
       t.string :name
       t.string :status
-      t.string :background_image
+      t.string :image
       t.string :city
       t.string :state
       t.string :address
+      t.string :description
     end
   end
 end

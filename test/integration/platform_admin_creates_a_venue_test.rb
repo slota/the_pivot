@@ -9,17 +9,16 @@ class PlatformAdminCreatesAVenueTest < ActionDispatch::IntegrationTest
 
     visit admin_venues_path
     assert_equal admin_venues_path, current_path
-
-
     click_on "Add a Venue"
-
+# save_and_open_page
     assert_equal new_admin_venue_path, current_path
 
-    fill_in :name, with: "Red Rocks"
-    fill_in :background_image, with: "http://theredrocksamphitheater.com/wp-content/uploads/2014/11/redrocks3.jpg"
-    fill_in :city, with: "Morrison"
-    fill_in :state, with: "Colorado"
-    fill_in :address, with: "18300 W Alameda Pkwy"
+    fill_in "venue[name]", with: "Red Rocks"
+    # fill_in :background_image, with: "http://theredrocksamphitheater.com/wp-content/uploads/2014/11/redrocks3.jpg"
+    fill_in "venue[city]", with: "Morrison"
+    fill_in "venue[state]", with: "Colorado"
+    fill_in "venue[address]", with: "18300 W Alameda Pkwy"
+    fill_in "venue[description]", with: "Amphitheatre"
 
     click_on "Submit Venue"
 

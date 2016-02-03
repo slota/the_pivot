@@ -1,0 +1,23 @@
+<h1>Add A venue</h1>
+
+<%= form_for [:admin, @venue] do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :image, "Attach an Image" %><br />
+  <%= f.file_field :image %><br><br>
+
+  <%= f.label :city %>
+  <%= f.text_field :city %>
+
+  <%= f.label :state %>
+  <%= f.text_field :state %>
+
+  <%= f.label :address %>
+  <%= f.text_field :address %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+
+  <%= f.submit "Submit Venue", class: "btn" %>
+ <% end %>
