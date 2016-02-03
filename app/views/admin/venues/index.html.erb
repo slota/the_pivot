@@ -1,1 +1,7 @@
 <h3><%= link_to "Add a Venue", new_admin_venue_path %></h3>
+
+<% @venues.each do |venue| %> 
+  <li><%= venue.name %></li>
+  <li><%= venue.city %></li>
+  <li><%= venue.status %><%= link_to "Approve Venue" %></li>
+<% end %> 

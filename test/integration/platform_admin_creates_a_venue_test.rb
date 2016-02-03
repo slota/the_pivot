@@ -10,7 +10,7 @@ class PlatformAdminCreatesAVenueTest < ActionDispatch::IntegrationTest
     visit admin_venues_path
     assert_equal admin_venues_path, current_path
     click_on "Add a Venue"
-# save_and_open_page
+
     assert_equal new_admin_venue_path, current_path
 
     fill_in "venue[name]", with: "Red Rocks"
@@ -24,28 +24,10 @@ class PlatformAdminCreatesAVenueTest < ActionDispatch::IntegrationTest
 
     assert page.has_content?("Thank you for your submission. Your venue will be activated once we review your submission!")
 
-    assert_equal admin_dashboard_path, current_path
+    assert_equal admin_venues_path, current_path
 
-    assert page.has_content?("Red Rocks")
     assert page.has_content?("Pending")
     assert page.has_content?("Approve Venue")
-
-    click_on "Approve Venue"
-
-    assert_equal admin_dashboard_path, current_path
-
-    click_on "View All Venues"
-
-    assert page.has_content?("Red Rocks")
-    assert page.has_content?("Active")
-
-    click_on "Red Rocks"
-
-    assert_equal "/admin/red-rocks", current_path
-
-    assert page.has_content?("Red Rocks")
-    assert page.has_content?("Status")
-    assert page.has_content?("Active")
-    assert page.has_content?("Edit")
   end 
+
 end

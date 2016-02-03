@@ -68,13 +68,13 @@ ActiveRecord::Schema.define(version: 20160202223028) do
   end
 
   create_table "venues", force: :cascade do |t|
-    t.string "name"
-    t.string "status"
-    t.string "image"
-    t.string "city"
-    t.string "state"
-    t.string "address"
-    t.string "description"
+    t.string  "name"
+    t.integer "status",      default: 0
+    t.string  "image"
+    t.string  "city"
+    t.string  "state"
+    t.string  "address"
+    t.string  "description"
   end
 
   add_foreign_key "chip_orders", "chips"
