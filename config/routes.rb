@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get "edward" => "pages#edward"
 
+  get "cart" => "pages#cart"
+
   post "notifications/notify" => "notifications#notify"
   post "twilio/voice" => "twilio#voice"
   root to: "pages#home"
