@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 
   get "profile" => "pages#profile"
 
+  get "order" => "pages#orders"
+
+
   get "platform_admin_venues" => "pages#platform_admin_venues"
 
   post "notifications/notify" => "notifications#notify"
