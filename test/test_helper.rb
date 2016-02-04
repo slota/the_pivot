@@ -44,6 +44,7 @@ end
 
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
+  include FactoryGirl::Syntax::Methods
   def teardown
     reset_session!
   end
@@ -59,7 +60,7 @@ class ActionDispatch::IntegrationTest
 
   def create_business_admin
     User.create!(username: "Business", password: "password", role: 1)
-  end 
+  end
 
   def create_platform_admin
     User.create(username: "Platform", password: "password", role: 2)

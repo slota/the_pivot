@@ -1,16 +1,21 @@
+<div class="row">
+  <div class="col s8 offset-s2">
+    <div class="card">
+      <div class="card-image">
+        <img src= "<%= @venue.image %>">
+        <span class="card-title satisfy-font" style="font-size:3em;text-shadow:1px 1px black;"> <%= @venue.name %></span>
+      </div>
+      <div class="card-content center venue-card">
+        <p class="satisfy-font"> <%=  @venue.address %>, <%= @venue.city %>, <%= @venue.state %></p>
+        <hr>
+        <p class="satisfy-font">Local hipsters discovered this place, and Seattle.</p>
 
-  <div class="row valign-wrapper" > <!-- style="height:500px;background-image:url(http://www.darindaymusic.co.uk/wp-content/uploads/disco.jpg);margin-top:30px;padding-left:70px;padding-right:70px;background-size:cover"> -->
-    <%= form_for :session, html: {class: "col s12 search-bar"} do |f| %>
-    <%= f.text_field "City" , placeholder: "City", class:"col s3"%>
-    <%= f.text_field "Performer" , placeholder: "Band", class:"col s3" %>
-    <%= f.date_field "Date" , placeholder: "Date", class:"col s3" %>
-    <%= f.text_field "Genre" , placeholder: "Genre", class:"col s3" %>
-    <% end %>
+      </div>
+    </div>
   </div>
-  <br>
+</div>
 
-
-<div class="container opaque-background">
+<div class="container" style="opacity:0.8; background-color: black; color:white;">
   <table class="bordered highlight responsive-table">
     <thead>
       <tr>
@@ -24,18 +29,13 @@
     </thead>
 
     <tbody>
-      <% @concerts.each do |concert| %>
+      <% @venue.concerts.each do |concert| %>
         <tr>
           <td> <%= concert.date %> </td>
           <td> <%= image_tag concert.logo %> </td>
           <td> <%= link_to concert.band, venue_concert_path(concert.venue.url, concert.url) %></td>
           <td> <%= link_to concert.venue.name, venue_path(concert.venue.url) %></td>
           <td> <%= link_to "Get Tickets!", venue_concert_path(concert.venue.url, concert.url) %></td>
-          <!-- <td> </td> -->
-          <!-- <td> </td> -->
-          <!-- <td><%= link_to("Edward Sharpe and the Magnetic Zeros", edward_path) %></td> -->
-          <!-- <td><%= link_to("BlueBird", bluebird_path) %></td> -->
-          <!-- <td>Get Tickets!</td> -->
         </tr>
       <% end %>
     </tbody>
@@ -53,4 +53,5 @@
       </ul>
     </div>
   </div>
+
 </div>

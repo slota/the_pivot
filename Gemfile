@@ -41,6 +41,8 @@ group :development, :test do
   gem "launchy"
   gem "mocha"
   gem "simplecov"
+  gem "factory"
+  gem "factory_girl_rails"
 end
 
 group :development do
