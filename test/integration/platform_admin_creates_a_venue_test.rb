@@ -5,6 +5,7 @@ class PlatformAdminCreatesAVenueTest < ActionDispatch::IntegrationTest
     platform_admin = User.create(username: "steve@gmail.com",
                                  password: "password",
                                  role: 2)
+    
     ApplicationController.any_instance.stubs(:current_user).returns(platform_admin)
 
     visit admin_venues_path
