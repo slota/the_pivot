@@ -11,9 +11,9 @@ Rails.application.routes.draw do
 
   get "order" => "pages#orders"
 
-
+  #
   get "platform_admin_venues" => "pages#platform_admin_venues"
-
+  #
   post "notifications/notify" => "notifications#notify"
   post "twilio/voice" => "twilio#voice"
   root to: "pages#home"
@@ -28,6 +28,11 @@ Rails.application.routes.draw do
     # resources :dashboard, only: [:index, :show]
     resources :orders, only: [:index, :update]
  end
+
+
+
+  get '/:venue', to: 'venues#show', as: :venue
+  get '/:venue/:concert', to: 'venue_concert#show', as: :venue_concert
 
   get '/about', to: 'pages#about'
   get '/login', to: 'sessions#new'

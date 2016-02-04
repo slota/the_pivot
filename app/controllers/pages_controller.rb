@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def home
-    # render layout: 'wide'
+    @concerts = Concert.all
   end
 
   def about

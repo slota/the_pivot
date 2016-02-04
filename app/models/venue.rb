@@ -1,5 +1,5 @@
 class Venue < ActiveRecord::Base
-
+  has_many :concerts
   enum status: %w(Pending Approved Declined)
 
   validates :name, presence: true
@@ -10,5 +10,5 @@ class Venue < ActiveRecord::Base
   def generate_url
     self.url = name.parameterize
   end
-  
-end 
+
+end

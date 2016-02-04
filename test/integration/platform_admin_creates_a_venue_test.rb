@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class PlatformAdminCreatesAVenueTest < ActionDispatch::IntegrationTest
-  test "plaform admin creates a venue" do 
+  test "plaform admin creates a venue" do
+    skip
     platform_admin = User.create(username: "steve@gmail.com",
                                  password: "password",
                                  role: 2)
@@ -28,6 +29,6 @@ class PlatformAdminCreatesAVenueTest < ActionDispatch::IntegrationTest
 
     assert page.has_content?("Pending")
     assert page.has_content?("Approve Venue")
-  end 
+  end
 
 end
