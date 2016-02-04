@@ -33,7 +33,7 @@
         <td><%= link_to(@concert.band, edward_path) %></td>
         <td><%= link_to(@concert.venue.name, bluebird_path) %></td>
         <td><%= @concert.price %></td>
-        <td><input type="number_field"></td>
+        <td><%=number_field(:order, :quantity, in: 1..20) %></td>
       </tr>
     </tbody>
   </table>
