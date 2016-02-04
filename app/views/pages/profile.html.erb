@@ -22,38 +22,33 @@
     <%= link_to("Manage Orders", order_path) %>
   </h5>
 
-<div class="container" style="opacity:0.8; background-color: black; color:white;">
-  <table class="bordered highlight responsive-table centered">
-    <thead>
-      <tr>
-          <th data-field="Name">Name</th>
-          <th data-field="Logo">Logo</th>
-          <th data-field="Location">Location</th>
-          <th data-field="Status">Status</th>
-          <th data-field="Edit">Edit</th>
-      </tr>
-    </thead>
+  <div class="container" style="opacity:0.8; background-color: black; color:white;">
+    <table class="bordered highlight responsive-table">
+      <thead>
+        <tr>
+            <th data-field="Concert Date">Concert Date</th>
+            <th data-field="Band">Band</th>
+            <th data-field="Venue">Venue</th>
+            <th data-field="Concert Time">Concert Time</th>
+            <th data-field="Quantity">Quantity</th>
+            <th data-field="Total">Total</th>
+            <th data-field="Purchase Date">Purchase Date</th>
+        </tr>
+      </thead>
 
-    <tbody>
-      <tr>
-        <td><%= link_to("Bluebird", bluebird_path) %></td>
-        <td><%= image_tag("http://musictour.eu/data//uploads/media/halls/893/f4a4def50c6367fdeafadf41efa9e387.jpg") %></td>
-        <td>Denver, Colorado</td>
-        <td><%= link_to("Pending", admin_bluebird_path) %></td>
-        <td><%= link_to("edit", admin_bluebird_path) %></td>
-      </tr>
-
-      <tr>
-        <td><%= link_to("Red Rocks", cart_path) %></td>
-        <td><%= image_tag("http://theredrocksamphitheater.com/wp-content/uploads/2014/11/redrocks3.jpg") %></td>
-        <td>Morrison, Colorado</td>
-        <td><%= link_to("Approved", cart_path) %></td>
-        <td><%= link_to("edit", cart_path) %></td>
-      </tr>
-
-    </tbody>
-  </table>
-</div>
+      <tbody>
+        <tr>
+          <td>02/09/16</td>
+          <td>John Slota Band</td>
+          <td>Bluebird</td>
+          <td>9PM</td>
+          <td>2 </td>
+          <td>$88</td>
+          <td>02/07/16</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
     <div class="col s5 offset-s3">
       <ul class="pagination center">
         <li class="waves-effect"><ahref="#!"><i class="material-icons">chevron_left</i></a></li>
