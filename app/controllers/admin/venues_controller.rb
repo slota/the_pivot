@@ -1,8 +1,15 @@
 class Admin::VenuesController < Admin::BaseController
   #have before_action :require_platform_admin in base controller
-  def index 
+
+  # respond_to :json
+  #
+  # def index
+  #   respond_with Venue.all
+  # end
+
+  def index
     @venues = Venue.all
-  end 
+  end
 
   def new
     @venue = Venue.new
@@ -12,11 +19,11 @@ class Admin::VenuesController < Admin::BaseController
     @venue = Venue.create(venue_params)
     flash[:success] = "Thank you for your submission. Your venue will be activated once we review your submission!"
     redirect_to admin_venues_path
-  end 
+  end
 
   def edit
     @venue = Venue.find(params[:id])
-  end 
+  end
 
   def update
     # @venue = Venue.find(params[:id])
@@ -26,10 +33,10 @@ class Admin::VenuesController < Admin::BaseController
 
   def venue_params
     params.require(:venue).permit(:name,
-                                  :image, 
+                                  :image,
                                   :city,
                                   :state,
                                   :address,
                                   :description)
-  end 
-end 
+  end
+end

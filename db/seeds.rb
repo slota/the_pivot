@@ -1,3 +1,35 @@
+class Seed
+    def self.run
+      Seed.generate_venues
+      Seed.generate_concerts
+    end
+
+    def self.generate_venues
+      5.times do |i|
+        Venue.create(
+          name: "Venue #{i}",
+          address: "Address #{i}",
+          city: "Devner",
+          state: "CO",
+          image: "http://musictour.eu/data//uploads/media/halls/893/f4a4def50c6367fdeafadf41efa9e387.jpg",
+          description: "Long and boring description #{i}"
+        )
+      end
+    end
+
+    def self.generate_concerts
+      20.times do |i|
+        Concert.create(
+          date: Time.now,
+          band: "Awesome Band no #{i}",
+          logo: "http://assets.rollingstone.com/assets/images/list/rsz-homepage-largedb5c5b0e-1354052522.jpg",
+          price: rand(30..300),
+          genre: "Rock",
+          venue: Venue.offset(rand(Venue.count-1)).first
+        )
+      end
+    end
+end
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -65,6 +97,7 @@ Chip.create!([
   ])
 
 
-  User.create!([{username: "User", password: "Password"}, {username: "Admin", password: "Password", role: 1}])
-  Order.create!([{total_price: 20, user_id: 1}])
-  ChipOrder.create!([{chip_id: 1, quantity: 1, subtotal: 20, order_id: 1}])
+  # User.create!([{username: "User", password: "Password"}, {username: "Admin", password: "Password", role: 1}])
+  # Order.create!([{total_price: 20, user_id: 1}])
+  # ChipOrder.create!([{chip_id: 1, quantity: 1, subtotal: 20, order_id: 1}])
+  Seed.run

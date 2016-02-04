@@ -29,9 +29,13 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :update]
  end
 
+ get '/:venue', to: 'venues#show', as: :venue
+ # namespace :venues, path: ":venue", as: :venue do
+ #  #  resources :concerts, only: [:show], path: ":concert"
+ #    get '/:concert', to: 'concert#show', as: :concert
+ #
+ # end
 
-
-  get '/:venue', to: 'venues#show', as: :venue
   get '/:venue/:concert', to: 'venue_concert#show', as: :venue_concert
 
   get '/about', to: 'pages#about'
