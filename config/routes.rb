@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # get 'venuesconcert/show'
+
   get "bluebird" => "pages#bluebird"
 
   get "admin_bluebird" => "pages#admin_bluebird"
@@ -30,13 +32,13 @@ Rails.application.routes.draw do
  end
 
  get '/:venue', to: 'venues#show', as: :venue
- # namespace :venues, path: ":venue", as: :venue do
- #  #  resources :concerts, only: [:show], path: ":concert"
- #    get '/:concert', to: 'concert#show', as: :concert
- #
- # end
 
-  get '/:venue/:concert', to: 'venue_concert#show', as: :venue_concert
+ namespace :venues, path: ":venue", as: :venue do
+    get '/:concert', to: 'concert#show', as: :concert
+ 
+ end
+
+  # get '/:venue/:concert', to: 'venue_concert#show', as: :venue_concert
 
   get '/about', to: 'pages#about'
   get '/login', to: 'sessions#new'
