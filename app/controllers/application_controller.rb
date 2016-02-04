@@ -4,9 +4,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_cart
-  helper_method :oils, 
-                :current_user, 
-                :platform_admin?, 
+  helper_method :oils,
+                :current_user,
+                :platform_admin?,
                 :return_oil_names
 
   def set_cart
@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    User.find(session[:user_id]) if session[:user_id]
+    @current_user ||= (User.find(session[:user_id]) if session[:user_id]) || User.new
   end
 
   def require_current_user
@@ -28,6 +28,4 @@ class ApplicationController < ActionController::Base
   def platform_admin?
     current_user && current_user.role == "platform_admin"
   end
-
-
 end
