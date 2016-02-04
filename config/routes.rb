@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   get "cart" => "pages#cart"
 
-  get "profile" => "pages#{profile}"
+  get "profile" => "pages#profile"
 
   get "platform_admin_venues" => "pages#platform_admin_venues"
 
