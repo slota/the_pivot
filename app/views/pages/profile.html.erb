@@ -15,9 +15,12 @@
 
 
 
-  <h2 class="center satisfy-font white-text black-shadow" style="text-decoration: underline; margin-bottom: -1%;">Admin Page</h2>
+  <h5 class="center" style="margin:2% 0%;"><%= link_to("Edit Profile", platform_admin_venues_path)%></h5>
   <!-- <h5 class="center satisfy-font white-text">Manage venues</h5> -->
-  <h5 class="center" style="margin:2% 0%;"><%= link_to("Manage Venues", platform_admin_venues_path)%> <%= link_to("Manage Orders", root_path) %></h5>
+  <h5 class="center" style="margin:2% 0%;">
+    <%= link_to("Manage Venues", platform_admin_venues_path)%>
+    <%= link_to("Manage Orders", root_path) %>
+  </h5>
 
 <div class="container" style="opacity:0.8; background-color: black; color:white;">
   <table class="bordered highlight responsive-table centered">

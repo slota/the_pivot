@@ -1,4 +1,4 @@
-/*
+  /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
  *
@@ -63,7 +63,7 @@ main {
 }
 
 .opaque-background {
-  opacity:0.8; 
+  opacity:0.8;
   background-color: black;
   color:white;
 }
@@ -84,9 +84,9 @@ font-family: 'Satisfy', cursive;
 }
 
 .search-bar {
-  opacity:0.8; 
-  background-color: black; 
-  border-radius: 10px; 
+  opacity:0.8;
+  background-color: black;
+  border-radius: 10px;
   margin-top: 20px;
   color: white;
   input {
@@ -126,17 +126,17 @@ font-family: 'Satisfy', cursive;
 }
 
 .cart-totals{
-  padding-right: 10%; 
+  padding-right: 10%;
   text-align:right;
 }
 
 h5 a {
-  color:white; 
+  color:white;
   text-shadow: 1px 1px black;
   border-style: outset;
 }
 h4 a {
-  color:white; 
+  color:white;
   text-shadow: 1px 1px black;
   border-style: outset;
 }
