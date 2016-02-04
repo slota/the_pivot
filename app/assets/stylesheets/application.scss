@@ -121,7 +121,22 @@ font-family: 'Satisfy', cursive;
   text-shadow: 2px 2px black;
 }
 
+.teal-shadow {
+  text-shadow: 1px 1px #039be5;
+}
+
 .cart-totals{
   padding-right: 10%; 
   text-align:right;
+}
+
+h5 a {
+  color:white; 
+  text-shadow: 1px 1px black;
+  border-style: outset;
+}
+h4 a {
+  color:white; 
+  text-shadow: 1px 1px black;
+  border-style: outset;
 }

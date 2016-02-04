@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
   get "bluebird" => "pages#bluebird"
 
+  get "admin_bluebird" => "pages#admin_bluebird"
+
   get "edward" => "pages#edward"
 
   get "cart" => "pages#cart"
+
+  get "platform_admin_venues" => "pages#platform_admin_venues"
 
   post "notifications/notify" => "notifications#notify"
   post "twilio/voice" => "twilio#voice"
