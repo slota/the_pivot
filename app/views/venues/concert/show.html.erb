@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col s8 offset-s2">
+    <div class="card">
+      <div class="card-image">
+        <img src="http://assets.rollingstone.com/assets/images/list/rsz-homepage-largedb5c5b0e-1354052522.jpg">
+      </div>
+      <div class="card-content center venue-card">
+        <hr>
+        <p class="satisfy-font">Edward Sharpe and the Magnetic Zeroes</p>
+        <hr>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container opaque-background" style="margin-bottom:10%">
+  <table class="bordered highlight responsive-table">
+    <thead>
+      <tr>
+          <th data-field="Date">Date</th>
+          <th data-field="Logo">Logo</th>
+          <th data-field="Performer">Performer</th>
+          <th data-field="Venue">Venue</th>
+          <th data-field="Price">Price</th>
+          <th data-field="Quantity">Quantity</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td> <%= @concert.date %> </td>
+        <td><%= image_tag(@concert.logo) %></td>
+        <td><%= link_to(@concert.band, edward_path) %></td>
+        <td><%= link_to(@concert.venue.name, bluebird_path) %></td>
+        <td><%= @concert.price %></td>
+        <td><%=number_field(:order, :quantity, in: 1..20) %></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 class="cart-totals">Total = $28</h3>
+  <h5 class="cart-totals"><i class="material-icons">shopping_cart</i> <%= link_to("Add to Cart", cart_path)%></h5>
+
+</div>
