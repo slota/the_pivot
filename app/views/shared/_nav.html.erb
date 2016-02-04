@@ -3,6 +3,7 @@
     <%= link_to "Ticket Maestro", root_path, class: "satisfy-font teal-shadow", style: "font-size: 2em;padding-left:20px;" %>
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down" style = "padding-right: 10px">
+      <li><%= link_to "View Profile", profile_path %></li>
       <% if current_user %>
         <li><%= link_to "View Past Orders", orders_path %></li>
         <li><%= link_to "Logout", logout_path, method: :delete %></li>
