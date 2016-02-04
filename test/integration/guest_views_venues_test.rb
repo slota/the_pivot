@@ -8,7 +8,6 @@ class GuestViewsVenuesTest < ActionDispatch::IntegrationTest
     visit root_path
     click_on "#{venue.name}"
     assert_equal venue_path(concert.venue.url), current_path
-    save_and_open_page
     assert page.has_content?(venue.name)
     assert page.has_content?(concert.band)
   end

@@ -31,11 +31,6 @@
           <td> <%= link_to concert.band, venue_concert_path(concert.venue.url, concert.url) %></td>
           <td> <%= link_to concert.venue.name, venue_path(concert.venue.url) %></td>
           <td> <%= link_to "Get Tickets!", venue_concert_path(concert.venue.url, concert.url) %></td>
-          <!-- <td> </td> -->
-          <!-- <td> </td> -->
-          <!-- <td><%= link_to("Edward Sharpe and the Magnetic Zeros", edward_path) %></td> -->
-          <!-- <td><%= link_to("BlueBird", bluebird_path) %></td> -->
-          <!-- <td>Get Tickets!</td> -->
         </tr>
       <% end %>
     </tbody>
