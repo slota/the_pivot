@@ -4,17 +4,12 @@ class VenuesController < ApplicationController
   end
 
   def index
-    if current_user.platform_admin?
-      @venues = Venue.all
-    else
-      @venues = current_user.venues.to_a
-    end
-    render file: 'public/404' unless current_user.platform_admin? || current_user.business_admin?
+    @venues = current_user.venues.to_a
+    render file: 'public/404' unless current_user.business_admin?
   end
 
   def new
     @venue = Venue.new
-    render file: 'public/404' unless current_user.platform_admin? || current_user.business_admin?
   end
 
   def create
@@ -25,7 +20,8 @@ class VenuesController < ApplicationController
   end
 
   private
-    def venue_params
-      params.require(:venue).permit(:name, :image, :city, :state, :address, :description)
-    end
+
+  def venue_params
+    params.require(:venue).permit(:name, :image, :city, :state, :address, :description)
+  end
 end
