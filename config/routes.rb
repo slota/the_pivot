@@ -31,15 +31,6 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :update]
  end
 
- resources :venues, only: [:index]
- get '/:venue', to: 'venues#show', as: :venue
-
- namespace :venues, path: ":venue", as: :venue do
-  #  resources :concerts, only: [:show], path: ":concert"
-    get '/:concert', to: 'concert#show', as: :concert
-
- end
-  # get '/:venue/:concert', to: 'venue_concert#show', as: :venue_concert
 
   get '/about', to: 'pages#about'
   get '/login', to: 'sessions#new'
@@ -47,6 +38,17 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/dashboard', to: 'users#show'
   get '/cart', to: 'cart_chips#index'
-  get '/:slug', to: 'oils#show'
+  # get '/:slug', to: 'oils#show'
   # get '/:slug', to: redirect('/oils/%{slug}'), as: "oil_name"
+
+
+  resources :venues, only: [:index, :new, :create]
+  get '/:venue', to: 'venues#show', as: :venue
+
+  namespace :venues, path: ":venue", as: :venue do
+    #  resources :concerts, only: [:show], path: ":concert"
+    get '/:concert', to: 'concert#show', as: :concert
+
+  end
+  # get '/:venue/:concert', to: 'venue_concert#show', as: :venue_concert
 end

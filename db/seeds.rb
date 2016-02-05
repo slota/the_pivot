@@ -2,6 +2,7 @@ class Seed
     def self.run
       Seed.generate_venues
       Seed.generate_concerts
+      Seed.generate_custom_users
     end
 
     def self.generate_venues
@@ -28,6 +29,12 @@ class Seed
           venue: Venue.offset(rand(Venue.count-1)).first
         )
       end
+    end
+
+    def self.generate_custom_users
+      User.create(username: "pa", password: "p", role: 2)
+      User.create(username: "ba", password: "p", role: 1)
+      User.create(username: "u", password: "p", role: 0)
     end
 end
 # This file should contain all the record creation needed to seed the database with its default values.

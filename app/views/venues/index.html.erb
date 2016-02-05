@@ -1,8 +1,7 @@
 
-
   <h2 class="center satisfy-font white-text black-shadow" style="text-decoration: underline; margin-bottom: -1%;">Venues</h2>
   <!-- <h5 class="center satisfy-font white-text">Manage venues</h5> -->
-  <h5 class="center" style="margin:2% 0%;"><%= link_to("Add a Venue", cart_path) %></h5>
+  <h5 class="center" style="margin:2% 0%;"><%= link_to("Add a Venue", new_venue_path) %></h5>
 
 <div class="container opaque-background" >
   <table class="bordered highlight responsive-table centered">
@@ -21,9 +20,12 @@
         <tr>
           <td><%= link_to(venue.name, venue_path(venue.url)) %></td>
           <td><%= image_tag(venue.image) %></td>
-          <td><%= "#{venue.address}, #{venue.city}, #{venue.state}" %> %></td>
+          <td><%= "#{venue.address}, #{venue.city}, #{venue.state}" %></td>
           <td><%= link_to(venue.status, "#") %></td>
           <td><%= link_to("edit", "#") %></td>
+          <% if current_user.platform_admin? %>
+            <td><%= link_to("Manage", "#") %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

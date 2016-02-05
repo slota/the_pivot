@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :set_cart
   helper_method :oils,
                 :current_user,
+                :business_admin?,
                 :platform_admin?,
                 :return_oil_names
 
@@ -27,5 +28,9 @@ class ApplicationController < ActionController::Base
 
   def platform_admin?
     current_user && current_user.role == "platform_admin"
+  end
+
+  def business_admin?
+    current_user && current_user.role == "business_admin"
   end
 end
