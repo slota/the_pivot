@@ -10,9 +10,7 @@ class CartConcertsController < ApplicationController
   end
 
   def index
-    binding.pry
-
-    @concerts = current_user.concerts
+    @concerts = @cart.concerts
   end
 
   def update

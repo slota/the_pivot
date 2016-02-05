@@ -22,7 +22,12 @@
           <td><%= link_to(concert.band, venue_concert_path(concert.venue.url, concert.url)) %></td>
           <td><%= link_to(concert.venue.name, venue_path(concert.venue.url)) %></td>
           <td>$<%= concert.price %></td>
-          <td>Quantity4</td>
+          <td class="quantity"><i class="material-icons">
+          <%= button_to "remove", cart_concert_path(concert.url, edit_action: "subtract"), method: :patch, class: "btn-floating" %>
+          </i><%= concert.quantity %>
+        <i class="material-icons">
+        <%= button_to "add", cart_concert_path(concert.url, edit_action: "add"), method: :patch, class: "btn-floating"%>
+        </i></td>
         </tr>
       <% end %> 
     </tbody>

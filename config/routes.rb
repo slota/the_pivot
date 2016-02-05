@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
   resources :oils, only: [:index, :show], param: :slug
   resources :chips, only: [:index, :show], param: :slug
-  resources :cart_concerts, only: [:create, :index, :destroy, :update]
+  resources :cart_concerts, only: [:create, :destroy, :update]
   resources :users, only: [:new, :create, :show, :edit, :update]
   resources :orders, only: [:index, :create, :show, :new]
   namespace :admin do
