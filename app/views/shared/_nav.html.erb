@@ -15,6 +15,7 @@
       <li><i class="material-icons">shopping_cart</i></li>
     </ul>
     <ul class="side-nav" id="mobile-demo">
+
       <% if current_user %>
         <li><%= link_to "View Past Orders", orders_path %></li>
         <li><%= link_to "Logout", logout_path, method: :delete %></li>
@@ -26,12 +27,3 @@
     </ul>
   </div>
 </nav>
-<% if platform_admin? %>
-  <nav class="#eceff1 blue-grey lighten-5">
-    <li class="brand-logo black-text" style="stationary-text">Administrator</li>
-    <ul class="right hide-on-med-and-down">
-      <li><%=link_to "Venues", admin_venues_path, class: "black-text" %></li>
-      <li><%#=link_to "Shows", admin_shows_path, class: "black-text" %></li>
-    </ul>
-  </nav>
-<% end %>
