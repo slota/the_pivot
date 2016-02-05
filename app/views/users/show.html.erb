@@ -2,11 +2,11 @@
   <div class="col s8 offset-s2">
     <div class="card">
       <div class="card-image">
-        <img src="https://avatars2.githubusercontent.com/u/12905774?v=3&s=460">
+        <img src=" <%= @user.picture%>">
       </div>
       <div class="card-content center venue-card">
         <hr>
-        <p class="satisfy-font">John Slota Baby</p>
+        <p class="satisfy-font"> <%=  @user.username%></p>
         <hr>
       </div>
     </div>
@@ -15,7 +15,7 @@
 
 
 
-  <h5 class="center" style="margin:2% 0%;"><%= link_to("Edit Profile", platform_admin_venues_path)%></h5>
+  <h5 class="center" style="margin:2% 0%;"><%= link_to("Edit Profile", edit_user_path(@user))%></h5>
   <!-- <h5 class="center satisfy-font white-text">Manage venues</h5> -->
   <h5 class="center" style="margin:2% 0%;">
     <%= link_to("Manage Venues", platform_admin_venues_path)%>
