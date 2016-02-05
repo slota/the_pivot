@@ -1,5 +1,6 @@
 class Venue < ActiveRecord::Base
   has_many :concerts
+  belongs_to :user
   enum status: %w(Pending Approved Declined)
 
   validates :name, presence: true

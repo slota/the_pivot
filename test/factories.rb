@@ -15,11 +15,12 @@ FactoryGirl.define do
   end
 
   factory :venue do
-    name "Red Rocks"
+    name { Faker::Company.name }
     address "101 Super Sweet Place"
     city "Denver Obviously"
     state "Colorado"
-    image "http://musictour.eu/data//uploads/media/halls/893/f4a4def50c6367fdeafadf41efa9e387.jpg"
+    image { Faker::Company.logo}
+    # image "http://musictour.eu/data//uploads/media/halls/893/f4a4def50c6367fdeafadf41efa9e387.jpg"
     description "If you haven't been here you are wrong"
   end
 end

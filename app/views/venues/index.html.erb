@@ -1,0 +1,47 @@
+
+  <h2 class="center satisfy-font white-text black-shadow" style="text-decoration: underline; margin-bottom: -1%;">Venues</h2>
+  <!-- <h5 class="center satisfy-font white-text">Manage venues</h5> -->
+  <h5 class="center" style="margin:2% 0%;"><%= link_to("Add a Venue", new_venue_path) %></h5>
+
+<div class="container opaque-background" >
+  <table class="bordered highlight responsive-table centered">
+    <thead>
+      <tr>
+          <th data-field="Name">Name</th>
+          <th data-field="Logo">Logo</th>
+          <th data-field="Location">Location</th>
+          <th data-field="Status">Status</th>
+          <th data-field="Edit">Edit</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @venues.each do |venue| %>
+        <tr>
+          <td><%= link_to(venue.name, venue_path(venue.url)) %></td>
+          <td><%= image_tag(venue.image) %></td>
+          <td><%= "#{venue.address}, #{venue.city}, #{venue.state}" %></td>
+          <td><%= link_to(venue.status, "#") %></td>
+          <td><%= link_to("edit", "#") %></td>
+          <% if current_user.platform_admin? %>
+            <td><%= link_to("Manage", "#") %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+    <div class="col s5 offset-s3">
+      <ul class="pagination center">
+        <li class="waves-effect"><ahref="#!"><i class="material-icons">chevron_left</i></a></li>
+        <li class="active"><ahref="#!">1</a></li>
+        <li class="waves-effect"><ahref="#!">2</a></li>
+        <li class="waves-effect"><ahref="#!">3</a></li>
+        <li class="waves-effect"><ahref="#!">4</a></li>
+        <li class="waves-effect"><ahref="#!">5</a></li>
+        <li class="waves-effect"><ahref="#!"><i class="material-icons">chevron_right</i></a></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
