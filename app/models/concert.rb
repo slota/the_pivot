@@ -3,6 +3,6 @@ class Concert < ActiveRecord::Base
   before_validation :generate_url
 
   def generate_url
-    self.url = band.parameterize
+    self.url = "#{date}-#{band.parameterize}"
   end
 end
