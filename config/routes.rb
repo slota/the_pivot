@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   get "edward" => "pages#edward"
 
-  get "cart" => "pages#cart"
+  # get "cart" => "pages#cart"
 
   get "profile" => "pages#profile"
 
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
   resources :oils, only: [:index, :show], param: :slug
   resources :chips, only: [:index, :show], param: :slug
-  resources :cart_chips, only: [:create, :index, :destroy, :update]
+  resources :cart_concerts, only: [:create, :destroy, :update]
   resources :users, only: [:new, :create, :show, :edit, :update]
   resources :orders, only: [:index, :create, :show, :new]
   namespace :admin do
@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/dashboard', to: 'users#show'
-  get '/cart', to: 'cart_chips#index'
+  get '/cart', to: 'cart_concerts#index'
   # get '/:slug', to: 'oils#show'
   # get '/:slug', to: redirect('/oils/%{slug}'), as: "oil_name"
 

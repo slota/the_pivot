@@ -11,23 +11,25 @@
           <th data-field="Venue">Venue</th>
           <th data-field="Price">Price</th>
           <th data-field="Quantity">Quantity</th>
+          <th data-field="Subtotal">Subtotal</th>
       </tr>
     </thead>
 
     <tbody>
-      <%= @concerts.each do |concert, quantity| %> 
+      <% @concerts.each do |concert| %> 
         <tr>
-          <td>concert.date</td>
+          <td><%= concert.date %></td>
           <td><%= image_tag(concert.logo) %></td>
           <td><%= link_to(concert.band, venue_concert_path(concert.venue.url, concert.url)) %></td>
           <td><%= link_to(concert.venue.name, venue_path(concert.venue.url)) %></td>
           <td>$<%= concert.price %></td>
-          <td>Quantity4</td>
+          <td><%= concert.quantity %></td>
+          <td>$<%= concert.subtotal %></td>
         </tr>
       <% end %> 
     </tbody>
   </table>
-  <h3 class="cart-totals">Total = $188</h3>
+  <h3 class="cart-totals">Total = <%=number_to_currency(@cart.total) %></h3>
   <h5 class="cart-totals"><i class="material-icons">thumb_up</i> <%= link_to("Checkout!", cart_path)%></h5>
 
 </div>

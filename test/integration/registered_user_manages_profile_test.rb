@@ -39,7 +39,6 @@ class RegisteredUserManagesProfileTest < ActionDispatch::IntegrationTest
     fill_in "Username", with: "Larry.Walker"
 
     click_button "Update Account"
-    save_and_open_page
     assert page.has_content? "Larry.Walker"
   end
 end

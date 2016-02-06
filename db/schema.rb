@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 20160205053643) do
 
   add_index "chips", ["oil_id"], name: "index_chips_on_oil_id", using: :btree
 
+  create_table "concert_orders", force: :cascade do |t|
+    t.integer "concert_id"
+    t.integer "order_id"
+    t.integer "quantity"
+    t.float   "subtotal"
+  end
+
+  add_index "concert_orders", ["concert_id"], name: "index_concert_orders_on_concert_id", using: :btree
+  add_index "concert_orders", ["order_id"], name: "index_concert_orders_on_order_id", using: :btree
+
   create_table "concerts", force: :cascade do |t|
     t.date     "date"
     t.string   "band"
@@ -99,6 +109,8 @@ ActiveRecord::Schema.define(version: 20160205053643) do
   add_foreign_key "chip_orders", "chips"
   add_foreign_key "chip_orders", "orders"
   add_foreign_key "chips", "oils"
+  add_foreign_key "concert_orders", "concerts"
+  add_foreign_key "concert_orders", "orders"
   add_foreign_key "concerts", "venues"
   add_foreign_key "venues", "users"
 end
