@@ -13,7 +13,5 @@ class UserViewsConcertTest < ActionDispatch::IntegrationTest
     assert page.has_content?(concert.venue.name)
     assert page.has_content?(concert.price)
     assert page.has_content?("Quantity")
-    assert page.has_content?("Total")
-    assert page.has_content?("Add to Cart")
   end
 end

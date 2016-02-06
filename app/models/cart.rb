@@ -6,20 +6,19 @@ class Cart
   end
 
   def cart_concerts
-    @contents.map do |concert_id, quantity| #will need concert_id in orders form
+    @contents.map do |concert_id, quantity|
       concert = Concert.find(concert_id)
-      subtotal = quantity * concert.price
+      subtotal = quantity.to_i * concert.price.to_i
       CartConcert.new(concert, quantity, subtotal)
     end
   end
 
   def total
-    cart_concerts.reduce(0) { |sum, n| sum + n.subtotal }
+    cart_concerts.reduce(0) { |sum, n| sum + n.subtotal.to_i }
   end
 
-  def add_concert(concert_id)
-    contents[concert_id.to_s] ||= 0
-    contents[concert_id.to_s] += 1
+  def add_concert(concert_id, quantity)
+    contents[concert_id.to_s] = quantity
   end
 
   def subtract_concert(concert_id)

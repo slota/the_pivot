@@ -23,6 +23,7 @@
           <th data-field="Venue">Venue</th>
           <th data-field="Price">Price</th>
           <th data-field="Quantity">Quantity</th>
+          <th data-field=""></th>
       </tr>
     </thead>
 
@@ -32,14 +33,16 @@
         <td><%= image_tag(@concert.logo) %></td>
         <td><%= link_to(@concert.band, edward_path) %></td>
         <td><%= link_to(@concert.venue.name, bluebird_path) %></td>
-        <td><%= @concert.price %></td>
-        <td><%=number_field(:order, :quantity, in: 1..20) %></td>
+        <td>$<%= @concert.price %></td>
+        <td><%= form_for(:order, url: cart_concerts_path(@concert.url)) do |f| %> 
+            <%= number_field(:order, :quantity) %>
+            <%= f.submit "Add to Cart", style: 'color:black'%></td>
+            <% end %>
       </tr>
     </tbody>
   </table>
-  <h3 class="cart-totals">Total = $28</h3>
-<!--   <h5 class="cart-totals"><i class="material-icons">shopping_cart</i> <%= link_to("Add to Cart", cart_path)%></h5> -->
+<!--   <h5 class="cart-totals"><i class="material-icons">shopping_cart</i> <%#= link_to("Add to Cart", cart_path)%></h5> -->
 
-<p><center><%= button_to "Add to Cart", cart_concerts_path, class: "btn"%></center></p>
+<!-- <p><center><%#= button_to "Add to Cart", cart_concerts_path(@concert.url, quantity: :quantity), class: "btn"%></center></p> -->
 
 </div>

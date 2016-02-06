@@ -16,15 +16,12 @@ class GuestAddsConcertToCartTest < ActionDispatch::IntegrationTest
     assert page.has_content?(concert.venue.name)
     assert page.has_content?(concert.price)
     assert page.has_content?("Quantity")
-    assert page.has_content?("Total")
-    assert page.has_content?("Add to Cart")
 
     fill_in "order[quantity]", with: 2
 
-    save_and_open_page
-    click_on "Add to Cart"
+    click_button("Add to Cart")
 
-    assert cart_concerts_path, current_path
+    assert_equal cart_path, current_path
 
     assert page.has_content?(concert.date)
     assert page.has_content?("Logo")
@@ -33,7 +30,9 @@ class GuestAddsConcertToCartTest < ActionDispatch::IntegrationTest
     assert page.has_content?(concert.price)
     assert page.has_content?("Quantity")
     assert page.has_content?(concert.price)
-    assert_equal 2, Order.count
+
+    assert page.has_content?("2")
+    assert page.has_content?("#{concert.price * 2}")
     assert page.has_content?("Checkout!")
   end 
 end

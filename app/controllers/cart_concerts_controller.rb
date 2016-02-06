@@ -2,15 +2,15 @@ class CartConcertsController < ApplicationController
   include ActionView::Helpers::TextHelper
 
   def create
-    concert = Concert.find(params[:concert_id])
-    @cart.add_concert(concert.id)
+    concert = Concert.find_by(url: params[:format])
+    @cart.add_concert(concert.id, params[:order][:quantity])
     session[:cart] = @cart.contents
-    flash[:notice] = "Added #{view_context.link_to(concert.name, concert_path(concert.slug))} to cart."
-    redirect_to concerts_path
+    flash[:notice] = "Added #{view_context.link_to(concert.band, venue_concert_path(concert.venue.url, concert.url))} to cart."
+    redirect_to cart_path
   end
 
   def index
-    @concerts = @cart.concerts
+    @concerts = @cart.cart_concerts
   end
 
   def update
