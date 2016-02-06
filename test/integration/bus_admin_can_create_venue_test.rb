@@ -11,8 +11,7 @@ class BusAdminCanCreateVenueTest < ActionDispatch::IntegrationTest
     click_on("Manage Venues")
 
     assert_equal venues_path, current_path
-
-    save_and_open_page
+    
     click_on("Add a Venue")
 
     assert_equal new_venue_path, current_path
