@@ -15,7 +15,7 @@ class VenuesController < ApplicationController
   def create
     @venue = Venue.create(venue_params)
     current_user.venues << @venue
-    flash[:sucess] = "Thank you for your submission. Your venue will be activated once we review your submission!"
+    flash[:sucess] = "Request sent for approval"
     redirect_to venues_path
   end
 
