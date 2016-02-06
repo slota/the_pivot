@@ -2,12 +2,15 @@ class ChipOrder < ActiveRecord::Base
   belongs_to :chip
   belongs_to :order
 
-  def self.create_chip_order(order, cart)
-    cart.contents.each do |chip_id, quantity|
-      chip_price = Chip.find(chip_id.to_i).price
-      subtotal = chip_price * quantity
-      ChipOrder.create(order_id: order.id,
-                       chip_id: chip_id, quantity: quantity, subtotal: subtotal)
+  def self.create_concert_order(order, cart)
+    cart.contents.each do |concert_id, quantity|
+      concert_price = Concert.find_by(id: concert_id).price
+      subtotal = concert_price * quantity.to_i
+      ConcertOrder.create(order_id: order.id,
+                          concert_id: concert_id,
+                          quantity: quantity.to_i,
+                          price: concert_price,
+                          subtotal: subtotal)
     end
   end
 end

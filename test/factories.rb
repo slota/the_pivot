@@ -1,4 +1,19 @@
 FactoryGirl.define do
+  factory :concert_order do
+    concert nil
+    order nil
+    quantity 1
+    subtotal 1.5
+    price 1.5
+  end
+  factory :order do
+    status "MyString"
+    total_price 1.5
+    user nil
+    address "MyString"
+  end
+
+
   factory :concert do
     date "2016-02-04"
     band "John Slota Band"
