@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20160206072254) do
   add_index "concerts", ["venue_id"], name: "index_concerts_on_venue_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
-    t.string   "status",      default: "Ordered"
+    t.string   "status"
     t.float    "total_price"
     t.integer  "user_id"
     t.string   "address"

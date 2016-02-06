@@ -134,6 +134,23 @@ class GuestAddsConcertToCartTest < ActionDispatch::IntegrationTest
     click_button("Checkout")
 
     assert page.has_content?("Order was successfully placed")
-
   end
+
+  test "registered guest can view ticket history" do
+    venue = create(:venue)
+    concert = create(:concert, venue: venue)
+    registered_user = create(:user, role: 1)
+    ApplicationController.any_instance.stubs(:current_user).returns(registered_user)
+    order = create(:order)
+    order.update(user_id: registered_user.id)
+    concert_order = create(:concert_order)
+    concert_order.update(concert_id: concert.id, order_id: order.id)
+
+    visit user_path(registered_user.id)
+
+    assert page.has_content?("John Slota Band")
+    assert page.has_content?("1")
+    assert page.has_content?("Denverado Broncos Heaven")
+  end
+
 end

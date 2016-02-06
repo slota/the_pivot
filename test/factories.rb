@@ -6,11 +6,12 @@ FactoryGirl.define do
     subtotal 1.5
     price 1.5
   end
+
   factory :order do
-    status "MyString"
+    status "Ordered"
     total_price 1.5
     user nil
-    address "MyString"
+    address "321 awesome"
   end
 
 
@@ -31,7 +32,7 @@ FactoryGirl.define do
   end
 
   factory :venue do
-    name { Faker::Company.name }
+    name "Denverado Broncos Heaven"
     address "101 Super Sweet Place"
     city "Denver Obviously"
     state "Colorado"
