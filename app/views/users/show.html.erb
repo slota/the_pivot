@@ -22,7 +22,7 @@
   <%= link_to("Manage Orders", order_path) %>
 </h5>
 
-
+<h3 class="satisfy-font center white-text teal-shadow">Completed Orders</h3>
 <% if @orders %>
 <div class="container" style="opacity:0.8; background-color: black; color:white;">
   <table class="bordered highlight responsive-table">
@@ -68,6 +68,3 @@
 
 <% end %>
 </div>
-
-<h4>Your past orders:</h4>
-<%= render partial: 'orders/orders_table' %>
