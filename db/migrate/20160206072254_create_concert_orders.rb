@@ -5,6 +5,9 @@ class CreateConcertOrders < ActiveRecord::Migration
       t.references :order, index: true, foreign_key: true
       t.integer :quantity
       t.float :subtotal
+      t.float :price
+
+      t.timestamps null: false
     end
   end
 end

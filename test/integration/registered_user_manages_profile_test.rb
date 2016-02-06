@@ -41,4 +41,6 @@ class RegisteredUserManagesProfileTest < ActionDispatch::IntegrationTest
     click_button "Update Account"
     assert page.has_content? "Larry.Walker"
   end
+
+
 end
