@@ -39,15 +39,15 @@
 
     <tbody>
       <% @orders.each do |order| %>
-      <% order.concert_orders.each do |concert_order| %>
-      <tr>
-        <td><%= concert_order.concert.date %></td>
-        <td><%= concert_order.concert.band %></td>
-        <td><%= concert_order.concert.venue.name %></td>
-        <td><%= concert_order.quantity %> </td>
-        <td><%= concert_order.price %> </td>
-        <td><%= concert_order.subtotal %></td>
-        <% end %>
+        <% order.concert_orders.each do |concert_order| %>
+        <tr>
+          <td><%= concert_order.concert.date %></td>
+          <td><%= concert_order.concert.band %></td>
+          <td><%= concert_order.concert.venue.name %></td>
+          <td><%= concert_order.quantity %> </td>
+          <td><%= concert_order.price %> </td>
+          <td><%= concert_order.subtotal %></td>
+          <% end %>
         <% end %>
       </tr>
     </tbody>
