@@ -148,9 +148,9 @@ class GuestAddsConcertToCartTest < ActionDispatch::IntegrationTest
 
     visit user_path(registered_user.id)
 
-    assert page.has_content?("John Slota Band")
+    assert page.has_content?(concert.band)
     assert page.has_content?("1")
-    assert page.has_content?("Denverado Broncos Heaven")
+    assert page.has_content?(venue.name)
   end
 
 end

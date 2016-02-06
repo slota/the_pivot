@@ -32,9 +32,9 @@ FactoryGirl.define do
   end
 
   factory :venue do
-    name "Denverado Broncos Heaven"
+    name { Faker::Company.name }
     address "101 Super Sweet Place"
-    city "Denver Obviously"
+    city "Denver"
     state "Colorado"
     image { Faker::Company.logo }
     # image "http://musictour.eu/data//uploads/media/halls/893/f4a4def50c6367fdeafadf41efa9e387.jpg"
