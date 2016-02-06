@@ -4,7 +4,7 @@ class VenuesController < ApplicationController
   end
 
   def index
-    @venues = current_user.venues.to_a
+    @venues = current_user.venues
     render file: 'public/404' unless current_user.business_admin?
   end
 
@@ -15,7 +15,18 @@ class VenuesController < ApplicationController
   def create
     @venue = Venue.create(venue_params)
     current_user.venues << @venue
-    flash[:sucess] = "Request sent for approval"
+    flash[:success] = "Request sent for approval"
+    redirect_to venues_path
+  end
+
+  def edit
+    @venue = Venue.find_by(url: params[:venue])
+  end
+
+  def update
+    venue = Venue.find_by(id: params[:venue])
+    venue.update(update_params)
+    flash[:success] = "#{venue.name} Updated!"
     redirect_to venues_path
   end
 
@@ -23,5 +34,9 @@ class VenuesController < ApplicationController
 
   def venue_params
     params.require(:venue).permit(:name, :image, :city, :state, :address, :description)
+  end
+
+  def update_params
+    params.permit(:name, :image, :city, :state, :address, :description)
   end
 end
