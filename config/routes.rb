@@ -16,20 +16,17 @@ Rails.application.routes.draw do
   #
   get "platform_admin_venues" => "pages#platform_admin_venues"
   #
-  post "notifications/notify" => "notifications#notify"
-  post "twilio/voice" => "twilio#voice"
   root to: "pages#home"
-  resources :oils, only: [:index, :show], param: :slug
-  resources :chips, only: [:index, :show], param: :slug
+
   resources :cart_concerts, only: [:create, :destroy, :update]
   resources :users, only: [:new, :create, :show, :edit, :update]
   resources :orders, only: [:index, :create, :show, :new]
-  namespace :admin do
-    # resources :chips, only: [:index, :show, :create, :new, :update, :edit, :destroy]
-    resources :venues, only: [:index, :new, :create]
-    # resources :dashboard, only: [:index, :show]
-    resources :orders, only: [:index, :update]
- end
+ #  namespace :admin do
+ #    # resources :chips, only: [:index, :show, :create, :new, :update, :edit, :destroy]
+ #    resources :venues, only: [:index, :new, :create, :update, :edit]
+ #    # resources :dashboard, only: [:index, :show]
+ #    resources :orders, only: [:index, :update]
+ # end
 
 
   get '/about', to: 'pages#about'
@@ -43,7 +40,12 @@ Rails.application.routes.draw do
 
 
   resources :venues, only: [:index, :new, :create]
+  get '/:venue/edit', to: 'venues#edit', as: :edit_venue
+
   get '/:venue', to: 'venues#show', as: :venue
+  patch '/:venue', to: 'venues#update'
+  put '/:venue', to: 'venues#update'
+
 
   namespace :venues, path: ":venue", as: :venue do
     #  resources :concerts, only: [:show], path: ":concert"
