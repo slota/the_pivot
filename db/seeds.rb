@@ -44,7 +44,7 @@ class Seed
           address: "Address #{i}",
           city: "Denver",
           state: "CO",
-          image: "http://musictour.eu/data//uploads/media/halls/893/f4a4def50c6367fdeafadf41efa9e387.jpg",
+          # image: "http://musictour.eu/data//uploads/media/halls/893/f4a4def50c6367fdeafadf41efa9e387.jpg",
           description: "Long and boring description #{i}",
           user: @bas.sample
         )
@@ -57,7 +57,7 @@ class Seed
           address: "Ba's Address #{i}",
           city: "Denver",
           state: "CO",
-          image: "http://musictour.eu/data//uploads/media/halls/893/f4a4def50c6367fdeafadf41efa9e387.jpg",
+          # image: "http://musictour.eu/data//uploads/media/halls/893/f4a4def50c6367fdeafadf41efa9e387.jpg",
           description: "Long and boring description #{i}",
           user: User.find_by(username: "ba")
         )
