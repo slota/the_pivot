@@ -13,8 +13,9 @@ Rails.application.routes.draw do
 
   get "order" => "pages#orders"
 
-  #
-  get "platform_admin_venues" => "pages#platform_admin_venues"
+  namespace :admin do
+    resources :venues
+  end
   #
   root to: "pages#home"
 

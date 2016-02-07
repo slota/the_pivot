@@ -1,11 +1,4 @@
 class Admin::VenuesController < Admin::BaseController
-  #have before_action :require_platform_admin in base controller
-
-  # respond_to :json
-  #
-  # def index
-  #   respond_with Venue.all
-  # end
 
   def index
     @venues = Venue.all
@@ -13,6 +6,9 @@ class Admin::VenuesController < Admin::BaseController
 
   def new
     @venue = Venue.new
+  end
+
+  def show
   end
 
   def create
