@@ -26,7 +26,7 @@ FactoryGirl.define do
   end
 
   factory :user do
-    username "Dexter.Fowler"
+    username { Faker::Company.name }
     password "pass"
     picture "http://l1.yimg.com/bt/api/res/1.2/W_VfC5faktmNRESq5jg6fg--/YXBwaWQ9eW5ld3NfbGVnbztpbD1wbGFuZTtxPTc1O3c9NjAw/http://media.zenfs.com/en/person/Ysports/dexter-fowler-baseball-headshot-photo.jpg"
   end
