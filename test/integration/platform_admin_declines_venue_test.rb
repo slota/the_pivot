@@ -1,7 +1,7 @@
 require 'test_helper'
 
-class PlatformAdminApprovesVenueTest < ActionDispatch::IntegrationTest
-  test 'platform admin can approve' do
+class PlatformAdminDeclinesVenueTest < ActionDispatch::IntegrationTest
+  test 'platform admin can decline' do
     user = create(:user,role: 2)
     user_2 = create(:user)
     venue = create(:venue, user_id: user_2.id)
@@ -17,12 +17,12 @@ class PlatformAdminApprovesVenueTest < ActionDispatch::IntegrationTest
 
     assert current_path, edit_admin_venue_path(venue)
 
-    check('Approved')
+    check('Decline')
     click_on("Update Venue")
 
     assert current_path, admin_venues_path
 
     assert page.has_content?("#{venue.name} Updated!")
-    assert page.has_content?("Approved")
+    assert page.has_content?("Declined")
   end
 end

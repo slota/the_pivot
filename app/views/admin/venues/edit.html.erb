@@ -20,9 +20,12 @@
   <%= f.text_area :description %>
 
   <%= f.label :status %>
-  <%= check_box_tag(:status) %>
-  <%= label_tag(:status, "Approved/Online") %>
-  <%= label_tag(:status, "Declined/Offline") %>
-
+  <br>
+  <%= check_box_tag(:approved) %>
+  <%= label_tag(:approved, "Approved/Online") %>
+  <br>
+  <%= check_box_tag(:declined) %>
+  <%= label_tag(:declined, "Declined/Offline") %>
+  <br>
   <%= f.submit class: "btn" %>
  <% end %>
