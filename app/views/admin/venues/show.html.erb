@@ -15,7 +15,7 @@
   </div>
 </div>
 
-<% if current_user = @venue.user %>
+<% if current_user.venues %>
   <h5 class="center"><%= link_to("Add an Admin", cart_path) %></h5>
 
   <div class="container opaque-background">
@@ -39,7 +39,7 @@
   <% end %>
 
   <div class="row">
-    <h5 class="center"><%= link_to "Add a concert", venue_new_concert_path %></h5>
+    <%= link_to "Add a concert", venue_new_concert_path %>
   </div>
 
 <div class="container" style="opacity:0.8; background-color: black; color:white;">
@@ -50,10 +50,8 @@
         <th data-field="Logo">Logo</th>
         <th data-field="Performer">Performer</th>
         <th data-field="Venue">Venue</th>
-        <% if current_user = @venue.user %>
-          <th data-field="Edit">Edit</th>
-          <th data-field="Remove">Remove</th>
-        <% end %>
+        <th data-field="Tickets">Tickets</th>
+
       </tr>
     </thead>
 
@@ -64,16 +62,12 @@
         <td> <%= image_tag concert.logo %> </td>
         <td> <%= link_to concert.band, venue_concert_path(concert.venue.url, concert.url) %></td>
         <td> <%= link_to concert.venue.name, venue_path(concert.venue.url) %></td>
-        <% if current_user = @venue.user %>
-          <td><%= link_to "Edit", edit_concert_path(concert.url) %></td>
-          <td><%= link_to("Remove", venue_concert_path(concert.venue.url, concert.url), method: :delete) %></td>
-        <% end %>
+        <td> <%= link_to "Get Tickets!", venue_concert_path(concert.venue.url, concert.url) %></td>
       </tr>
       <% end %>
     </tbody>
   </table>
 </div>
-
 <div class="col s5 offset-s3">
   <ul class="pagination center">
     <li class="waves-effect"><ahref="#!"><i class="material-icons">chevron_left</i></a></li>

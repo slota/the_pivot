@@ -12,6 +12,7 @@
           <th data-field="Location">Location</th>
           <th data-field="Status">Status</th>
           <th data-field="Edit">Edit</th>
+          <th data-field="Add concerts/manage admin">Manage Venue</th>
       </tr>
     </thead>
 
@@ -23,6 +24,7 @@
           <td><%= "#{venue.address}, #{venue.city}, #{venue.state}" %></td>
           <td><%= link_to(venue.status, "#") %></td>
           <td><%= link_to("edit", edit_venue_path(venue.url)) %></td>
+          <td><%= link_to("Manage Venue", venue_path(venue.url)) %></td>
           <% if current_user.platform_admin? %>
             <td><%= link_to("Manage", "#") %></td>
           <% end %>

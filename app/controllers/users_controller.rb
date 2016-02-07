@@ -20,11 +20,11 @@ class UsersController < ApplicationController
   def show
     @user = current_user
     @orders = @user.orders.all
-    if @user.platform_admin?
-      redirect_to admin_venues_path
-    else
+    # if @user.platform_admin?
+    #   redirect_to admin_venues_path
+    # else
       render :show
-    end
+    # end
   end
 
   def edit
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     @user = current_user
     @user.update(user_params)
     flash.notice = "Your Account Has Been Updated!"
-    redirect_to dashboard_path(@user)
+    redirect_to user_path(current_user)
   end
 
   private
