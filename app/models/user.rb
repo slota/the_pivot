@@ -6,5 +6,9 @@ class User < ActiveRecord::Base
   validates :username, presence: true,
                      uniqueness: true
 
+  validates_with AttachmentSizeValidator, attributes: :image, less_than: 1.megabytes
+  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "http://i.telegraph.co.uk/multimedia/archive/02067/bowie_2067738b.jpg"
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+
    enum role: %w(registered_user business_admin platform_admin)
 end

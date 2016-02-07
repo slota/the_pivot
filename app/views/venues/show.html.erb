@@ -2,7 +2,7 @@
   <div class="col s8 offset-s2">
     <div class="card">
       <div class="card-image">
-        <img src= "<%= @venue.image %>">
+        <%= image_tag(@venue.image) %>
         <span class="card-title satisfy-font" style="font-size:3em;text-shadow:1px 1px black;"> <%= @venue.name %></span>
       </div>
       <div class="card-content center venue-card">

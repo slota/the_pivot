@@ -2,11 +2,11 @@
   <div class="col s8 offset-s2">
     <div class="card">
       <div class="card-image">
-        <img src="http://assets.rollingstone.com/assets/images/list/rsz-homepage-largedb5c5b0e-1354052522.jpg">
+        <%= image_tag @concert.logo %>
       </div>
       <div class="card-content center venue-card">
         <hr>
-        <p class="satisfy-font">Edward Sharpe and the Magnetic Zeroes</p>
+        <p class="satisfy-font"><%= @concert.band %></p>
         <hr>
       </div>
     </div>

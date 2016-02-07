@@ -12,3 +12,8 @@
 !/log/.keep
 /tmp
 /coverage
+/public/system/venues/images
+/public/system/concerts/images
+/public/system/users/images
+
+
