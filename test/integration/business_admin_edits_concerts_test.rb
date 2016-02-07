@@ -10,10 +10,10 @@ class BusinessAdminEditsConcertsTest < ActionDispatch::IntegrationTest
     ApplicationController.any_instance.stubs(:current_user).returns(user)
 
     visit venue_path(venue.url)
-    # save_and_open_page
+
     click_on "edit"
 
-    assert_equal venue_edit_concert_path(venue.url), current_path
+    assert_equal edit_concert_path(concert.url), current_path
     fill_in 'concert[band]', with: 'Gigatron'
     click_on "Update Concert"
 
