@@ -10,12 +10,12 @@ class RegisteredUserManagesProfileTest < ActionDispatch::IntegrationTest
       click_link "Login"
     end
 
-    fill_in "Username", with: "Dexter.Fowler"
+    fill_in "Username", with: user.username
     fill_in "Password", with: "pass"
 
     click_button "Login"
 
-    assert page.has_content? "Dexter.Fowler"
+    assert page.has_content?(user.username)
   end
 
   test 'registered user edit info' do
@@ -27,12 +27,12 @@ class RegisteredUserManagesProfileTest < ActionDispatch::IntegrationTest
       click_link "Login"
     end
 
-    fill_in "Username", with: "Dexter.Fowler"
+    fill_in "Username", with: user.username
     fill_in "Password", with: "pass"
 
     click_button "Login"
 
-    assert page.has_content? "Dexter.Fowler"
+    assert page.has_content?(user.username)
 
     click_link "Edit Profile"
 

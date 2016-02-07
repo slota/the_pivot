@@ -10,7 +10,7 @@ class Seed
         Venue.create(
           name: "Venue #{i}",
           address: "Address #{i}",
-          city: "Devner",
+          city: "Denver",
           state: "CO",
           image: "http://musictour.eu/data//uploads/media/halls/893/f4a4def50c6367fdeafadf41efa9e387.jpg",
           description: "Long and boring description #{i}"
@@ -44,7 +44,7 @@ end
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-# 
+#
 # Oil.create!([{name: "Lard"}, {name: "Coconut Oil"}, {name: "Avocado Oil"}])
 #
 # Chip.create!([
