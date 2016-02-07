@@ -51,7 +51,8 @@ Rails.application.routes.draw do
     #  resources :concerts, only: [:show], path: ":concert"
     get '/:concert', to: 'concert#show', as: :concert
     delete '/:concert', to: 'concert#destroy'
-
+    post '/concerts', to: 'concert#create', as: :concerts
+    get '/concerts/new', to: 'concert#new', as: :new_concert
   end
   # get '/:venue/:concert', to: 'venue_concert#show', as: :venue_concert
 end
