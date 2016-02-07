@@ -6,6 +6,8 @@ class BusinessAdminRemovesConcertTest < ActionDispatch::IntegrationTest
     venue = create(:venue, user_id: user.id)
     concert = create(:concert, venue_id: venue.id)
 
+    ApplicationController.any_instance.stubs(:current_user).returns(user)
+
     visit venue_path(venue.url)
 
     assert page.has_content?(concert.band)
