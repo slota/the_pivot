@@ -29,6 +29,7 @@
           <th data-field="Venue">Venue</th>
           <th data-field="Tickets">Tickets</th>
           <th data-field="Edit">Edit</th>
+          <th data-field="Remove">remove</th>
       </tr>
     </thead>
 
@@ -41,6 +42,7 @@
           <td> <%= link_to concert.venue.name, venue_path(concert.venue.url) %></td>
           <td> <%= link_to "Get Tickets!", venue_concert_path(concert.venue.url, concert.url) %></td>
           <td> <%= link_to "edit", edit_concert_path(concert.url) %></td>
+          <td><%= link_to("remove", venue_concert_path(concert.venue.url, concert.url), method: :delete) %></td>
         </tr>
       <% end %>
     </tbody>
