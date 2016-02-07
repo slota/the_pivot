@@ -5,12 +5,9 @@ class BusinessAdminRemovesConcertTest < ActionDispatch::IntegrationTest
     user = create(:user, role: 1)
     venue = create(:venue, user_id: user.id)
     concert = create(:concert, venue_id: venue.id)
-
+    
     visit venue_path(venue.url)
 
-    click_on(concert.band)
-
-    assert_equal venue_concert_path(concert.venue.url, concert.url), current_path
     assert page.has_content?(concert.band)
     assert page.has_content?(concert.date)
     assert page.has_content?("remove")
