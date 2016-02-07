@@ -1,0 +1,17 @@
+<div class="container">
+  <h2>Edit concert</h2>
+  <%= form_tag venue_update_concert_path(venue: params[:venue],concert: params[:concert], method: :patch) do%>
+    <%= label_tag :date %>
+    <%= label_tag :date %>
+    <%= date_field_tag :date %>
+    <%= label_tag :band %>
+    <%= text_field_tag :band %>
+    <%= label_tag :logo %>
+    <%= file_field_tag :logo %>
+    <%= label_tag :price %>
+    <%= number_field_tag :price %>
+    <%= label_tag :genre %>
+    <%= text_field_tag :genre %>
+    <%= submit_tag %>
+  <% end %>
+</div>

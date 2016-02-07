@@ -1,7 +1,7 @@
 class Venues::ConcertController < ApplicationController
   def show
     @concert = Concert.find_by(url: params[:concert])
-  end 
+  end
 
   def new
     @concert = Concert.new
@@ -18,12 +18,11 @@ class Venues::ConcertController < ApplicationController
     @venue = Venue.find_by(url: params[:venue])
     @concert.destroy
     redirect_to venue_path(@venue.url)
-  end 
+  end
 
   private
-  
+
   def concert_params
     params.require(:concert).permit(:date, :band, :logo, :price, :genre)
   end
 end
-

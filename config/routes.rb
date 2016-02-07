@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :cart_concerts, only: [:create, :destroy, :update]
   resources :users, only: [:new, :create, :show, :edit, :update]
   resources :orders, only: [:index, :create, :show, :new]
+  resources :concerts
  #  namespace :admin do
  #    # resources :chips, only: [:index, :show, :create, :new, :update, :edit, :destroy]
  #    resources :venues, only: [:index, :new, :create, :update, :edit]
@@ -53,6 +54,8 @@ Rails.application.routes.draw do
     delete '/:concert', to: 'concert#destroy'
     post '/concerts', to: 'concert#create', as: :concerts
     get '/concerts/new', to: 'concert#new', as: :new_concert
+    get '/:concert/edit', to: 'concert#edit', as: :edit_concert
+    patch '/:concert', to: 'concert#update', as: :update_concert
   end
   # get '/:venue/:concert', to: 'venue_concert#show', as: :venue_concert
 end
