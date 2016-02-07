@@ -5,6 +5,7 @@ class GuestViewsVenueTest < ActionDispatch::IntegrationTest
     venue = create(:venue)
     concert = create(:concert, venue: venue)
 
+
     visit root_path
     click_on "#{venue.name}"
     assert_equal venue_path(concert.venue.url), current_path

@@ -11,7 +11,7 @@ class BusinessAdminEditsConcertsTest < ActionDispatch::IntegrationTest
 
     visit venue_path(venue.url)
 
-    click_on "edit"
+    click_on "Edit"
 
     assert_equal edit_concert_path(concert.url), current_path
     fill_in 'concert[band]', with: 'Gigatron'

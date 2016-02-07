@@ -1,11 +1,4 @@
 class Admin::VenuesController < Admin::BaseController
-  #have before_action :require_platform_admin in base controller
-
-  # respond_to :json
-  #
-  # def index
-  #   respond_with Venue.all
-  # end
 
   def index
     @venues = Venue.all
@@ -15,9 +8,13 @@ class Admin::VenuesController < Admin::BaseController
     @venue = Venue.new
   end
 
+  def show
+  end
+
   def create
     @venue = Venue.create(venue_params)
-    flash[:success] = "Thank you for your submission. Your venue will be activated once we review your submission!"
+    current_user.venues << @venue
+    flash[:success] = "Request sent for approval"
     redirect_to admin_venues_path
   end
 

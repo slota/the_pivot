@@ -1,0 +1,84 @@
+<div class="row">
+  <div class="col s8 offset-s2">
+    <div class="card">
+      <div class="card-image">
+        <img src= "<%= @venue.image %>">
+        <span class="card-title satisfy-font" style="font-size:3em;text-shadow:1px 1px black;"> <%= @venue.name %></span>
+      </div>
+      <div class="card-content center venue-card">
+        <p class="satisfy-font"> <%=  @venue.address %>, <%= @venue.city %>, <%= @venue.state %></p>
+        <hr>
+        <p class="satisfy-font"> <%=   @venue.name%></p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<h5 class="center"><%= link_to("Add an Admin", cart_path) %></h5>
+
+<div class="container opaque-background">
+  <table class="bordered highlight responsive-table">
+    <thead>
+      <tr>
+        <th data-field="Username">Username</th>
+        <th data-field="Edit">Edit</th>
+        <th data-field="Remove">Remove</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @venue.user.username %></td>
+        <td><%=link_to("edit", edit_user_path(@venue.user)) %> </td>
+        <td><%=link_to("remove", cart_path) %> </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="row">
+  <%= link_to "Add a concert", venue_new_concert_path %>
+</div>
+
+<div class="container" style="opacity:0.8; background-color: black; color:white;">
+  <table class="bordered highlight responsive-table">
+    <thead>
+      <tr>
+          <th data-field="Date">Date</th>
+          <th data-field="Logo">Logo</th>
+          <th data-field="Performer">Performer</th>
+          <th data-field="Venue">Venue</th>
+          <th data-field="Tickets">Tickets</th>
+          <th data-field="Edit">Edit</th>
+          <th data-field="Remove">Remove</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @venue.concerts.each do |concert| %>
+        <tr>
+          <td> <%= concert.date %> </td>
+          <td> <%= image_tag concert.logo %> </td>
+          <td> <%= link_to concert.band, venue_concert_path(concert.venue.url, concert.url) %></td>
+          <td> <%= link_to concert.venue.name, venue_path(concert.venue.url) %></td>
+          <td> <%= link_to "edit", edit_concert_path(concert.url) %></td>
+          <td><%= link_to("remove", venue_concert_path(concert.venue.url, concert.url), method: :delete) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+    <div class="col s5 offset-s3">
+      <ul class="pagination center">
+        <li class="waves-effect"><ahref="#!"><i class="material-icons">chevron_left</i></a></li>
+        <li class="active"><ahref="#!">1</a></li>
+        <li class="waves-effect"><ahref="#!">2</a></li>
+        <li class="waves-effect"><ahref="#!">3</a></li>
+        <li class="waves-effect"><ahref="#!">4</a></li>
+        <li class="waves-effect"><ahref="#!">5</a></li>
+        <li class="waves-effect"><ahref="#!"><i class="material-icons">chevron_right</i></a></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
