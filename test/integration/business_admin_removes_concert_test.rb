@@ -13,6 +13,7 @@ class BusinessAdminRemovesConcertTest < ActionDispatch::IntegrationTest
     assert page.has_content?("remove")
 
     click_on("remove")
+save_and_open_page
 
     assert_equal venue_path(venue.url), current_path
     refute page.has_content?(concert.band)
