@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PlatformAdminCreatesVenue < ActionDispatch::IntegrationTest
+class PlatformAdminCreatesVenueTest < ActionDispatch::IntegrationTest
   test 'platform admin can create venue' do
     user = create(:user,role: 2)
     ApplicationController.any_instance.stubs(:current_user).returns(user)

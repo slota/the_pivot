@@ -14,13 +14,12 @@ class BusinessAdminManageConcertsTest < ActionDispatch::IntegrationTest
     assert_equal venue_new_concert_path(venue.url), current_path
     fill_in 'concert[date]', with: Time.new
     fill_in 'concert[band]', with: 'The Supersonics'
-    # fill_in 'concert[logo]', with: 'The Supersonics'
     fill_in 'concert[price]', with: 250
     fill_in 'concert[genre]', with: 'Rock'
     click_on "Create Concert"
 
     assert_equal venue_path(venue.url), current_path
 
-    assert page.has_content? 'The Supersonics'
+    assert page.has_content?('The Supersonics')
   end
 end

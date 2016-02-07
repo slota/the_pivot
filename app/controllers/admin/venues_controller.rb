@@ -23,7 +23,13 @@ class Admin::VenuesController < Admin::BaseController
   end
 
   def update
-    # @venue = Venue.find(params[:id])
+    status = params[:status].to_i
+    venue = Venue.find_by(id: params[:id])
+    venue.update_attributes(venue_params)
+    venue.update(status: status)
+    venue.update_attributes(venue_params)
+    flash[:success] = "#{venue.name} Updated!"
+    redirect_to admin_venues_path
   end
 
   private
@@ -34,6 +40,8 @@ class Admin::VenuesController < Admin::BaseController
                                   :city,
                                   :state,
                                   :address,
-                                  :description)
+                                  :description,
+                                  :status)
   end
+
 end

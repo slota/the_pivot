@@ -1,12 +1,14 @@
 <h2 style="color: white">  Edit User Profile for <%= @user.username %></h2>
-<div class="container opaque-background satisfy-font " >
+<div class="container opaque-background" >
 <%= form_for @user do |f| %>
   <%= f.label :username %>
   <%= f.text_field :username%>
-  <%= f.label :picture %>
-  <%= f.text_field :picture%>
   <%= f.label :password %>
   <%= f.password_field :password %>
-  <%= f.submit "Update Account" %>
+  <%= f.label :image  %>
+  <br>
+  <%= f.file_field :image %>
+  <br><br>
+  <%= f.submit "Update Account" %> 
 <% end %>
 </div>
