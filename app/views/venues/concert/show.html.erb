@@ -24,8 +24,6 @@
           <th data-field="Price">Price</th>
           <th data-field="Quantity">Quantity</th>
           <th data-field=""></th>
-          <th data-field="Edit">edit</th>
-          <th data-field="Remove">remove</th>
       </tr>
     </thead>
 
@@ -40,9 +38,6 @@
             <%= number_field(:order, :quantity) %>
             <%= f.submit "Add to Cart", style: 'color:black'%></td>
             <% end %>
-        <td>edit<%#= link_to("edit", edit_venue_concert_path(@concert.venue.url, @concert.url)) %></td>
-        <td><%= link_to("remove", venue_concert_path(@concert.venue.url, @concert.url), method: :delete) %></td>
-
       </tr>
     </tbody>
   </table>
