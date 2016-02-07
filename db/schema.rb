@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160207182003) do
+ActiveRecord::Schema.define(version: 20160207190633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,15 +79,18 @@ ActiveRecord::Schema.define(version: 20160207182003) do
   end
 
   create_table "venues", force: :cascade do |t|
-    t.string  "name"
-    t.integer "status",      default: 0
-    t.string  "image"
-    t.string  "city"
-    t.string  "state"
-    t.string  "address"
-    t.string  "description"
-    t.string  "url"
-    t.integer "user_id"
+    t.string   "name"
+    t.integer  "status",             default: 0
+    t.string   "city"
+    t.string   "state"
+    t.string   "address"
+    t.string   "description"
+    t.string   "url"
+    t.integer  "user_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "venues", ["user_id"], name: "index_venues_on_user_id", using: :btree
