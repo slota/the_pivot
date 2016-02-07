@@ -1,11 +1,12 @@
 require 'test_helper'
 
 class BusinessAdminRemovesConcertTest < ActionDispatch::IntegrationTest
-  test "business admin removes concert" do 
+  test "business admin removes concert" do
     user = create(:user, role: 1)
     venue = create(:venue, user_id: user.id)
     concert = create(:concert, venue_id: venue.id)
-    
+    ApplicationController.any_instance.stubs(:current_user).returns(user)
+
     visit venue_path(venue.url)
 
     assert page.has_content?(concert.band)

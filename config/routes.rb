@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :show, :edit, :update]
   resources :orders, only: [:index, :create, :show, :new]
   resources :concerts
+  resources :venues, only: [:index, :new, :create]
  #  namespace :admin do
  #    # resources :chips, only: [:index, :show, :create, :new, :update, :edit, :destroy]
  #    resources :venues, only: [:index, :new, :create, :update, :edit]
@@ -40,13 +41,24 @@ Rails.application.routes.draw do
   # get '/:slug', to: redirect('/oils/%{slug}'), as: "oil_name"
 
 
-  resources :venues, only: [:index, :new, :create]
   get '/:venue/edit', to: 'venues#edit', as: :edit_venue
 
   get '/:venue', to: 'venues#show', as: :venue
   patch '/:venue', to: 'venues#update'
   put '/:venue', to: 'venues#update'
 
+
+
+  namespace :admin do
+    resources :venues
+    resources :cart_concerts, only: [:create, :destroy, :update]
+    resources :users, only: [:new, :create, :show, :edit, :update]
+    resources :orders, only: [:index, :create, :show, :new]
+    resources :concerts
+    namespace :venues do
+      resources :concerts, only: [:show]
+    end
+  end
 
   namespace :venues, path: ":venue", as: :venue do
     #  resources :concerts, only: [:show], path: ":concert"
