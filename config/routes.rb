@@ -52,6 +52,8 @@ Rails.application.routes.draw do
     get '/:concert', to: 'concert#show', as: :concert
     post '/concerts', to: 'concert#create', as: :concerts
     get '/concerts/new', to: 'concert#new', as: :new_concert
+    get '/:concert/edit', to: 'concert#edit', as: :edit_concert
+    get '/:concert/update', to: 'concert#update', as: :update_concert
   end
   # get '/:venue/:concert', to: 'venue_concert#show', as: :venue_concert
 end

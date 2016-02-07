@@ -13,6 +13,14 @@ class Venues::ConcertController < ApplicationController
     redirect_to venue_path(venue.url)
   end
 
+  def edit
+    @concert = Concert.find_by(url: params[:concert])
+  end
+
+  def update
+    binding.pry
+  end
+
   private
   def concert_params
     params.require(:concert).permit(:date, :band, :logo, :price, :genre)
