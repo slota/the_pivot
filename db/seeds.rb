@@ -1,8 +1,17 @@
 class Seed
     def self.run
       Seed.generate_venues
+      Seed.generate_categories
       Seed.generate_concerts
       Seed.generate_custom_users
+    end
+
+    def self.generate_categories
+      10.times do |i|
+        Category.create(
+          description: Faker::Address.state
+          )
+      end
     end
 
     def self.generate_venues
@@ -26,15 +35,16 @@ class Seed
           logo: "http://assets.rollingstone.com/assets/images/list/rsz-homepage-largedb5c5b0e-1354052522.jpg",
           price: rand(30..300),
           genre: "Rock",
-          venue: Venue.offset(rand(Venue.count-1)).first
+          venue: Venue.offset(rand(Venue.count-1)).first,
+          category: Category.offset(rand(Category.count-1)).first
         )
       end
     end
 
     def self.generate_custom_users
-      User.create(username: "pa", password: "p", role: 2)
-      User.create(username: "ba", password: "p", role: 1)
-      User.create(username: "u", password: "p", role: 0)
+      User.create(username: "jorge@turing.io", password: "password", role: 2)
+      User.create(username: "andrew@turing.io", password: "password", role: 1)
+      User.create(username: "josh@turing.io", password: "password", role: 0)
     end
 end
 # This file should contain all the record creation needed to seed the database with its default values.

@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160207194208) do
+ActiveRecord::Schema.define(version: 20160208151612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "chips", force: :cascade do |t|
     t.string   "name"
@@ -54,8 +60,10 @@ ActiveRecord::Schema.define(version: 20160207194208) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.integer  "category_id"
   end
 
+  add_index "concerts", ["category_id"], name: "index_concerts_on_category_id", using: :btree
   add_index "concerts", ["venue_id"], name: "index_concerts_on_venue_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
@@ -100,6 +108,7 @@ ActiveRecord::Schema.define(version: 20160207194208) do
 
   add_foreign_key "concert_orders", "concerts"
   add_foreign_key "concert_orders", "orders"
+  add_foreign_key "concerts", "categories"
   add_foreign_key "concerts", "venues"
   add_foreign_key "orders", "users"
   add_foreign_key "venues", "users"
