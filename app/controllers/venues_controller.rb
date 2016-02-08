@@ -1,6 +1,7 @@
 class VenuesController < ApplicationController
   def show
     @venue = Venue.find_by(url: params[:venue])
+    @concerts = @venue.concerts.paginate(page: params[:page], per_page: 8)
   end
 
   def index
