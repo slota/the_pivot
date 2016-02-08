@@ -1,6 +1,7 @@
 class VenuesController < ApplicationController
   def show
     @venue = Venue.find_by(url: params[:venue])
+    @concerts = @venue.concerts.paginate(page: params[:page], per_page: 8)
   end
 
   def index
@@ -13,10 +14,15 @@ class VenuesController < ApplicationController
   end
 
   def create
-    @venue = Venue.create(venue_params)
-    current_user.venues << @venue
-    flash[:success] = "Request sent for approval"
-    redirect_to venues_path
+    @venue = Venue.new(venue_params)
+    if @venue.save
+      current_user.venues << @venue
+      flash[:success] = "Request sent for approval"
+      redirect_to venues_path
+    else
+      flash[:error] = @venue.errors.full_messages.join(", ")
+      render :new
+    end
   end
 
   def edit
@@ -25,9 +31,13 @@ class VenuesController < ApplicationController
 
   def update
     venue = Venue.find_by(id: params[:venue])
-    venue.update(update_params)
-    flash[:success] = "#{venue.name} Updated!"
-    redirect_to venues_path
+    if venue.update(update_params)
+      flash[:success] = "#{venue.name} Updated!"
+      redirect_to venues_path
+    else 
+      flash[:error] = @venue.errors.full_messages.join(", ")
+      render :edit
+    end
   end
 
   private

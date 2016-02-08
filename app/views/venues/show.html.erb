@@ -58,7 +58,7 @@
     </thead>
 
     <tbody>
-      <% @venue.concerts.each do |concert| %>
+      <% @concerts.each do |concert| %>
       <tr>
         <td> <%= concert.date %> </td>
         <td> <%= image_tag concert.logo %> </td>
@@ -73,18 +73,8 @@
     </tbody>
   </table>
 </div>
-
-<div class="col s5 offset-s3">
-  <ul class="pagination center">
-    <li class="waves-effect"><ahref="#!"><i class="material-icons">chevron_left</i></a></li>
-    <li class="active"><ahref="#!">1</a></li>
-    <li class="waves-effect"><ahref="#!">2</a></li>
-    <li class="waves-effect"><ahref="#!">3</a></li>
-    <li class="waves-effect"><ahref="#!">4</a></li>
-    <li class="waves-effect"><ahref="#!">5</a></li>
-    <li class="waves-effect"><ahref="#!"><i class="material-icons">chevron_right</i></a></li>
-  </ul>
 </div>
-</div>
-
+<br>
+<div class="pagination center">
+    <%= will_paginate @concerts %>
 </div>

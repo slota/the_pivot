@@ -1,4 +1,5 @@
-  <div class="row valign-wrapper" > <!-- style="height:500px;background-image:url(http://www.darindaymusic.co.uk/wp-content/uploads/disco.jpg);margin-top:30px;padding-left:70px;padding-right:70px;background-size:cover"> -->
+<div class="animatedParent">
+  <div class="row valign-wrapper animated fadeInUp" > <!-- style="height:500px;background-image:url(http://www.darindaymusic.co.uk/wp-content/uploads/disco.jpg);margin-top:30px;padding-left:70px;padding-right:70px;background-size:cover"> -->
     <%= form_for :session, html: {class: "col s12 search-bar"} do |f| %>
     <%= f.text_field "City" , placeholder: "City", class:"col s3"%>
     <%= f.text_field "Performer" , placeholder: "Band", class:"col s3" %>
@@ -6,7 +7,8 @@
     <%= f.text_field "Genre" , placeholder: "Genre", class:"col s3" %>
     <% end %>
   </div>
-  <br>
+</div>
+<br>
 
 <div class="container opaque-background">
   <table class="bordered highlight responsive-table">
@@ -22,6 +24,7 @@
     </thead>
 
     <tbody>
+
       <% @concerts.each do |concert| %>
         <tr>
           <td> <%= concert.date %> </td>
@@ -34,16 +37,7 @@
     </tbody>
   </table>
 </div>
-    <div class="col s5 offset-s3">
-      <ul class="pagination center">
-        <li class="waves-effect"><ahref="#!"><i class="material-icons">chevron_left</i></a></li>
-        <li class="active"><ahref="#!">1</a></li>
-        <li class="waves-effect"><ahref="#!">2</a></li>
-        <li class="waves-effect"><ahref="#!">3</a></li>
-        <li class="waves-effect"><ahref="#!">4</a></li>
-        <li class="waves-effect"><ahref="#!">5</a></li>
-        <li class="waves-effect"><ahref="#!"><i class="material-icons">chevron_right</i></a></li>
-      </ul>
-    </div>
-  </div>
+<br>
+<div class="pagination center">
+    <%= will_paginate @concerts %>
 </div>
