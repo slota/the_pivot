@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+gem 'will_paginate',           '~> 3.0.6'
+gem 'will_paginate-materialize'
 gem "figaro"
 gem "materialize-sass"
 gem "twilio-ruby"
