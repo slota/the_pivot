@@ -31,7 +31,7 @@ class Cart
   end
 
   def cart_size
-    @contents.values.sum
+    @contents.values.inject(0) { |sum, n| sum + n.to_i }
   end
 
   def count_of(cart_id)
