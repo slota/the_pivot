@@ -14,8 +14,7 @@
     </div>
   </div>
 </div>
-
-<% if current_user = @venue.user %>
+<% if current_user == @venue.user %>
   <h5 class="center"><%= link_to("Add an Admin", cart_path) %></h5>
 
   <div class="container opaque-background">
