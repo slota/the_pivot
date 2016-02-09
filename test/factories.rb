@@ -20,7 +20,7 @@ FactoryGirl.define do
     band "John Slota Band"
     price { rand(1..100) }
     venue nil
-    logo { Faker::Company.logo }
+    logo nil
     genre "MyString"
     url "MyString"
   end
@@ -35,7 +35,7 @@ FactoryGirl.define do
     address "101 Super Sweet Place"
     city "Denver"
     state "Colorado"
-    image { Faker::Company.logo }
+    image nil
     description "If you haven't been here you are wrong"
   end
 end
