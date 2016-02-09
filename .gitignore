@@ -14,5 +14,6 @@
 /coverage
 /public/system/venues
 /public/system/concerts
+/public/system/concerts/logos
 /public/system/users
 /public/system/chips
