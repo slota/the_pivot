@@ -5,10 +5,4 @@ class PagesController < ApplicationController
 
   def about
   end
-
-  def bluebird
-  end
-
-  def edward
-  end
 end

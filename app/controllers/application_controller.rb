@@ -1,4 +1,3 @@
-# require_relative
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -41,7 +40,8 @@ class ApplicationController < ActionController::Base
 
   def authorize!
     unless authorized?
-      # redirect_to root_url, danger: "Yes, and you are not allowed access ;)"
+      flash[:danger] = "Access denied, sucker!"
+      redirect_to root_url
     end
   end
 
