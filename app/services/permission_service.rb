@@ -23,7 +23,13 @@ class PermissionService
 
   def business_admin_permissions
     return true if controller == "pages" && action.in?(%w(home about))
-    true
+    return true if controller == "sessions"
+    return true if controller == "users" && action.in?(%w(new create show edit update))
+    return true if controller == "venues" && action.in?(%w(show index new create edit update))
+    return true if controller == "venues/concert" && action.in?(%w(show new create destroy))
+    return true if controller == "orders" && action.in?(%w(new create index show))
+    return true if controller == "cart_concerts"
+    return true if controller == "concerts" && action.in?(%w(edit update))
   end
 
   def registered_user_permissions
