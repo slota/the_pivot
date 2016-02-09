@@ -3,6 +3,7 @@ class Concert < ActiveRecord::Base
   before_validation :generate_url
   has_many :concert_orders
   has_many :orders, through: :concert_orders
+  belongs_to :category
 
   validates_with AttachmentSizeValidator, attributes: :logo, less_than: 1.megabytes
   has_attached_file :logo, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "http://static4.businessinsider.com/image/51783cd26bb3f7c826000009/this-is-the-best-way-to-buy-concert-tickets-on-your-iphone.jpg"

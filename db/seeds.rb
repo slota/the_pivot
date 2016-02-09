@@ -3,8 +3,19 @@ class Seed
       Seed.generate_users
       Seed.generate_business_admins
       Seed.generate_venues
+      Seed.generate_categories
       Seed.generate_concerts
       Seed.generate_orders
+      Seed.generate_concert_orders
+      Seed.generate_order_price
+    end
+
+    def self.generate_categories
+      10.times do |i|
+        Category.create(
+          description: Faker::Address.state
+          )
+      end
     end
 
     def self.generate_users
@@ -14,7 +25,7 @@ class Seed
         password: "p",
         role: 0
         )
-        puts "User #{i} created"
+        puts "User #{i.id} created"
       end
       User.create(username: "pa", password: "p", role: 2)
       User.create(username: "ba", password: "p", role: 1)
@@ -75,7 +86,8 @@ class Seed
           logo: "http://assets.rollingstone.com/assets/images/list/rsz-homepage-largedb5c5b0e-1354052522.jpg",
           price: rand(30..300),
           genre: "Rock",
-          venue: Venue.offset(rand(Venue.count-1)).first
+          venue: Venue.offset(rand(Venue.count-1)).first,
+          category: Category.offset(rand(Category.count-1)).first
         )
         puts "Concert #{i} created"
       end
@@ -93,10 +105,36 @@ class Seed
       end
     end
 
+    def self.generate_order_price
+      Order.all.each do |i|
+        i.update(total_price: i.concert_orders.inject(0) {|sum,i| sum + i.subtotal})
+        puts "Order #{i} updated"
+      end
+    end
+
+    def self.generate_concert_orders
+      20.times do |i|
+        quantity = rand(1..6)
+        price = rand(1..100)
+        ConcertOrder.create(
+          concert: Concert.offset(rand(Concert.count-1)).first,
+          order: Order.offset(rand(Order.count-1)).first,
+          quantity: quantity,
+          subtotal: quantity * price,
+          price: price
+        )
+        puts "Order #{i} created"
+      end
+    end
+
     def self.generate_orders
-      Order.create(
-        user: User.find_by(username: "ba")
-      )
+      10.times do |i|
+        Order.create(
+          user: User.offset(rand(User.count-1)).first,
+          status: "Purchased"
+        )
+        puts "Order #{i} created"
+      end
     end
 end
 # This file should contain all the record creation needed to seed the database with its default values.

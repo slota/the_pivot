@@ -1,4 +1,10 @@
 FactoryGirl.define do
+  factory :add_category_to_concert do
+    
+  end
+  factory :category do
+    description "MyString"
+  end
   factory :concert_order do
     concert nil
     order nil
