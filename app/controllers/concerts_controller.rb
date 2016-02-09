@@ -5,11 +5,15 @@ class ConcertsController < ApplicationController
 
   def update
     concert = Concert.find(params[:id])
-    concert.update(concert_params)
-    if platform_admin?
-      redirect_to admin_venue_path(concert.venue.url)
+    if concert.update(concert_params)
+      if platform_admin?
+        redirect_to admin_venue_path(concert.venue.url)
+      else
+        redirect_to venue_path(concert.venue.url)
+      end
     else
-      redirect_to venue_path(concert.venue.url)
+      flash[:error] = concert.errors.full_messages.join(", ")
+      render :edit
     end
   end
 

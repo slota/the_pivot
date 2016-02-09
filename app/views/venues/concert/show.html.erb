@@ -31,8 +31,8 @@
       <tr>
         <td> <%= @concert.date %> </td>
         <td><%= image_tag(@concert.logo) %></td>
-        <td><%= link_to(@concert.band, edward_path) %></td>
-        <td><%= link_to(@concert.venue.name, bluebird_path) %></td>
+        <td><%= link_to(@concert.band, venue_concert_path(@concert.venue.url, @concert.url)) %></td>
+        <td><%= link_to(@concert.venue.name, venue_path(@concert.venue.url)) %></td>
         <td>$<%= @concert.price %></td>
         <td><%= form_for(:order, url: cart_concerts_path(@concert.url)) do |f| %>
               <%= number_field(:order, :quantity) %>

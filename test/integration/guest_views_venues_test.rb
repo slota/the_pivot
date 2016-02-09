@@ -2,9 +2,9 @@ require 'test_helper'
 
 class GuestViewsVenueTest < ActionDispatch::IntegrationTest
   test "guest views venue show page from root path" do
-    venue = create(:venue, status: 1)
+    user = create(:user)
+    venue = create(:venue, user: user, status: 1)
     concert = create(:concert, venue: venue)
-
 
     visit root_path
     click_on "#{venue.name}"
