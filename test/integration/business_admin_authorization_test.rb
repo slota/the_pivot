@@ -1,34 +1,37 @@
 require 'test_helper'
 
 class BusinessAdminAuthorizationTest < ActionDispatch::IntegrationTest
+  attr_accessor :business_admin, :venue, :concert
+  
+  def setup_factories
+    @business_admin = create(:user, role: 1)
+    @venue = create(:venue, user: @business_admin, status: 1)
+    @concert = create(:concert)
+    @venue.concerts << concert
+  end 
+
   test "business admin can login" do 
-    user = create(:user, role: 1)
-    venue = create(:venue)
-    concert = create(:concert)
-    venue.concerts << concert
+    setup_factories
 
     visit login_path
     assert_equal login_path, current_path
 
-    fill_in "session[username]", with: user.username
-    fill_in "session[password]", with: user.password
+    fill_in "session[username]", with: business_admin.username
+    fill_in "session[password]", with: business_admin.password
 
     within('form') do
       click_on("Login")
     end
 
-    assert_equal user_path(user), current_path
+    assert_equal user_path(business_admin), current_path
 
-    assert page.has_content?(user.username)
+    assert page.has_content?(business_admin.username)
     assert page.has_content?("Completed Orders")
     assert page.has_content?("Manage Venues")
   end
   
   test "business admin views homepage" do 
-    business_admin = create(:user, role: 1)
-    venue = create(:venue, user: business_admin, status: 1)
-    concert = create(:concert)
-    venue.concerts << concert
+    setup_factories
 
     ApplicationController.any_instance.stubs(:current_user).returns(business_admin)
 
@@ -39,10 +42,7 @@ class BusinessAdminAuthorizationTest < ActionDispatch::IntegrationTest
   end
 
   test "registered user views venue show page" do 
-    business_admin = create(:user, role: 1)
-    venue = create(:venue, user: business_admin, status: 1)
-    concert = create(:concert)
-    venue.concerts << concert
+    setup_factories
 
     ApplicationController.any_instance.stubs(:current_user).returns(business_admin)
     
@@ -56,10 +56,7 @@ class BusinessAdminAuthorizationTest < ActionDispatch::IntegrationTest
   end 
 
   test "business admin views venue_concert show page" do 
-    business_admin = create(:user, role: 1)
-    venue = create(:venue, user: business_admin, status: 1)
-    concert = create(:concert)
-    venue.concerts << concert
+    setup_factories
 
     ApplicationController.any_instance.stubs(:current_user).returns(business_admin)
 
@@ -71,10 +68,7 @@ class BusinessAdminAuthorizationTest < ActionDispatch::IntegrationTest
   end 
 
   test "business admin can edit concert" do 
-    business_admin = create(:user, role: 1)
-    venue = create(:venue, user: business_admin, status: 1)
-    concert = create(:concert)
-    venue.concerts << concert
+    setup_factories
 
     ApplicationController.any_instance.stubs(:current_user).returns(business_admin)
 
@@ -98,10 +92,7 @@ class BusinessAdminAuthorizationTest < ActionDispatch::IntegrationTest
   end
 
   test "business admin can remove concert" do 
-    business_admin = create(:user, role: 1)
-    venue = create(:venue, user: business_admin, status: 1)
-    concert = create(:concert)
-    venue.concerts << concert
+    setup_factories
 
     ApplicationController.any_instance.stubs(:current_user).returns(business_admin)
 
@@ -123,11 +114,8 @@ class BusinessAdminAuthorizationTest < ActionDispatch::IntegrationTest
   end 
 
   test "business admin can only manage venues they own" do 
-    business_admin_owner = create(:user, role: 1)
+    setup_factories
     business_admin_visitor = create(:user, role: 1)
-    venue = create(:venue, user: business_admin_owner, status: 1)
-    concert = create(:concert)
-    venue.concerts << concert
 
     ApplicationController.any_instance.stubs(:current_user).returns(business_admin_visitor)
 
@@ -140,11 +128,8 @@ class BusinessAdminAuthorizationTest < ActionDispatch::IntegrationTest
   end 
 
   test "business admin can only manage concerts for venues they own" do 
-    business_admin_owner = create(:user, role: 1)
+    setup_factories
     business_admin_visitor = create(:user, role: 1)
-    venue = create(:venue, user: business_admin_owner, status: 1)
-    concert = create(:concert)
-    venue.concerts << concert
 
     ApplicationController.any_instance.stubs(:current_user).returns(business_admin_visitor)
 
