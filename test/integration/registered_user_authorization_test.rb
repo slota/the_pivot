@@ -17,7 +17,9 @@ class RegisteredUserAuthorizationTest < ActionDispatch::IntegrationTest
       click_on("Login")
     end
 
-    assert_equal user_path(user), current_path
+    assert_equal root_path, current_path
+
+    click_on
     assert page.has_content?(user.username)
     assert page.has_content?("Completed Orders")
     refute page.has_content?("Manage Venues")

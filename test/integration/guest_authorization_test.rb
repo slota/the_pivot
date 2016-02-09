@@ -19,6 +19,7 @@ class GuestAuthorizationTest < ActionDispatch::IntegrationTest
     assert_equal user_path(User.last.id), current_path
     assert page.has_content?("SteveAustin316@hotmail.com")
     assert page.has_content?("Completed Orders")
+
     refute page.has_content?("Manage Venues")
     refute page.has_content?("Manage Orders")
   end 
