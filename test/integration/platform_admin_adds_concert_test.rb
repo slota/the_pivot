@@ -62,37 +62,4 @@ class PlatformAdminAddsConcertTest < ActionDispatch::IntegrationTest
     refute page.has_content?(concert.date)
   end
 
-  test 'platform admin can add admin' do
-    skip
-    user = create(:user, role: 2)
-    venue = create(:venue)
-
-    visit root_path
-    within ".right" do
-      click_link "Login"
-    end
-
-    fill_in "Username", with: user.username
-    fill_in "Password", with: "pass"
-    click_button "Login"
-
-    assert_equal admin_user_path(user), current_path
-
-    click_on("Manage Venues")
-
-    assert page.has_content?(venue.name)
-
-    assert current_path, admin_venues_path
-
-    click_on("Manage")
-
-    assert current_path, admin_venue_path(venue)
-
-    click_on("Add an Admin")
-
-    assert current_path, new_admin_user_path
-
-    save_and_open_page
-
-  end
 end
