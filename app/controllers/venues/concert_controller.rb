@@ -18,10 +18,14 @@ class Venues::ConcertController < ApplicationController
   end
 
   def destroy
-    @concert = Concert.find_by(url: params[:concert])
-    @venue = Venue.find_by(url: params[:venue])
-    @concert.destroy
-    redirect_to venue_path(@venue.url)
+    concert = Concert.find_by(url: params[:concert])
+    venue = Venue.find_by(url: params[:venue])
+    concert.destroy
+    if platform_admin?
+      redirect_to admin_venue_path(venue.url)
+    else
+      redirect_to venue_path(venue.url)
+    end
   end
 
   private

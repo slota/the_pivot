@@ -30,8 +30,8 @@
       <tr>
         <% if @user %>
           <td><%= @user.username %></td>
-          <td><%=link_to("edit", edit_user_path(@venue.user)) %> </td>
-          <td><%=link_to("remove", cart_path) %> </td>
+          <td><%=link_to("Edit", edit_user_path(@venue.user)) %> </td>
+          <td><%=link_to("Remove", cart_path) %> </td>
         <% end %>
       </tr>
     </tbody>
@@ -50,7 +50,6 @@
           <th data-field="Logo">Logo</th>
           <th data-field="Performer">Performer</th>
           <th data-field="Venue">Venue</th>
-          <th data-field="Tickets">Tickets</th>
           <th data-field="Edit">Edit</th>
           <th data-field="Remove">Remove</th>
       </tr>
