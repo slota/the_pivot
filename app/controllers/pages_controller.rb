@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def home
-    @concerts = Concert.all
+    @concerts = Concert.where(venue_id: Venue.where(status: 1))
   end
 
   def about
