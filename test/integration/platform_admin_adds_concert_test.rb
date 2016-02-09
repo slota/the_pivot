@@ -27,7 +27,6 @@ class PlatformAdminAddsConcertTest < ActionDispatch::IntegrationTest
     assert current_path, admin_venue_path(venue)
 
     click_link("Add a concert")
-    save_and_open_page
 
     assert current_path, new_admin_concert_path
 
