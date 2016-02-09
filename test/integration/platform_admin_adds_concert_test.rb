@@ -49,8 +49,6 @@ class PlatformAdminAddsConcertTest < ActionDispatch::IntegrationTest
 
     visit admin_venue_path(venue.url)
 
-    save_and_open_page
-
     assert page.has_content?(concert.band)
     assert page.has_content?(concert.date)
     assert page.has_content?("remove")

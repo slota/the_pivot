@@ -25,7 +25,7 @@ class GuestAuthorizationTest < ActionDispatch::IntegrationTest
   end 
 
   test "guest views homepage" do 
-    venue = create(:venue)
+    venue = create(:venue, status: 1)
     concert = create(:concert)
     venue.concerts << concert
 
@@ -36,7 +36,8 @@ class GuestAuthorizationTest < ActionDispatch::IntegrationTest
   end
 
   test "guest views venue show page" do 
-    venue = create(:venue)
+    user = create(:user, role: 1)
+    venue = create(:venue, status: 1, user_id: user.id)
     concert = create(:concert, venue: venue)
     venue.concerts << concert
 
