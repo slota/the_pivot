@@ -33,9 +33,13 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    @user.update(user_params)
-    flash.notice = "Your Account Has Been Updated!"
-    redirect_to user_path(current_user)
+    if @user.update(user_params)
+      flash.notice = "Your Account Has Been Updated!"
+      redirect_to user_path(current_user)
+    else
+      flash[:error] = @user.errors.full_messages.join(", ")
+      render :edit
+    end
   end
 
   private

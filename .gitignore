@@ -12,8 +12,7 @@
 !/log/.keep
 /tmp
 /coverage
-/public/system/venues/images
-/public/system/concerts/images
-/public/system/users/images
-
-
+/public/system/venues
+/public/system/concerts
+/public/system/users
+/public/system/chips

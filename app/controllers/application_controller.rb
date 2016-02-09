@@ -1,9 +1,14 @@
+require "application_responder"
+
 class ApplicationController < ActionController::Base
+  self.responder = ApplicationResponder
+  respond_to :html
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :set_cart
+  before_action :set_cart, :authorize!
   helper_method :oils,
                 :current_user,
                 :business_admin?,
@@ -19,7 +24,11 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= (User.find(session[:user_id]) if session[:user_id])
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
+  def current_permission
+    @current_permission ||= PermissionService.new(current_user)
   end
 
   def require_current_user
@@ -32,5 +41,16 @@ class ApplicationController < ActionController::Base
 
   def business_admin?
     current_user && current_user.role == "business_admin"
+  end
+
+  def authorize!
+    unless authorized?
+      flash[:danger] = "Access denied, sucker!"
+      redirect_to root_url
+    end
+  end
+
+  def authorized?
+    current_permission.allow?(params[:controller], params[:action])
   end
 end

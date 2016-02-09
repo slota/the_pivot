@@ -15,7 +15,7 @@
   </div>
 </div>
 
-<% if current_user = @venue.user %>
+<% if current_user == @venue.user %>
   <h5 class="center"><%= link_to("Add an Admin", cart_path) %></h5>
 
   <div class="container opaque-background">
@@ -36,11 +36,11 @@
       </tbody>
     </table>
   </div>
-  <% end %>
 
   <div class="row">
-    <h5 class="center"><%= link_to "Add a concert", venue_new_concert_path %></h5>
+      <h5 class="center"><%= link_to "Add a concert", venue_new_concert_path %></h5>
   </div>
+  <% end %>
 
 <div class="container" style="opacity:0.8; background-color: black; color:white;">
   <table class="bordered highlight responsive-table">
@@ -50,7 +50,7 @@
         <th data-field="Logo">Logo</th>
         <th data-field="Performer">Performer</th>
         <th data-field="Venue">Venue</th>
-        <% if current_user = @venue.user %>
+        <% if current_user == @venue.user %>
           <th data-field="Edit">Edit</th>
           <th data-field="Remove">Remove</th>
         <% end %>
@@ -58,13 +58,13 @@
     </thead>
 
     <tbody>
-      <% @venue.concerts.each do |concert| %>
+      <% @concerts.each do |concert| %>
       <tr>
         <td> <%= concert.date %> </td>
         <td> <%= image_tag concert.logo %> </td>
         <td> <%= link_to concert.band, venue_concert_path(concert.venue.url, concert.url) %></td>
         <td> <%= link_to concert.venue.name, venue_path(concert.venue.url) %></td>
-        <% if current_user = @venue.user %>
+        <% if current_user == @venue.user %>
           <td><%= link_to "Edit", edit_concert_path(concert.url) %></td>
           <td><%= link_to("Remove", venue_concert_path(concert.venue.url, concert.url), method: :delete) %></td>
         <% end %>
@@ -73,18 +73,8 @@
     </tbody>
   </table>
 </div>
-
-<div class="col s5 offset-s3">
-  <ul class="pagination center">
-    <li class="waves-effect"><ahref="#!"><i class="material-icons">chevron_left</i></a></li>
-    <li class="active"><ahref="#!">1</a></li>
-    <li class="waves-effect"><ahref="#!">2</a></li>
-    <li class="waves-effect"><ahref="#!">3</a></li>
-    <li class="waves-effect"><ahref="#!">4</a></li>
-    <li class="waves-effect"><ahref="#!">5</a></li>
-    <li class="waves-effect"><ahref="#!"><i class="material-icons">chevron_right</i></a></li>
-  </ul>
 </div>
-</div>
-
+<br>
+<div class="pagination center">
+    <%= will_paginate @concerts %>
 </div>

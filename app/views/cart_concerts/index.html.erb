@@ -35,25 +35,11 @@
 
   <% if current_user %>
   <%= link_to("Checkout!", new_order_path)%>
-</h5>
-<% else %>
-<a class="modal-trigger waves-effect waves-light btn" href="#modal1">Checkout!</a>
-<div id="modal1" class="modal" style="color:black">
-  <div class="modal-content">
-    <p>
-      Please login before placing an order.
-    </p><br>
-    <div><%= form_for :session, url: login_path do |f| %>
-      <%= f.label :username %>
-      <%= f.text_field :username%>
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-      <%= f.submit "Login" %>
-      <% end %></div>
-      <p> Don't have an account? <%= link_to "Create one here.", new_user_path %> </p>
-    </div>
-  </div>
+  <% else %>
+  <%= link_to("Create account to checkout", new_user_path)%>
   <% end %></td>
+</h5>
+
 
 
 </div>

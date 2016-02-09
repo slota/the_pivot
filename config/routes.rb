@@ -1,17 +1,17 @@
 Rails.application.routes.draw do
   # get 'venuesconcert/show'
 
-  get "bluebird" => "pages#bluebird"
+  # get "bluebird" => "pages#bluebird"
 
-  get "admin_bluebird" => "pages#admin_bluebird"
+  # get "admin_bluebird" => "pages#admin_bluebird"
 
-  get "edward" => "pages#edward"
+  # get "edward" => "pages#edward"
 
   # get "cart" => "pages#cart"
 
-  get "profile" => "pages#profile"
+  # get "profile" => "pages#profile"
 
-  get "order" => "pages#orders"
+  # get "order" => "pages#orders"
 
   namespace :admin do
     resources :venues

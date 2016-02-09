@@ -1,5 +1,8 @@
 source "https://rubygems.org"
 
+gem 'responders'
+gem 'will_paginate',           '~> 3.0.6'
+gem 'will_paginate-materialize'
 gem "figaro"
 gem "materialize-sass"
 gem "twilio-ruby"
@@ -33,6 +36,8 @@ gem "database_cleaner"
 # Use Capistrano for deployment
 # gem "capistrano-rails", group: :development
 gem "faker"
+gem 'shoulda'
+gem 'shoulda-matchers'
 
 group :development, :test do
   # Call "byebug" anywhere in the code to stop execution and get a debugger console

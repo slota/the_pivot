@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class ConcertOrderTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  # should validate_presence_of(:quantity)
+  # should validate_presence_of(:price)
+  # should validate_presence_of(:subtotal)
 end
