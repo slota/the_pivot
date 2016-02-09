@@ -32,6 +32,7 @@ class PermissionService
     return true if controller == "users" && action.in?(%w(new create show))
     return true if controller == "venues" && action.in?(%w(show))
     return true if controller == "venues/concert" && action.in?(%w(show))
+    return true if controller == "orders" && action.in?(%w(new create index show))
     return true if controller == "cart_concerts"
   end
 
@@ -41,7 +42,6 @@ class PermissionService
     return true if controller == "users" && action.in?(%w(new create))
     return true if controller == "venues" && action.in?(%w(show))
     return true if controller == "venues/concert" && action.in?(%w(show))
-    return true if controller == "orders" && action.in?(%w(new))
     return true if controller == "cart_concerts"
   end
 end

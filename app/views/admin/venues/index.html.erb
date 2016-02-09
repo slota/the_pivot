@@ -22,10 +22,8 @@
           <td><%= image_tag(venue.image) %></td>
           <td><%= "#{venue.address}, #{venue.city}, #{venue.state}" %></td>
           <td><%= link_to(venue.status, edit_admin_venue_path(venue)) %></td>
-          <td><%= link_to("edit", edit_venue_path(venue)) %></td>
-          <% if current_user.platform_admin? %>
-            <td><%= link_to("Manage", "#") %></td>
-          <% end %>
+          <td><%= link_to("edit", edit_admin_venue_path(venue)) %></td>
+          <td><%= link_to("Manage", admin_venue_path(venue.url)) %></td>
         </tr>
       <% end %>
     </tbody>

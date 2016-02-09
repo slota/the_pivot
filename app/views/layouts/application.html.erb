@@ -13,7 +13,11 @@
   </head>
   <body class="application-body">
 
-    <%= render partial: '/shared/nav' %>
+    <% if current_user && current_user.platform_admin? %>
+      <%= render partial: '/shared/admin/nav' %>
+    <% else %>
+      <%= render partial: '/shared/nav' %>
+    <% end %>
 
     <div class="container">
       <% flash.each do |type, msg| %>
