@@ -25,43 +25,55 @@ class RegisteredUserAuthorizationTest < ActionDispatch::IntegrationTest
     refute page.has_content?("Manage Orders")
   end 
 
-  # test "guest views homepage" do 
-  #   venue = create(:venue)
-  #   concert = create(:concert)
-  #   venue.concerts << concert
+  test "registered user views homepage" do 
+    registered_user = create(:user, role: 0)
+    business_admin = create(:user, role: 0)
+    venue = create(:venue, user: business_admin, status: 1)
+    concert = create(:concert)
+    venue.concerts << concert
 
-  #   visit root_path
+    ApplicationController.any_instance.stubs(:current_user).returns(registered_user)
 
-  #   assert page.has_content?(venue.name)
-  #   assert page.has_content?(concert.band)
-  # end
+    visit root_path
 
-  # test "guest views venue show page" do 
-  #   venue = create(:venue)
-  #   concert = create(:concert, venue: venue)
-  #   venue.concerts << concert
+    assert page.has_content?(venue.name)
+    assert page.has_content?(concert.band)
+  end
 
-  #   visit venue_path(venue.url)
+  test "registered user views venue show page" do 
+    registered_user = create(:user, role: 0)
+    business_admin = create(:user, role: 0)
+    venue = create(:venue, user: business_admin, status: 1)
+    concert = create(:concert)
+    venue.concerts << concert
 
-  #   assert page.has_content?(venue.name)
-  #   assert page.has_content?(concert.band)
-  #   refute page.has_content?("Edit")
-  #   refute page.has_content?("Remove")
-  #   refute page.has_content?("Add an Admin")
+    ApplicationController.any_instance.stubs(:current_user).returns(registered_user)
+    
+    visit venue_path(venue.url)
 
-  # end 
+    assert page.has_content?(venue.name)
+    assert page.has_content?(concert.band)
+    refute page.has_content?("Edit")
+    refute page.has_content?("Remove")
+    refute page.has_content?("Add an Admin")
 
-  # test "guest views venue_concert show page" do 
-  #   venue = create(:venue)
-  #   concert = create(:concert, venue: venue)
-  #   venue.concerts << concert
+  end 
 
-  #   visit venue_concert_path(venue.url, concert.url)
+  test "registered user views venue_concert show page" do 
+    registered_user = create(:user, role: 0)
+    business_admin = create(:user, role: 0)
+    venue = create(:venue, user: business_admin, status: 1)
+    concert = create(:concert)
+    venue.concerts << concert
 
-  #   assert page.has_content?(venue.name)
-  #   assert page.has_content?(concert.band)
-  #   assert page.has_content?("Quantity")
-  #   refute page.has_content?("Edit")
-  #   refute page.has_content?("Remove")
-  # end 
+    ApplicationController.any_instance.stubs(:current_user).returns(registered_user)
+
+    visit venue_concert_path(venue.url, concert.url)
+
+    assert page.has_content?(venue.name)
+    assert page.has_content?(concert.band)
+    assert page.has_content?("Quantity")
+    refute page.has_content?("Edit")
+    refute page.has_content?("Remove")
+  end 
 end
