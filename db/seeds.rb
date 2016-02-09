@@ -11,9 +11,10 @@ class Seed
     end
 
     def self.generate_categories
+      categories = %w(rock blues ska metal pop rap country indie)
       10.times do |i|
         Category.create(
-          description: Faker::Address.state
+          description: categories.sample
           )
       end
     end
@@ -29,7 +30,7 @@ class Seed
       end
       User.create(username: "pa", password: "p", role: 2)
       User.create(username: "ba", password: "p", role: 1)
-      User.create(username: "u", password: "p", role: 0)
+      User.create(username: "u",  password: "p", role: 0)
       User.create(username: "josh@turing.io", password: "password", role: 0, image: "http://photos3.meetupstatic.com/photos/member/9/3/f/a/highres_223357882.jpeg")
       User.create(username: "andrew@turing.io", password: "password", role: 1, image: "https://pbs.twimg.com/profile_images/667068239986323456/5gFicGr4.jpg")
       User.create(username: "jorge@turing.io", password: "password", role: 2, image: "http://photos2.meetupstatic.com/photos/member/b/f/7/1/highres_242869009.jpeg")
@@ -85,7 +86,7 @@ class Seed
           band: "Awesome Band no #{i}",
           logo: "http://assets.rollingstone.com/assets/images/list/rsz-homepage-largedb5c5b0e-1354052522.jpg",
           price: rand(30..300),
-          genre: "Rock",
+          # genre: "Rock",
           venue: Venue.offset(rand(Venue.count-1)).first,
           category: Category.offset(rand(Category.count-1)).first
         )
@@ -98,7 +99,8 @@ class Seed
           band: "Ba's Awesome Band no #{i}",
           logo: "http://assets.rollingstone.com/assets/images/list/rsz-homepage-largedb5c5b0e-1354052522.jpg",
           price: rand(30..300),
-          genre: "Rock",
+          category: Category.offset(rand(Category.count-1)).first,
+          # genre: "Rock",
           venue: User.find_by(username: "ba").venues.sample
         )
         puts "BA's Concert #{i} created"
