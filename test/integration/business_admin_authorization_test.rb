@@ -123,4 +123,21 @@ class BusinessAdminAuthorizationTest < ActionDispatch::IntegrationTest
     refute page.has_content?(concert.logo)
   end 
 
+  test "business admin can only manage venues they own" do 
+    business_admin_1 = create(:user, role: 1)
+    business_admin_2 = create(:user, role: 1)
+    venue = create(:venue, user: business_admin_1, status: 1)
+    concert = create(:concert)
+    venue.concerts << concert
+
+    ApplicationController.any_instance.stubs(:current_user).returns(business_admin_2)
+
+    visit venue_path(venue.url)
+
+    assert page.has_content?(venue.name)
+    assert page.has_content?(concert.band)
+    refute page.has_content?("Edit")
+    refute page.has_content?("Remove")
+  end 
+
 end
