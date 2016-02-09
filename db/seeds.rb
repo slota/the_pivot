@@ -42,6 +42,7 @@ class Seed
         Venue.create(
           name: "Venue #{i}",
           address: "Address #{i}",
+          status: rand(0..1),
           city: "Denver",
           state: "CO",
           # image: "http://musictour.eu/data//uploads/media/halls/893/f4a4def50c6367fdeafadf41efa9e387.jpg",
