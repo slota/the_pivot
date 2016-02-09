@@ -14,6 +14,7 @@
     </div>
   </div>
 </div>
+
 <% if current_user == @venue.user %>
   <h5 class="center"><%= link_to("Add an Admin", cart_path) %></h5>
 
@@ -37,9 +38,9 @@
   </div>
 
   <div class="row">
-    <h5 class="center"><%= link_to "Add a concert", venue_new_concert_path %></h5>
+      <h5 class="center"><%= link_to "Add a concert", venue_new_concert_path %></h5>
   </div>
-<% end %>
+  <% end %>
 
 <div class="container" style="opacity:0.8; background-color: black; color:white;">
   <table class="bordered highlight responsive-table">

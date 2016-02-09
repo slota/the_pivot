@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UserViewsConcertTest < ActionDispatch::IntegrationTest
   test "guest views concert from root path" do
-    venue = create(:venue)
+    venue = create(:venue, status: 1)
     concert = create(:concert, venue: venue)
     visit root_path
     click_on "#{concert.band}"

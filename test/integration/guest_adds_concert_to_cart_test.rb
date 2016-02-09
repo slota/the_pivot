@@ -2,7 +2,7 @@ require 'test_helper'
 
 class GuestAddsConcertToCartTest < ActionDispatch::IntegrationTest
   test "registered guest adds concert to cart" do
-    venue = create(:venue)
+    venue = create(:venue, status: 1)
     concert = create(:concert, venue: venue)
     registered_user = create(:user, role: 0)
     ApplicationController.any_instance.stubs(:current_user).returns(registered_user)
@@ -37,7 +37,7 @@ class GuestAddsConcertToCartTest < ActionDispatch::IntegrationTest
   end
 
   test "unregistered guest adds concert to cart" do
-    venue = create(:venue)
+    venue = create(:venue, status: 1)
     concert = create(:concert, venue: venue)
 
     visit venue_concert_path(concert.venue.url, concert.url)
@@ -69,29 +69,8 @@ class GuestAddsConcertToCartTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Create account to checkout")
   end
 
-  # test "unregistered guest is asked to log in" do
-  #   venue = create(:venue)
-  #   concert = create(:concert, venue: venue)
-  #
-  #   visit root_path
-  #
-  #   assert_equal current_path, root_path
-  #
-  #   within ('.right') do
-  #     click_link("Cart")
-  #   end
-  #
-  #   assert_equal current_path, cart_path
-  #
-  #
-  #   assert page.has_content?("Don't have an account?")
-  #
-  #   click_link("Checkout!")
-  #   assert page.has_content?("Create one here")
-  # end
-
   test "registered user can purchase tickets" do
-    venue = create(:venue)
+    venue = create(:venue, status: 1)
     concert = create(:concert, venue: venue)
     registered_user = create(:user, role: 0)
     ApplicationController.any_instance.stubs(:current_user).returns(registered_user)

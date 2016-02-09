@@ -9,12 +9,14 @@ class Admin::VenuesController < Admin::BaseController
   end
 
   def show
+    @venue = Venue.find_by(url: params[:id])
+    @user = User.find_by(id: @venue.user_id)
   end
 
   def create
     @venue = Venue.create(venue_params)
     current_user.venues << @venue
-    flash[:success] = "Request sent for approval"
+    flash[:success] = "Request sent for approval to #{current_user.username}"
     redirect_to admin_venues_path
   end
 
