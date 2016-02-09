@@ -23,12 +23,7 @@ class OrdersController < ApplicationController
     @order_completion = CompleteOrder.new(@order, @cart)
     if @order_completion.create_order
       flash[:notice] = "Order was successfully placed"
-      if platform_admin?
-        redirect_to admin_user_path(current_user.id)
-      else
-        redirect_to user_path(current_user.id)
-      end
-
+      redirect_to notification_path(address: params[:order][:address])
     else
       flash[:error] = "Cart cannot be empty."
       redirect_to cart_concerts_path

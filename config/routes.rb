@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   # get "profile" => "pages#profile"
 
   # get "order" => "pages#orders"
+  get '/notification' => 'notification#create'
 
   namespace :admin do
     resources :venues
@@ -70,5 +71,6 @@ Rails.application.routes.draw do
     get '/:concert/edit', to: 'concert#edit', as: :edit_concert
     patch '/:concert', to: 'concert#update', as: :update_concert
   end
+
   # get '/:venue/:concert', to: 'venue_concert#show', as: :venue_concert
 end
