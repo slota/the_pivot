@@ -1,13 +1,16 @@
-<%= form_for @concert do |f| %>
-  <%= f.label :date %>
-  <%= f.date_field :date %>
-  <%= f.label :band %>
-  <%= f.text_field :band %>
-  <%= f.label :logo %>
-  <%= f.file_field :logo %>
-  <%= f.label :price %>
-  <%= f.number_field :price %>
-  <%= f.label :genre %>
-  <%= f.text_field :genre %>
-  <%= f.submit %>
-<% end %>
+<div class="container">
+  <h2>Edit Concert</h2>
+  <%= form_for @concert do |f| %>
+    <%= f.label :date %>
+    <%= f.date_field :date %>
+    <%= f.label :band %>
+    <%= f.text_field :band %>
+    <%= f.label :logo %>
+    <%= f.file_field :logo %>
+    <%= f.label :price %>
+    <%= f.number_field :price %>
+    <%= f.label :genre %>
+    <%= f.text_field :genre %>
+    <%= f.submit %>
+  <% end %>
+</div>

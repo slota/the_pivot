@@ -1,23 +1,25 @@
-<h1>Edit a venue</h1>
+<div class="container">
+<h2>Edit a venue</h2>
 
-<%= form_tag @venue, method: :patch, class: :venue do  %>
-  <%= label_tag "name" %>
-  <%= text_field_tag "name" %>
+  <%= form_tag @venue, method: :patch, class: :venue do  %>
+    <%= label_tag "name" %>
+    <%= text_field_tag "name" %>
 
-  <%= label_tag "image" %><br>
-  <%= file_field_tag "image" %><br><br>
+    <%= label_tag "image" %><br>
+    <%= file_field_tag "image" %><br><br>
 
-  <%= label_tag "city" %>
-  <%= text_field_tag "city" %>
+    <%= label_tag "city" %>
+    <%= text_field_tag "city" %>
 
-  <%= label_tag "state" %>
-  <%= text_field_tag "state" %>
+    <%= label_tag "state" %>
+    <%= text_field_tag "state" %>
 
-  <%= label_tag "address" %>
-  <%= text_field_tag "address" %>
+    <%= label_tag "address" %>
+    <%= text_field_tag "address" %>
 
-  <%= label_tag "description" %>
-  <%= text_area_tag "description" %>
+    <%= label_tag "description" %>
+    <%= text_area_tag "description" %>
 
-  <%= submit_tag "Update Venue", class: "btn" %>
+    <%= submit_tag "Update Venue", class: "btn" %>
  <% end %>
+</div>
