@@ -25,7 +25,7 @@ class Seed
         password: "p",
         role: 0
         )
-        puts "User #{i.id} created"
+        puts "User #{i} created"
       end
       User.create(username: "pa", password: "p", role: 2)
       User.create(username: "ba", password: "p", role: 1)
