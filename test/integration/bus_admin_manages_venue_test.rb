@@ -39,11 +39,6 @@ class BusAdminManagesVenueTest < ActionDispatch::IntegrationTest
     assert_equal venues_path, current_path
 
     assert page.has_content?(venue_1.name)
-    # assert page.has_content?(venue_2.name)
-    # save_and_open_page
-    # within ("tbody tr:nth-child(1)") do
-    #   click_on("edit")
-    # end
 
     click_on "edit"
     assert_equal edit_venue_path(venue_1.url), current_path
@@ -54,10 +49,8 @@ class BusAdminManagesVenueTest < ActionDispatch::IntegrationTest
     fill_in "description", with: "Steve's Venue 3"
 
     click_on("Update Venue")
-    # save_and_open_page
     assert_equal venues_path, current_path
     assert page.has_content?("Steve's Venue Updated!")
-    # save_and_open_page
     assert page.has_content?("Steve's Venue")
     # venue_1.reload
     # assert page.has_content?(venue_1.address)
