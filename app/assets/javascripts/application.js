@@ -47,13 +47,10 @@ $(document).ready(function() {
       //     dataType: 'json'
       //   }).then(function(data) {
       //     console.log(data);
-      //   }); 
-    })
+      //   });
+    // })
 });
 
 $(document).on("page:load ready", loaded);
 
 // $.getJSON('/').then(whaever)
-
-
-
