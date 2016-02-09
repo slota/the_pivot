@@ -84,11 +84,10 @@ class BusinessAdminAuthorizationTest < ActionDispatch::IntegrationTest
     assert page.has_content?(concert.band)
     assert page.has_content?("Edit")
     assert page.has_content?("Remove")
-    
     within('.concert-venue') do 
       click_on("Edit")
     end
-    # assert_equal venue_edit_concert_path(concert.venue.url, concert.url), current_path
+
     fill_in "concert[band]", with: "Ja Rule"
     fill_in "concert[price]", with: 45
     fill_in "concert[genre]", with: "Rap"
@@ -124,16 +123,33 @@ class BusinessAdminAuthorizationTest < ActionDispatch::IntegrationTest
   end 
 
   test "business admin can only manage venues they own" do 
-    business_admin_1 = create(:user, role: 1)
-    business_admin_2 = create(:user, role: 1)
-    venue = create(:venue, user: business_admin_1, status: 1)
+    business_admin_owner = create(:user, role: 1)
+    business_admin_visitor = create(:user, role: 1)
+    venue = create(:venue, user: business_admin_owner, status: 1)
     concert = create(:concert)
     venue.concerts << concert
 
-    ApplicationController.any_instance.stubs(:current_user).returns(business_admin_2)
+    ApplicationController.any_instance.stubs(:current_user).returns(business_admin_visitor)
 
     visit venue_path(venue.url)
 
+    assert page.has_content?(venue.name)
+    assert page.has_content?(concert.band)
+    refute page.has_content?("Edit")
+    refute page.has_content?("Remove")
+  end 
+
+  test "business admin can only manage concerts for venues they own" do 
+    business_admin_owner = create(:user, role: 1)
+    business_admin_visitor = create(:user, role: 1)
+    venue = create(:venue, user: business_admin_owner, status: 1)
+    concert = create(:concert)
+    venue.concerts << concert
+
+    ApplicationController.any_instance.stubs(:current_user).returns(business_admin_visitor)
+
+    visit venue_path(venue.url)
+    click_on(concert.band)
     assert page.has_content?(venue.name)
     assert page.has_content?(concert.band)
     refute page.has_content?("Edit")
