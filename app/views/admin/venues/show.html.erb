@@ -28,16 +28,18 @@
     </thead>
     <tbody>
       <tr>
-        <td><%= @venue.user.username %></td>
-        <td><%=link_to("edit", edit_user_path(@venue.user)) %> </td>
-        <td><%=link_to("remove", cart_path) %> </td>
+        <% if @user %>
+          <td><%= @user.username %></td>
+          <td><%=link_to("edit", edit_user_path(@venue.user)) %> </td>
+          <td><%=link_to("remove", cart_path) %> </td>
+        <% end %>
       </tr>
     </tbody>
   </table>
 </div>
 
 <div class="row">
-  <%= link_to "Add a concert", venue_new_concert_path %>
+  <%= link_to "Add a concert", venue_new_concert_path(@venue.url) %>
 </div>
 
 <div class="container" style="opacity:0.8; background-color: black; color:white;">

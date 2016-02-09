@@ -10,7 +10,11 @@ class Venues::ConcertController < ApplicationController
   def create
     venue = Venue.find_by(url: params[:venue])
     venue.concerts << Concert.create(concert_params)
-    redirect_to venue_path(venue.url)
+    if platform_admin?
+      redirect_to admin_venue_path(venue.url)
+    else
+      redirect_to venue_path(venue.url)
+    end
   end
 
   def destroy

@@ -1,0 +1,29 @@
+<nav class="black">
+  <div class="nav-wrapper">
+    <%= link_to "Ticket Maestro", root_path, class: "satisfy-font teal-shadow", style: "font-size: 2em;padding-left:20px;" %>
+    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down" style = "padding-right: 10px">
+      <% if current_user %>
+        <li><%= link_to "View Profile", admin_user_path(current_user.id) %></li>
+        <li><%= link_to "View Past Orders", admin_orders_path %></li>
+        <li><%= link_to "Logout", logout_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to "Login", login_path %></li>
+        <li><%= link_to "Create Account", new_user_path %></li>
+      <% end %>
+      <li><%= link_to "Cart (#{@cart.cart_size})", cart_path %> </li>
+      <li><i class="material-icons">shopping_cart</i></li>
+    </ul>
+    <ul class="side-nav" id="mobile-demo">
+
+      <% if current_user %>
+        <li><%= link_to "View Past Orders", admin_orders_path %></li>
+        <li><%= link_to "Logout", logout_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to "Login", login_path %></li>
+        <li><%= link_to "Create Account", new_user_path %></li>
+      <% end %>
+      <li><%= link_to "Cart (#{@cart.cart_size})", cart_concerts_path %> </li>
+    </ul>
+  </div>
+</nav>
