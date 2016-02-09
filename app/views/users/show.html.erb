@@ -16,8 +16,9 @@
   <h5 class="center" style="margin:2% 0%;"><%= link_to("Edit Profile", edit_user_path(@user))%></h5>
   <!-- <h5 class="center satisfy-font white-text">Manage venues</h5> -->
   <h5 class="center" style="margin:2% 0%;">
-    <%= link_to("Manage Venues", venues_path)%>
-    <%= link_to("Manage Orders", order_path) %>
+    <% if business_admin? %>
+      <%= link_to("Manage Venues", venues_path)%>
+    <% end %>
   </h5>
 
 <h3 class="satisfy-font center white-text teal-shadow">Completed Orders</h3>

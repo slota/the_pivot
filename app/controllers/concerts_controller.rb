@@ -6,7 +6,11 @@ class ConcertsController < ApplicationController
   def update
     concert = Concert.find(params[:id])
     concert.update(concert_params)
-    redirect_to venue_path(concert.venue.url)
+    if platform_admin?
+      redirect_to admin_venue_path(concert.venue.url)
+    else
+      redirect_to venue_path(concert.venue.url)
+    end
   end
 
   private

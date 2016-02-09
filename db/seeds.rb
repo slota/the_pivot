@@ -19,9 +19,9 @@ class Seed
       User.create(username: "pa", password: "p", role: 2)
       User.create(username: "ba", password: "p", role: 1)
       User.create(username: "u", password: "p", role: 0)
-      User.create(username: "josh@turing.io", password: "password", role: 0)
-      User.create(username: "andrew@turing.io", password: "password", role: 1)
-      User.create(username: "jorge@turing.io", password: "password", role: 2)
+      User.create(username: "josh@turing.io", password: "password", role: 0, image: "http://photos3.meetupstatic.com/photos/member/9/3/f/a/highres_223357882.jpeg")
+      User.create(username: "andrew@turing.io", password: "password", role: 1, image: "https://pbs.twimg.com/profile_images/667068239986323456/5gFicGr4.jpg")
+      User.create(username: "jorge@turing.io", password: "password", role: 2, image: "http://photos2.meetupstatic.com/photos/member/b/f/7/1/highres_242869009.jpeg")
     end
 
     def self.generate_business_admins
