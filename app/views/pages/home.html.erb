@@ -1,10 +1,10 @@
 <div class="animatedParent">
   <div class="row valign-wrapper animated fadeInUp" > <!-- style="height:500px;background-image:url(http://www.darindaymusic.co.uk/wp-content/uploads/disco.jpg);margin-top:30px;padding-left:70px;padding-right:70px;background-size:cover"> -->
     <%= form_for :session, html: {class: "col s12 search-bar"} do |f| %>
-    <%= f.text_field "City" , placeholder: "City", class:"col s3"%>
-    <%= f.text_field "Performer" , placeholder: "Band", class:"col s3" %>
-    <%= f.date_field "Date" , placeholder: "Date", class:"col s3" %>
-    <%= f.text_field "Genre" , placeholder: "Genre", class:"col s3" %>
+    <%= f.text_field "City" , placeholder: "City", class:"col s3", id:"city-search"%>
+    <%= f.text_field "Performer" , placeholder: "Band", class:"col s3", id:"city-search" %>
+    <%= f.date_field "Date" , placeholder: "Date", class:"col s3", id:"city-search" %>
+    <%= f.text_field "Genre" , placeholder: "Genre", class:"col s3", id:"city-search" %>
     <% end %>
   </div>
 </div>
@@ -39,5 +39,5 @@
 </div>
 <br>
 <div class="pagination center">
-    <%= will_paginate @concerts %>
+    <%#= will_paginate @concerts %>
 </div>

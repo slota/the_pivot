@@ -1,5 +1,6 @@
 source "https://rubygems.org"
 
+gem 'responders'
 gem 'will_paginate',           '~> 3.0.6'
 gem 'will_paginate-materialize'
 gem "figaro"
