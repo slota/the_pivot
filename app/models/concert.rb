@@ -21,7 +21,11 @@ class Concert < ActiveRecord::Base
   }
   scope :city, ->(params) {
     city = params[:search][:City]
-    where(venue_id: Venue.find_by(city: city))
+    if city.empty?
+      all
+    else
+      where(venue_id: Venue.where(city: city))
+    end
   }
   scope :genre, ->(params) {
     genre = params[:search][:Genre]

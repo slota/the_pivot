@@ -15,6 +15,7 @@ class PagesController < ApplicationController
     @concerts = Concert.active_venues
                        .band(params)
                        .date(params)
+                       .city(params)
                        .genre(params)
                        .paginate(page: params[:page], per_page: 8)
     # @concerts = @concerts.band(params) if params[:search][:Band]
