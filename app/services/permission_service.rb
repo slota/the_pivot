@@ -30,6 +30,7 @@ class PermissionService
     return true if controller == "orders" && action.in?(%w(new create index show))
     return true if controller == "cart_concerts"
     return true if controller == "concerts" && action.in?(%w(edit update))
+    return true if controller == "venues/managers" && action.in?(%w(create destroy))
   end
 
   def registered_user_permissions

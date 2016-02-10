@@ -1,4 +1,7 @@
 class Venue < ActiveRecord::Base
+  # belongs_to :company, :class_name => :Vendor,:foreign_key => "vendor_id"
+  has_many :venue_users
+  has_many :users, through: :venue_users
   has_many :concerts
   belongs_to :user
   enum status: %w(Pending Approved Declined)
