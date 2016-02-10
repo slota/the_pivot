@@ -1,5 +1,5 @@
 <h2>Thank you for your ticket purchase!</h2>
-<div class="container" style="opacity:0.8; background-color: black; color:white;">
+<div class="container">
   <table class="bordered highlight responsive-table">
     <thead>
       <tr>
@@ -14,17 +14,17 @@
 
     <tbody>
       <% @orders.each do |order| %>
-      <% order.concert_orders.each do |concert_order| %>
-      <tr>
-        <td><%= concert_order.concert.date %></td>
-        <td><%= concert_order.concert.band %></td>
-        <td><%= concert_order.concert.venue.name %></td>
-        <td><%= concert_order.quantity %> </td>
-        <td><%= concert_order.price %> </td>
-        <td><%= concert_order.subtotal %></td>
+        <% order.concert_orders.each do |concert_order| %>
+          <tr>
+            <td><%= concert_order.concert.date %></td>
+            <td><%= concert_order.concert.band %></td>
+            <td><%= concert_order.concert.venue.name %></td>
+            <td><%= concert_order.quantity %> </td>
+            <td><%= concert_order.price %> </td>
+            <td><%= concert_order.subtotal %></td>
+          </tr>
         <% end %>
-        <% end %>
-      </tr>
+      <% end %>
     </tbody>
   </table>
 </div>
