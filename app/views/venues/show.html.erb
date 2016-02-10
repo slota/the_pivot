@@ -15,7 +15,6 @@
 </div>
 
 <% if current_user == @venue.user || @venue.users.include?(current_user) %>
-  <h5 class="center"><%= link_to("Add an Admin", cart_path) %></h5>
 
   <div class="container opaque-background">
     <table class="bordered highlight responsive-table">
