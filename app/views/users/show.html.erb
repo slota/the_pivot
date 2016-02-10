@@ -17,12 +17,14 @@
   <!-- <h5 class="center satisfy-font white-text">Manage venues</h5> -->
   <h5 class="center" style="margin:2% 0%;">
     <% if business_admin? %>
+      <!-- current_user.user_show_link -->
       <%= link_to("Manage Venues", venues_path)%>
     <% end %>
   </h5>
 
 <h3 class="satisfy-font center white-text teal-shadow">Completed Orders</h3>
 <% if @orders %>
+  <!-- render partial -->
 <div class="container" style="opacity:0.8; background-color: black; color:white;">
   <table class="bordered highlight responsive-table">
     <thead>

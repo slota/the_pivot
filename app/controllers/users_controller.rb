@@ -18,6 +18,9 @@ class UsersController < ApplicationController
   end
 
   def show
+    # @presenter = UserShowPresenter(c, v, u)
+      # -> @presenter.whatever_method
+      # -> @presenter.c.url
     @user = current_user
     @orders = @user.orders.all
     # if @user.platform_admin?

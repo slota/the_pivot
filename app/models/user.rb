@@ -1,5 +1,10 @@
 class User < ActiveRecord::Base
   has_secure_password
+  has_many :venue_users
+  has_many :managed_venues, through: :venue_users,
+                    class_name: "Venue",
+                    foreign_key: "venue_id",
+                    source: :venue
   has_many :orders
   has_many :venues
 

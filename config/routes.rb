@@ -70,6 +70,8 @@ Rails.application.routes.draw do
     get '/concerts/new', to: 'concert#new', as: :new_concert
     get '/:concert/edit', to: 'concert#edit', as: :edit_concert
     patch '/:concert', to: 'concert#update', as: :update_concert
+    # post '/managers', to: 'managers#create'
+    resources :managers, only: [:create, :destroy]
   end
 
   # get '/:venue/:concert', to: 'venue_concert#show', as: :venue_concert

@@ -6,7 +6,7 @@ class VenuesController < ApplicationController
 
   def index
     @venues = current_user.venues
-    render file: 'public/404' unless current_user.business_admin?
+    @venues << current_user.managed_venues
   end
 
   def new
@@ -34,7 +34,7 @@ class VenuesController < ApplicationController
     if venue.update(update_params)
       flash[:success] = "#{venue.name} Updated!"
       redirect_to venues_path
-    else 
+    else
       flash[:error] = @venue.errors.full_messages.join(", ")
       render :edit
     end

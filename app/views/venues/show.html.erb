@@ -9,13 +9,12 @@
         <p class="satisfy-font"> <%=  @venue.address %>, <%= @venue.city %>, <%= @venue.state %></p>
         <hr>
         <p class="satisfy-font"> <%= @venue.name %></p>
-
       </div>
     </div>
   </div>
 </div>
 
-<% if current_user == @venue.user %>
+<% if current_user == @venue.user || @venue.users.include?(current_user) %>
   <h5 class="center"><%= link_to("Add an Admin", cart_path) %></h5>
 
   <div class="container opaque-background">
@@ -23,16 +22,18 @@
       <thead>
         <tr>
           <th data-field="Username">Username</th>
-          <th data-field="Edit">Edit</th>
-          <th data-field="Remove">Remove</th>
+          <!-- <th data-field="Edit">Edit</th> -->
+          <th data-field="Remove">Action</th>
         </tr>
       </thead>
       <tbody>
+        <% @venue.users.each do |manager| %>
         <tr>
-          <td><%= @venue.user.username %></td>
-          <td><%=link_to("edit", edit_user_path(@venue.user)) %> </td>
-          <td><%=link_to("remove", cart_path) %> </td>
+          <td><%= manager.username %></td>
+          <td><%=button_to("remove", venue_manager_path(@venue.url,manager.id), method: :delete) %> </td>
         </tr>
+        <% end %>
+        <%= render partial: "shared/add_manager" %>
       </tbody>
     </table>
   </div>
