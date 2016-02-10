@@ -9,12 +9,10 @@ class CartModelTest < ActionDispatch::IntegrationTest
   end
 
   test 'initialize' do
-    setup
     assert @cart
   end
 
   test 'clear' do
-    setup
     @cart.clear
     assert @cart.contents.empty?
   end

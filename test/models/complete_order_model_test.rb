@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CompleteOrderTest < ActionDispatch::IntegrationTest
+class CompleteOrderModelTest < ActionDispatch::IntegrationTest
 
   def setup
     @concert = create(:concert)
@@ -13,7 +13,6 @@ class CompleteOrderTest < ActionDispatch::IntegrationTest
   end
 
   test 'initialize' do
-    setup
     assert @complete_order
   end
 
