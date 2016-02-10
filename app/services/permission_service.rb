@@ -22,7 +22,7 @@ class PermissionService
   end
 
   def business_admin_permissions
-    return true if controller == "pages" && action.in?(%w(home about))
+    return true if controller == "pages" && action.in?(%w(home about search))
     return true if controller == "sessions"
     return true if controller == "users" && action.in?(%w(new create show edit update))
     return true if controller == "venues" && action.in?(%w(show index new create edit update))
@@ -35,7 +35,7 @@ class PermissionService
   end
 
   def registered_user_permissions
-    return true if controller == "pages" && action.in?(%w(home about))
+    return true if controller == "pages" && action.in?(%w(home about search))
     return true if controller == "sessions"
     return true if controller == "users" && action.in?(%w(new create show edit update))
     return true if controller == "venues" && action.in?(%w(show))
@@ -46,7 +46,7 @@ class PermissionService
   end
 
   def guest_user_permissions
-    return true if controller == "pages" && action.in?(%w(home about))
+    return true if controller == "pages" && action.in?(%w(home about search))
     return true if controller == "sessions"
     return true if controller == "users" && action.in?(%w(new create))
     return true if controller == "venues" && action.in?(%w(show))

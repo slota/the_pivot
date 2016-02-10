@@ -141,4 +141,50 @@ class BusinessAdminAuthorizationTest < ActionDispatch::IntegrationTest
     refute page.has_content?("Remove")
   end
 
+  test "business admin adds manager" do
+    setup_factories
+    # business_admin_visitor = create(:user, role: 1)
+    manager = create(:user, role: 0)
+
+    visit root_path
+
+    within(".right") do
+      click_on("Login")
+    end
+
+    fill_in "Username", with: business_admin.username
+    fill_in "Password", with: business_admin.password
+
+
+    within(".login") do
+      click_on("Login")
+    end
+
+    visit venue_path(venue.url)
+    fill_in "new_manager", with: manager.username
+    click_on("Add as manager")
+
+    assert page.has_content?(manager.username)
+
+    within(".right") do
+      click_on("Logout")
+    end
+
+    assert page.has_content?("#{business_admin.username} successfully logged out")
+
+    within(".right") do
+      click_on("Login")
+    end
+
+    fill_in "Username", with: manager.username
+    fill_in "Password", with: manager.password
+
+    within(".login") do
+      click_on("Login")
+    end
+
+    visit venues_path
+    assert_equal business_admin.venues.first.name, venue.name
+  end
+
 end
