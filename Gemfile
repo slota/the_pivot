@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-
+gem 'barby'
 gem 'responders'
 gem 'will_paginate',           '~> 3.0.6'
 gem 'will_paginate-materialize'
