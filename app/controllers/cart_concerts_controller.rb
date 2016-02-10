@@ -15,10 +15,10 @@ class CartConcertsController < ApplicationController
 
   def update
     concert = Concert.find(params[:id])
-    @cart.add_or_subtract_concert(params[:edit_action], concert)
-    if @cart.remove_notice?(params[:edit_action])
-      flash[:notice] = "Successfully removed #{view_context.link_to(concert.name, concert_path(concert.slug))} from your cart."
-    end
+    # @cart.add_or_subtract_concert(params[:edit_action], concert)
+    # if @cart.remove_notice?(params[:edit_action])
+    #   flash[:notice] = "Successfully removed #{view_context.link_to(concert.name, concert_path(concert.slug))} from your cart."
+    # end
     @concerts = @cart.cart_concerts
     redirect_to cart_concerts_path
   end
