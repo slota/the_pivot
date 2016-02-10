@@ -5,8 +5,7 @@ class VenuesController < ApplicationController
   end
 
   def index
-    @venues = current_user.venues
-    @venues << current_user.managed_venues
+    @venues = current_user.venues + current_user.managed_venues
   end
 
   def new

@@ -2,15 +2,15 @@ require 'test_helper'
 
 class BusinessAdminAuthorizationTest < ActionDispatch::IntegrationTest
   attr_accessor :business_admin, :venue, :concert
-  
+
   def setup_factories
     @business_admin = create(:user, role: 1)
     @venue = create(:venue, user: @business_admin, status: 1)
     @concert = create(:concert)
     @venue.concerts << concert
-  end 
+  end
 
-  test "business admin can login" do 
+  test "business admin can login" do
     setup_factories
 
     visit login_path
@@ -29,8 +29,8 @@ class BusinessAdminAuthorizationTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Completed Orders")
     assert page.has_content?("Manage Venues")
   end
-  
-  test "business admin views homepage" do 
+
+  test "business admin views homepage" do
     setup_factories
 
     ApplicationController.any_instance.stubs(:current_user).returns(business_admin)
@@ -41,21 +41,21 @@ class BusinessAdminAuthorizationTest < ActionDispatch::IntegrationTest
     assert page.has_content?(concert.band)
   end
 
-  test "registered user views venue show page" do 
+  test "registered user views venue show page" do
     setup_factories
 
     ApplicationController.any_instance.stubs(:current_user).returns(business_admin)
-    
+
     visit venue_path(venue.url)
 
     assert page.has_content?(venue.name)
     assert page.has_content?(concert.band)
     assert page.has_content?("Edit")
     assert page.has_content?("Remove")
-    assert page.has_content?("Add an Admin")
-  end 
+    refute page.has_content?("Add an Admin")
+  end
 
-  test "business admin views venue_concert show page" do 
+  test "business admin views venue_concert show page" do
     setup_factories
 
     ApplicationController.any_instance.stubs(:current_user).returns(business_admin)
@@ -65,9 +65,9 @@ class BusinessAdminAuthorizationTest < ActionDispatch::IntegrationTest
     assert page.has_content?(venue.name)
     assert page.has_content?(concert.band)
     assert page.has_content?("Quantity")
-  end 
+  end
 
-  test "business admin can edit concert" do 
+  test "business admin can edit concert" do
     setup_factories
 
     ApplicationController.any_instance.stubs(:current_user).returns(business_admin)
@@ -78,7 +78,7 @@ class BusinessAdminAuthorizationTest < ActionDispatch::IntegrationTest
     assert page.has_content?(concert.band)
     assert page.has_content?("Edit")
     assert page.has_content?("Remove")
-    within('.concert-venue') do 
+    within('.concert-venue') do
       click_on("Edit")
     end
 
@@ -91,7 +91,7 @@ class BusinessAdminAuthorizationTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Ja Rule")
   end
 
-  test "business admin can remove concert" do 
+  test "business admin can remove concert" do
     setup_factories
 
     ApplicationController.any_instance.stubs(:current_user).returns(business_admin)
@@ -102,8 +102,8 @@ class BusinessAdminAuthorizationTest < ActionDispatch::IntegrationTest
     assert page.has_content?(concert.band)
     assert page.has_content?("Edit")
     assert page.has_content?("Remove")
-    
-    within('.concert-venue') do 
+
+    within('.concert-venue') do
       click_on("Remove")
     end
 
@@ -111,9 +111,9 @@ class BusinessAdminAuthorizationTest < ActionDispatch::IntegrationTest
     refute page.has_content?(concert.band)
     refute page.has_content?(concert.date)
     refute page.has_content?(concert.logo)
-  end 
+  end
 
-  test "business admin can only manage venues they own" do 
+  test "business admin can only manage venues they own" do
     setup_factories
     business_admin_visitor = create(:user, role: 1)
 
@@ -125,9 +125,9 @@ class BusinessAdminAuthorizationTest < ActionDispatch::IntegrationTest
     assert page.has_content?(concert.band)
     refute page.has_content?("Edit")
     refute page.has_content?("Remove")
-  end 
+  end
 
-  test "business admin can only manage concerts for venues they own" do 
+  test "business admin can only manage concerts for venues they own" do
     setup_factories
     business_admin_visitor = create(:user, role: 1)
 
@@ -139,6 +139,52 @@ class BusinessAdminAuthorizationTest < ActionDispatch::IntegrationTest
     assert page.has_content?(concert.band)
     refute page.has_content?("Edit")
     refute page.has_content?("Remove")
-  end 
+  end
+
+  test "business admin adds manager" do
+    setup_factories
+    # business_admin_visitor = create(:user, role: 1)
+    manager = create(:user, role: 0)
+
+    visit root_path
+
+    within(".right") do
+      click_on("Login")
+    end
+
+    fill_in "Username", with: business_admin.username
+    fill_in "Password", with: business_admin.password
+
+
+    within(".login") do
+      click_on("Login")
+    end
+
+    visit venue_path(venue.url)
+    fill_in "new_manager", with: manager.username
+    click_on("Add as manager")
+
+    assert page.has_content?(manager.username)
+
+    within(".right") do
+      click_on("Logout")
+    end
+
+    assert page.has_content?("#{business_admin.username} successfully logged out")
+
+    within(".right") do
+      click_on("Login")
+    end
+
+    fill_in "Username", with: manager.username
+    fill_in "Password", with: manager.password
+
+    within(".login") do
+      click_on("Login")
+    end
+
+    visit venues_path
+    assert_equal business_admin.venues.first.name, venue.name
+  end
 
 end

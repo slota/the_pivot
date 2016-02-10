@@ -43,7 +43,6 @@ class ManagersTest < ActionDispatch::IntegrationTest
     # binding.pry
     assert_equal venue.users.count, 1
     visit venue_path(venue.url)
-    # save_and_open_page
     fill_in "new_manager", with: user.username
     click_on "Add as manager"
 
@@ -78,5 +77,19 @@ class ManagersTest < ActionDispatch::IntegrationTest
     visit venues_path
     # binding.pry
     assert page.has_content?(venue.name)
+  end
+
+  test "error message if manager does not exits" do
+    owner = create(:user, role: 1)
+    venue = create(:venue, user: owner)
+    ApplicationController.any_instance.stubs(:current_user).returns(owner)
+
+    visit venue_path(venue.url)
+
+    click_on "Add as manager"
+
+    assert_equal venue_path(venue.url), current_path
+    assert_equal venue.users.count, 0
+    assert page.has_content?("Please enter a valid registered user")
   end
 end

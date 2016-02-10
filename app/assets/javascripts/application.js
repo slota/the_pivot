@@ -39,16 +39,6 @@ var loaded = function(){
 
 $(document).ready(function() {
     $('select').material_select();
-    // $('#city-search').on('keyup', function() {
-    //   console.log('success!')
-      // $.ajax({
-      //     type: "GET",
-      //     url: "/",
-      //     dataType: 'json'
-      //   }).then(function(data) {
-      //     console.log(data);
-      //   });
-    // })
 });
 
 $(document).on("page:load ready", loaded);

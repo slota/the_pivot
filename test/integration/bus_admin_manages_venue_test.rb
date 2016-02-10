@@ -33,7 +33,6 @@ class BusAdminManagesVenueTest < ActionDispatch::IntegrationTest
     venue_1.update_attributes(user_id: business_user.id)
     venue_1.reload
     ApplicationController.any_instance.stubs(:current_user).returns(business_user)
-    # venue_2.update_attributes(user_id: business_user.id)
     visit venues_path
 
     assert_equal venues_path, current_path
@@ -52,7 +51,5 @@ class BusAdminManagesVenueTest < ActionDispatch::IntegrationTest
     assert_equal venues_path, current_path
     assert page.has_content?("Steve's Venue Updated!")
     assert page.has_content?("Steve's Venue")
-    # venue_1.reload
-    # assert page.has_content?(venue_1.address)
   end
 end
