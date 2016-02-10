@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class GuestAddsConcertToCartTest < ActionDispatch::IntegrationTest
-  test "registered guest adds concert to cart" do
+  test "registered user adds concert to cart" do
     venue = create(:venue, status: 1)
     concert = create(:concert, venue: venue)
     registered_user = create(:user, role: 0)
@@ -115,6 +115,23 @@ class GuestAddsConcertToCartTest < ActionDispatch::IntegrationTest
   test "registered guest can view ticket history" do
     venue = create(:venue)
     concert = create(:concert, venue: venue)
+    registered_user = create(:user, role: 0)
+    ApplicationController.any_instance.stubs(:current_user).returns(registered_user)
+    order = create(:order)
+    order.update(user_id: registered_user.id)
+    concert_order = create(:concert_order)
+    concert_order.update(concert_id: concert.id, order_id: order.id)
+
+    visit user_path(registered_user.id)
+
+    assert page.has_content?(concert.band)
+    assert page.has_content?("1")
+    assert page.has_content?(venue.name)
+  end
+
+  test "business admin can view ticket history" do
+    venue = create(:venue)
+    concert = create(:concert, venue: venue)
     registered_user = create(:user, role: 1)
     ApplicationController.any_instance.stubs(:current_user).returns(registered_user)
     order = create(:order)
@@ -123,8 +140,26 @@ class GuestAddsConcertToCartTest < ActionDispatch::IntegrationTest
     concert_order.update(concert_id: concert.id, order_id: order.id)
 
     visit user_path(registered_user.id)
-    
-    assert page.has_content?("Completed Orders")
+
+    assert page.has_content?(concert.band)
+    assert page.has_content?("1")
+    assert page.has_content?(venue.name)
   end
 
+  test "platform admin can view ticket history" do
+    venue = create(:venue)
+    concert = create(:concert, venue: venue)
+    registered_user = create(:user, role: 2)
+    ApplicationController.any_instance.stubs(:current_user).returns(registered_user)
+    order = create(:order)
+    order.update(user_id: registered_user.id)
+    concert_order = create(:concert_order)
+    concert_order.update(concert_id: concert.id, order_id: order.id)
+
+    visit user_path(registered_user.id)
+
+    assert page.has_content?(concert.band)
+    assert page.has_content?("1")
+    assert page.has_content?(venue.name)
+  end
 end

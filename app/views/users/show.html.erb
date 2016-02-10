@@ -14,10 +14,10 @@
 </div>
 
   <h5 class="center" style="margin:2% 0%;"><%= link_to("Edit Profile", edit_user_path(@user))%></h5>
+<% if business_admin? %>
   <h5 class="center" style="margin:2% 0%;">
-    <% if business_admin? %>
       <%= link_to("Manage Venues", venues_path)%>
-    <% end %>
+  <% end %>
   </h5>
 
 <h3 class="satisfy-font center white-text teal-shadow">Completed Orders</h3>
@@ -51,5 +51,5 @@
       </tbody>
     </table>
   </div>
-<% end %>
 <br>
+<% end %>
