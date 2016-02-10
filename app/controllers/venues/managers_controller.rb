@@ -6,7 +6,7 @@ class Venues::ManagersController < ApplicationController
   end
 
   def destroy
-    venue = current_user.venues.find_by(url:params[:venue])
+    venue = find_venue
     manager = User.find(params[:id])
     venue.users.delete(manager)
     redirect_to venue_path(venue.url)
@@ -14,23 +14,39 @@ class Venues::ManagersController < ApplicationController
 
   private
 
+  def find_venue
+    if platform_admin?
+      venue = Venue.find_by(url: params[:venue])
+    else
+      venue = current_user.venues.find_by(url:params[:venue])
+    end
+  end
+
   def check_user(user)
     if user.nil?
       flash[:error] = "Please enter a valid registered user"
-      redirect_to venue_path(url:params[:venue])
+      check_for_redirect
     else
       add_user_to_venue(user)
+      check_for_redirect
+    end
+  end
+
+  def check_for_redirect
+    if platform_admin?
+      redirect_to admin_venue_path(params[:venue])
+    else
       redirect_to venue_path(url:params[:venue])
     end
   end
 
   def add_user_to_venue(user)
-    ensure_business_admin(user)
+    check_business_admin(user)
     venue = Venue.find_by(url:params[:venue])
     venue.users << user
   end
 
-  def ensure_business_admin(user)
-    user.update(role:1)
+  def check_business_admin(user)
+    user.update(role:1) unless user.role == "platform_admin"
   end
 end

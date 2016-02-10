@@ -22,18 +22,6 @@ ActiveRecord::Schema.define(version: 20160209231912) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "chips", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "price"
-    t.string   "description"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-  end
-
   create_table "concert_orders", force: :cascade do |t|
     t.integer  "concert_id"
     t.integer  "order_id"
