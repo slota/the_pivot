@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class BusinessAdminEditsConcertsTest < ActionDispatch::IntegrationTest
+
   test "business admin adds concerts" do
     user = create(:user, role:1)
     venue = create(:venue)

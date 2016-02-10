@@ -17,3 +17,6 @@
 /public/system/concerts/logos
 /public/system/users
 /public/system/chips
+
+# Ignore application configuration
+/config/application.yml

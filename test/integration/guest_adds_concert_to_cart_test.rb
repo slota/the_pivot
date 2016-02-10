@@ -106,13 +106,10 @@ class GuestAddsConcertToCartTest < ActionDispatch::IntegrationTest
     click_link ("Checkout!")
     assert_equal current_path, new_order_path
 
-    assert page.has_content?("Address")
     assert page.has_content?("Checkout")
-
-    fill_in "order[address]", with: "321 street"
+    assert page.has_content?("Please enter an email address for your electronic tickets")
+    fill_in "order[address]", with: "jorge@turing.io"
     click_button("Checkout")
-
-    assert page.has_content?("Order was successfully placed")
   end
 
   test "registered guest can view ticket history" do
