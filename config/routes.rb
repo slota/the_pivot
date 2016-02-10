@@ -62,6 +62,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :venues, path: "venue" do
+    resources :managers, only: [:create, :destroy]
+  end
+
   namespace :venues, path: ":venue", as: :venue do
     #  resources :concerts, only: [:show], path: ":concert"
     get '/:concert', to: 'concert#show', as: :concert

@@ -4,6 +4,7 @@
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down" style = "padding-right: 10px">
       <% if current_user %>
+        <li><%= "Logged in as #{current_user.username}" %></li>
         <li><%= link_to "View Profile", admin_user_path(current_user.id) %></li>
         <li><%= link_to "Logout", logout_path, method: :delete %></li>
       <% else %>
