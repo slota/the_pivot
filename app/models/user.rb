@@ -1,7 +1,14 @@
 class User < ActiveRecord::Base
   has_secure_password
+  has_many :venue_users
+  # has_many :venues, through: :venue_users
+  has_many :managed_venues, through: :venue_users,
+                    class_name: "Venue",
+                    foreign_key: "venue_id",
+                    source: :venue #works!!!!
   has_many :orders
   has_many :venues
+  # has_many :owned_venues, class_name: "Venue", foreign_key: "user_id"
 
   validates :username, presence: true,
                      uniqueness: true

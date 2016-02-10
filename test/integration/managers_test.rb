@@ -68,4 +68,15 @@ class ManagersTest < ActionDispatch::IntegrationTest
     assert_equal venue_path(venue.url), current_path
     assert page.has_content?("Gigatron")
   end
+
+  test "managers see managed venues" do
+    manager = create(:user, role: 1)
+    owner = create(:user, role: 1)
+    venue = create(:venue, users:[manager], user:owner)
+    ApplicationController.any_instance.stubs(:current_user).returns(manager)
+
+    visit venues_path
+    # binding.pry
+    assert page.has_content?(venue.name)
+  end
 end
