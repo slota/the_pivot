@@ -28,7 +28,6 @@ class OrdersController < ApplicationController
       else
         redirect_to user_path(current_user.id)
       end
-
     else
       flash[:error] = "Cart cannot be empty."
       redirect_to cart_concerts_path
