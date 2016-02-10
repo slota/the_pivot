@@ -32,7 +32,7 @@ FactoryGirl.define do
     price { rand(1..100) }
     venue nil
     logo nil
-    genre "MyString"
+    genre "Rocks"
     url "MyString"
   end
 

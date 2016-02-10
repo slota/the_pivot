@@ -36,7 +36,7 @@
           <td> <%= concert.date %> </td>
           <td> <%= image_tag concert.logo %> </td>
           <td> <%= link_to concert.band, venue_concert_path(concert.venue.url, concert.url) %></td>
-          <td> <%#= concert.category.description.capitalize %></td>
+          <td> <%= concert.category.description.capitalize %></td>
           <td> <%= link_to concert.venue.name, venue_path(concert.venue.url) %></td>
           <td> <%= link_to "Get Tickets!", venue_concert_path(concert.venue.url, concert.url) %></td>
         </tr>
