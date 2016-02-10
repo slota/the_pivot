@@ -9,7 +9,8 @@ class CartModelTest < ActionDispatch::IntegrationTest
   end
 
   test 'initialize' do
-    assert setup
+    setup
+    assert @cart
   end
 
   test 'clear' do
@@ -39,7 +40,6 @@ class CartModelTest < ActionDispatch::IntegrationTest
   end
 
   test 'remove_concert' do
-    setup
     @cart = @cart.remove_concert_completely(concert.id)
     assert_equal "2", @cart
   end
