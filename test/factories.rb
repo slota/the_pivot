@@ -1,4 +1,8 @@
 FactoryGirl.define do
+  factory :venue_user do
+    venue nil
+    user nil
+  end
   factory :add_category_to_concert do
     
   end
