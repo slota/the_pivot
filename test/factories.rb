@@ -4,10 +4,11 @@ FactoryGirl.define do
     user nil
   end
   factory :add_category_to_concert do
-    
+
   end
+  categories = %w(rock blues ska)
   factory :category do
-    description "MyString"
+    description {categories.sample}
   end
   factory :concert_order do
     concert nil
