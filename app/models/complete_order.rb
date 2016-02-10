@@ -1,5 +1,5 @@
 class CompleteOrder
-  attr_accessor :order
+  attr_accessor :order, :cart
 
   def initialize(order, cart)
     @order = order
@@ -16,7 +16,7 @@ class CompleteOrder
   end
 
   def create_concert_order
-    ChipOrder.create_concert_order(@order, @cart)
+    ConcertOrder.create_concert_order(@order, @cart)
   end
 
   def clear_cart
