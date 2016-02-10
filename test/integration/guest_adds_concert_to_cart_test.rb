@@ -123,7 +123,7 @@ class GuestAddsConcertToCartTest < ActionDispatch::IntegrationTest
     concert_order.update(concert_id: concert.id, order_id: order.id)
 
     visit user_path(registered_user.id)
-
+    
     assert page.has_content?(concert.band)
     assert page.has_content?("1")
     assert page.has_content?(venue.name)

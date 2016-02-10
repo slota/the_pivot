@@ -18,16 +18,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    # @presenter = UserShowPresenter(c, v, u)
-      # -> @presenter.whatever_method
-      # -> @presenter.c.url
     @user = current_user
-    @orders = @user.orders.all
-    # if @user.platform_admin?
-    #   redirect_to admin_venues_path
-    # else
-      render :show
-    # end
   end
 
   def edit
