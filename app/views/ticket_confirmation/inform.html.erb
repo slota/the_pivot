@@ -1,1 +1,30 @@
-Your 'friend' <%= @user.name.capitalize %> wanted to let you know that you've changed. Tell someone else that they've changed. They have it coming. I mean who do they think they are.
+<h2>Thank you for your ticket purchase!</h2>
+<div class="container" style="opacity:0.8; background-color: black; color:white;">
+  <table class="bordered highlight responsive-table">
+    <thead>
+      <tr>
+        <th data-field="Concert Date">Concert Date</th>
+        <th data-field="Band">Band</th>
+        <th data-field="Venue">Venue</th>
+        <th data-field="Quantity">Quantity</th>
+        <th data-field="Price">Price</th>
+        <th data-field="Total">Total</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @orders.each do |order| %>
+      <% order.concert_orders.each do |concert_order| %>
+      <tr>
+        <td><%= concert_order.concert.date %></td>
+        <td><%= concert_order.concert.band %></td>
+        <td><%= concert_order.concert.venue.name %></td>
+        <td><%= concert_order.quantity %> </td>
+        <td><%= concert_order.price %> </td>
+        <td><%= concert_order.subtotal %></td>
+        <% end %>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+</div>
