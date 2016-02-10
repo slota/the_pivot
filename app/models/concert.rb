@@ -11,11 +11,13 @@ class Concert < ActiveRecord::Base
   }
   scope :date, ->(params) {
     text_date = params[:search][:Date]
-      where(date: Date.strptime(text_date, "%Y-%m-%d")) unless text_date.empty?
-    # if !text_date.empty?
-    #   date = Date.strptime(text_date, "%Y-%m-%d")
-    #   where(date: date)
-    # end
+      # where(date: Date.strptime(text_date, "%Y-%m-%d")) unless text_date.empty?
+    if text_date.empty?
+      all
+    else
+      date = Date.strptime(text_date, "%Y-%m-%d")
+      where(date: date)
+    end
   }
   scope :city, ->(params) {
     city = params[:search][:City]
@@ -23,7 +25,11 @@ class Concert < ActiveRecord::Base
   }
   scope :genre, ->(params) {
     genre = params[:search][:Genre]
-    where(category_id: Category.find_by(description: genre))
+    if genre.empty?
+      all
+    else
+      where(category_id: Category.find_by(description: genre))
+    end
   }
 
   validates_with AttachmentSizeValidator, attributes: :logo, less_than: 1.megabytes
