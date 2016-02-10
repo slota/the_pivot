@@ -9,6 +9,8 @@ class BusinessAdminManageConcertsTest < ActionDispatch::IntegrationTest
 
     visit venue_path(venue.url)
 
+    refute page.has_content?("Add an Admin")
+
     click_on "Add a concert"
 
     assert_equal venue_new_concert_path(venue.url), current_path
