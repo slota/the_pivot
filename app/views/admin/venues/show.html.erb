@@ -15,25 +15,23 @@
   </div>
 </div>
 
-<h5 class="center"><%= link_to("Add an Admin", cart_path) %></h5>
-
 <div class="container opaque-background">
   <table class="bordered highlight responsive-table">
     <thead>
       <tr>
         <th data-field="Username">Username</th>
-        <th data-field="Edit">Edit</th>
-        <th data-field="Remove">Remove</th>
+        <!-- <th data-field="Edit">Edit</th> -->
+        <th data-field="Remove">Action</th>
       </tr>
     </thead>
     <tbody>
+      <% @venue.users.each do |manager| %>
       <tr>
-        <% if @user %>
-          <td><%= @user.username %></td>
-          <td><%=link_to("Edit", edit_user_path(@venue.user)) %> </td>
-          <td><%=link_to("Remove", cart_path) %> </td>
-        <% end %>
+        <td><%= manager.username %></td>
+        <td><%=button_to("remove", venue_manager_path(@venue.url,manager.id), method: :delete) %> </td>
       </tr>
+      <% end %>
+      <%= render partial: "/shared/add_manager" %>
     </tbody>
   </table>
 </div>

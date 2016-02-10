@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class RegisteredUserAuthorizationTest < ActionDispatch::IntegrationTest
-  test "registered user can login" do 
+  test "registered user can login" do
     user = create(:user)
     venue = create(:venue)
     concert = create(:concert)
@@ -19,13 +19,14 @@ class RegisteredUserAuthorizationTest < ActionDispatch::IntegrationTest
 
     assert_equal user_path(user), current_path
 
+    assert page.has_content?("Logged in as #{user.username}")
     assert page.has_content?(user.username)
     assert page.has_content?("Completed Orders")
     refute page.has_content?("Manage Venues")
     refute page.has_content?("Manage Orders")
-  end 
+  end
 
-  test "registered user views homepage" do 
+  test "registered user views homepage" do
     registered_user = create(:user, role: 0)
     business_admin = create(:user, role: 0)
     venue = create(:venue, user: business_admin, status: 1)
@@ -40,7 +41,7 @@ class RegisteredUserAuthorizationTest < ActionDispatch::IntegrationTest
     assert page.has_content?(concert.band)
   end
 
-  test "registered user views venue show page" do 
+  test "registered user views venue show page" do
     registered_user = create(:user, role: 0)
     business_admin = create(:user, role: 0)
     venue = create(:venue, user: business_admin, status: 1)
@@ -48,7 +49,7 @@ class RegisteredUserAuthorizationTest < ActionDispatch::IntegrationTest
     venue.concerts << concert
 
     ApplicationController.any_instance.stubs(:current_user).returns(registered_user)
-    
+
     visit venue_path(venue.url)
 
     assert page.has_content?(venue.name)
@@ -57,9 +58,9 @@ class RegisteredUserAuthorizationTest < ActionDispatch::IntegrationTest
     refute page.has_content?("Remove")
     refute page.has_content?("Add an Admin")
 
-  end 
+  end
 
-  test "registered user views venue_concert show page" do 
+  test "registered user views venue_concert show page" do
     registered_user = create(:user, role: 0)
     business_admin = create(:user, role: 0)
     venue = create(:venue, user: business_admin, status: 1)
@@ -75,5 +76,5 @@ class RegisteredUserAuthorizationTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Quantity")
     refute page.has_content?("Edit")
     refute page.has_content?("Remove")
-  end 
+  end
 end
