@@ -39,16 +39,21 @@ var loaded = function(){
 
 $(document).ready(function() {
     $('select').material_select();
-    // $('#city-search').on('keyup', function() {
-    //   console.log('success!')
-      // $.ajax({
-      //     type: "GET",
-      //     url: "/",
-      //     dataType: 'json'
-      //   }).then(function(data) {
-      //     console.log(data);
-      //   });
-    // })
+    $("#barcode").barcode("1234567890128", "ean13");
+    $("#barcode").css({
+      barWidth: 1,
+      barHeight: 50,
+      moduleSize: 5,
+      showHRI: true,
+      addQuietZone: true,
+      marginHRI: 5,
+      bgColor: "#FFFFFF",
+      color: "#000000",
+      fontSize: 10,
+      output: "css",
+      posX: 0,
+      posY: 0
+      })
 });
 
 $(document).on("page:load ready", loaded);
