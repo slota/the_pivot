@@ -31,9 +31,6 @@ class OrdersController < ApplicationController
     if @order_completion.create_order
       flash[:notice] = "Order was successfully placed"
       redirect_to notification_path(address: params[:order][:address])
-    else
-      flash[:notice] = "There was an error with your order, please try agin"
-      redirect_to root_path
     end
   end
 end
