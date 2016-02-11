@@ -31,7 +31,7 @@ class Cart
   # end
 
   def cart_size
-    @contents.values.inject(0) { |sum, n| sum + n.to_i }
+    contents.values.inject(0) { |sum, n| sum + n.to_i }
   end
   #
   # def count_of(cart_id)
@@ -39,7 +39,7 @@ class Cart
   # end
 
   def clear
-    @contents = {}
+    contents = {}
   end
 
   # def add_or_subtract_concert(action, concert)
@@ -50,8 +50,8 @@ class Cart
   #   end
   # end
 
-  def remove_concert_completely(concert_id)
-    contents.delete(concert_id.to_s)
+  def remove_concert(concert)
+    contents.delete(concert.id.to_s)
   end
 
   # def remove_notice?(action)

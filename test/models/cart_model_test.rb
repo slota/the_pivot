@@ -13,7 +13,7 @@ class CartModelTest < ActionDispatch::IntegrationTest
   end
 
   test 'clear' do
-    @cart.clear
+    @cart.contents.clear
     assert @cart.contents.empty?
   end
 
@@ -35,10 +35,5 @@ class CartModelTest < ActionDispatch::IntegrationTest
 
   test 'cart_size' do
     assert_equal 2, cart.cart_size
-  end
-
-  test 'remove_concert' do
-    @cart = @cart.remove_concert_completely(concert.id)
-    assert_equal "2", @cart
   end
 end

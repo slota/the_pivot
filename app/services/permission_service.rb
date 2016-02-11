@@ -28,7 +28,7 @@ class PermissionService
     return true if controller == "venues" && action.in?(%w(show index new create edit update))
     return true if controller == "venues/concert" && action.in?(%w(show new create destroy))
     return true if controller == "orders" && action.in?(%w(new create index show))
-    return true if controller == "cart_concerts"
+    return true if controller == "cart_concerts" && action.in?(%w(create index destroy))
     return true if controller == "concerts" && action.in?(%w(edit update))
     return true if controller == "venues/managers" && action.in?(%w(create destroy))
     return true if controller == "notification"
@@ -41,7 +41,7 @@ class PermissionService
     return true if controller == "venues" && action.in?(%w(show))
     return true if controller == "venues/concert" && action.in?(%w(show))
     return true if controller == "orders" && action.in?(%w(new create index show))
-    return true if controller == "cart_concerts"
+    return true if controller == "cart_concerts" && action.in?(%w(create index destroy))
     return true if controller == "notification"
   end
 
@@ -51,6 +51,6 @@ class PermissionService
     return true if controller == "users" && action.in?(%w(new create))
     return true if controller == "venues" && action.in?(%w(show))
     return true if controller == "venues/concert" && action.in?(%w(show))
-    return true if controller == "cart_concerts"
+    return true if controller == "cart_concerts" && action.in?(%w(create index destroy))
   end
 end
