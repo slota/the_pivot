@@ -7,9 +7,6 @@ class ConcertsController < ApplicationController
     concert = Concert.find(params[:id])
     if concert.update(concert_params)
       redirect(concert)
-    # else
-    #   flash[:error] = concert.errors.full_messages.join(", ")
-    #   render :edit
     end
   end
 

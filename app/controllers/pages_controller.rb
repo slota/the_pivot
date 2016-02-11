@@ -1,7 +1,8 @@
 class PagesController < ApplicationController
   respond_to :json
+  
   def home
-    if params[:search] 
+    if params[:search]
       filter_concerts(params)
     else
       @concerts = Concert.where(venue_id: Venue.where(status: 1)).order(:date).paginate(page: params[:page], per_page: 5)
