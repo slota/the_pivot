@@ -1,4 +1,4 @@
-class Admin::VenuesController < Admin::BaseController
+class Admin::VenuesController < ApplicationController
 
   def index
     @venues = Venue.paginate(page: params[:page], per_page: 8)
@@ -27,7 +27,7 @@ class Admin::VenuesController < Admin::BaseController
   def update
     venue = Venue.find_by(id: params[:id])
     venue.update_attributes(venue_params)
-    update_status(venue)
+    venue.send("#{params[:status]}!")
     flash[:success] = "#{venue.name} Updated!"
     redirect_to admin_venues_path
   end
@@ -43,13 +43,4 @@ class Admin::VenuesController < Admin::BaseController
                                   :description,
                                   :status)
   end
-
-  def update_status(venue)
-    if params[:approved]
-      venue.update(status: 1)
-    elsif params[:declined]
-      venue.update(status: 2)
-    end
-  end
-
 end

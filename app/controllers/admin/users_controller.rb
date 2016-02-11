@@ -1,4 +1,4 @@
-class Admin::UsersController < Admin::BaseController
+class Admin::UsersController < ApplicationController
   def show
     @user = current_user
     @orders = @user.orders.all

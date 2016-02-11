@@ -20,5 +20,4 @@ class Venue < ActiveRecord::Base
   def generate_url
     self.url = name.parameterize
   end
-
 end
