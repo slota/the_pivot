@@ -181,7 +181,7 @@ class GuestAddsConcertToCartTest < ActionDispatch::IntegrationTest
     assert page.has_content?(concert.price)
     assert page.has_content?("Quantity")
 
-    fill_in "quantity", with: 2
+    fill_in "order[quantity]", with: 2
     click_button("Add to Cart")
 
     assert_equal cart_path, current_path
@@ -208,7 +208,6 @@ class GuestAddsConcertToCartTest < ActionDispatch::IntegrationTest
 
     assert page.has_content?("Thank you for your purchase!")
     assert admin_user_path(platform_admin.id), current_path
-
   end
 
   test "registered user removes concert from cart" do
@@ -246,6 +245,12 @@ class GuestAddsConcertToCartTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Successfully removed")
 
     assert_equal cart_path, current_path
+
+    click_on("Checkout!")
+
+    assert page.has_content?("Cart cannot be empty at checkout.")
+
+
   end
 
    test "can't add concert to cart if quantity zero" do
