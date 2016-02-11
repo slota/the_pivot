@@ -1,10 +1,19 @@
 <div class="container">
-  <h2>Create an Account</h2>
-  <%= form_for @user do |f| %>
-    <%= f.label :username %>
-    <%= f.text_field :username%>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-    <%= f.submit "Create Account" %>
-  <% end %>
+  <h2 class="center">Create an Account</h2>
+  <div class="opaque-background">
+    <div style="padding:20px 100px;">
+      <%= form_for @user do |f| %>
+        <%= f.label :username %>
+        <%= f.text_field :username %>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+        <%= f.label :image  %>
+        <br>
+        <%= f.file_field :image %>
+        <br><br>
+        <%= f.submit "Create Account", style:"color:black; font-size:1.5em; float:center;" %>
+      <% end %>
+    </div>
+  </div>
+  <br>
 </div>
