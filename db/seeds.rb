@@ -11,16 +11,16 @@ class Seed
     end
 
     def self.generate_categories
-      categories = %w(rock blues ska metal pop rap country indie)
-      10.times do |i|
+      categories = %w(rock blues ska metal pop rap country indie hip-hop electronic`)
+      categories.each do |genre|
         Category.create(
-          description: categories.sample
+          description: genre
           )
       end
     end
 
     def self.generate_users
-      10.times do |i|
+      100.times do |i|
         User.create(
         username: "user#{i}",
         password: "p",
@@ -50,44 +50,76 @@ class Seed
     end
 
     def self.generate_venues
-      cities = %w(denver alicante boulder camino)
+      cities = %w(Denver Alicante Boulder Golden)
       20.times do |i|
         Venue.create(
-          name: "Venue #{i}",
-          address: "Address #{i}",
+          name: Faker::Hipster.words(1).join(" ").capitalize,
+          address: "#{i} Street Mall",
           status: rand(0..1),
           city: cities.sample,
           state: Faker::Address.state,
-          # image: "http://musictour.eu/data//uploads/media/halls/893/f4a4def50c6367fdeafadf41efa9e387.jpg",
-          description: "Long and boring description #{i}",
-          user: @bas.sample
+          image: "http://cdn.partyearth.com/photos/7cfff5c7cccaf6b2d795f9fa9cb161b1/luz-de-gas_s345x230.jpg?1375050702",
+          description: " #{i}",
+          user: User.find_by(username: "ba").venues.sample,
         )
         puts "Venue #{i} created"
       end
 
+      Venue.create(
+        name: "Red Rocks Amphitheatre",
+        address:  "18300 W Alameda Pkwy",
+        city: "Morrison",
+        state: "CO",
+        status: 1,
+        image: 'http://www.natesiggard.com/wp/wp-content/uploads/2013/03/20110816-RedRocksSunset-640x426.jpg',
+        description: "Welcome to Red Rocks Park & Amphitheatre, one of the greatest entertainment venues in the world.",
+        user: User.find_by(username: "andrew@turing.io"))
+        puts "Created Red Rocks"
+
+      Venue.create(
+        name: "Bluebird",
+        address:  "3317 E. Colfax Ave",
+        city: "Denver",
+        state: "CO",
+        status: 1,
+        image: 'http://musictour.eu/data//uploads/media/halls/893/f4a4def50c6367fdeafadf41efa9e387.jpg',
+        description: "The Bluebird Theater was built in 1913.",
+        user: User.find_by(username: "andrew@turing.io"))
+        puts "Created Bluebird"
+      
+      Venue.create(
+        name: "Ogden",
+        address:  "935 E Colfax Ave",
+        city: "Denver",
+        state: "CO",
+        status: 1,
+        image: 'http://www.rantlifestyle.com/wp-content/uploads/2014/06/9.-Ogden-Theatre.jpg',
+        description: "The Ogden Theatre is a music venue and former movie theater in Denver, Colorado, United States.",
+        user: User.find_by(username: "andrew@turing.io"))
+        puts "Created Ogden"
+
+
       3.times do |i|
         Venue.create(
           name: "Ba's Venue #{i}",
-          address: "Ba's Address #{i}",
+          address: "#{i} Street Mall",
           city: cities.sample,
           state: Faker::Address.state,
-          # image: "http://musictour.eu/data//uploads/media/halls/893/f4a4def50c6367fdeafadf41efa9e387.jpg",
-          description: "Long and boring description #{i}",
-          user: User.find_by(username: "ba")
+          image: "http://cdn.partyearth.com/photos/7cfff5c7cccaf6b2d795f9fa9cb161b1/luz-de-gas_s345x230.jpg?1375050702",
+          description: "The interior makes use of warm, natural materials such as alder trim and ceiling beams",
+          user: User.find_by(username: "andrew@turing.io")
         )
-
         puts "BA's venue #{i} created"
       end
     end
 
     def self.generate_concerts
-      50.times do |i|
+      500.times do |i|
         Concert.create(
           date: Faker::Date.forward(15),
-          band: "Awesome Band no #{i}",
+          band: Faker::Hipster.words(2).join(" "),
           logo: "http://assets.rollingstone.com/assets/images/list/rsz-homepage-largedb5c5b0e-1354052522.jpg",
-          price: rand(30..300),
-          # genre: "Rock",
+          price: rand(40..150),
           venue: Venue.offset(rand(Venue.count-1)).first,
           category: Category.offset(rand(Category.count-1)).first
         )
@@ -96,13 +128,12 @@ class Seed
 
       10.times do |i|
         Concert.create(
-          date: Time.now,
-          band: "Ba's Awesome Band no #{i}",
-          logo: "http://assets.rollingstone.com/assets/images/list/rsz-homepage-largedb5c5b0e-1354052522.jpg",
+          date: Faker::Date.forward(15),
+          band: Faker::Hipster.words(2).join(" "),
+          logo: "http://i.dailymail.co.uk/i/pix/2009/09/08/article-1212041-06445491000005DC-882_306x360.jpg",
           price: rand(30..300),
           category: Category.offset(rand(Category.count-1)).first,
-          # genre: "Rock",
-          venue: User.find_by(username: "ba").venues.sample
+          venue: User.find_by(username: "andrew@turing.io").venues.sample
         )
         puts "BA's Concert #{i} created"
       end
@@ -130,7 +161,7 @@ class Seed
     end
 
     def self.generate_orders
-      10.times do |i|
+      1000.times do |i|
         Order.create(
           user: User.offset(rand(User.count-1)).first,
           status: "Purchased",
