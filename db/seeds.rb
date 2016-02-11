@@ -118,13 +118,12 @@ class Seed
     def self.generate_concert_orders
       20.times do |i|
         quantity = rand(1..6)
-        price = rand(1..100)
+        concert = Concert.offset(rand(Concert.count-1)).first
         ConcertOrder.create(
-          concert: Concert.offset(rand(Concert.count-1)).first,
+          concert: concert,
           order: Order.offset(rand(Order.count-1)).first,
           quantity: quantity,
-          subtotal: quantity * price,
-          price: price
+          subtotal: quantity * concert.price,
         )
         puts "Order #{i} created"
       end

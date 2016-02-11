@@ -20,7 +20,7 @@
         <td><%= concert_order.concert.band %></td>
         <td><%= link_to concert_order.concert.venue.name, venue_concert_path(concert_order.concert.venue.url,concert_order.concert.url) %></td>
         <td><%= concert_order.quantity %> </td>
-        <td>$<%= concert_order.price %> </td>
+        <td>$<%= concert_order.concert.price %> </td>
         <td>$<%= concert_order.subtotal %></td>
       </tr>
       <% end %>

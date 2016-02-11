@@ -19,7 +19,6 @@
         <%= link_to("Manage Venues", venues_path)%>
     </h5>
   <% end %>
-  
 
 <h3 class="satisfy-font center white-text teal-shadow">Completed Orders</h3>
 <% if @orders %>
@@ -44,7 +43,7 @@
               <td><%= concert_order.concert.band %></td>
               <td><%= concert_order.concert.venue.name %></td>
               <td><%= concert_order.quantity %> </td>
-              <td>$<%= concert_order.price %> </td>
+              <td>$<%= concert_order.concert.price %> </td>
               <td>$<%= concert_order.subtotal %></td>
             </tr>
           <% end %>

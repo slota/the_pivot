@@ -10,7 +10,6 @@ class ConcertOrder < ActiveRecord::Base
       ConcertOrder.create(order_id: order.id,
                           concert_id: concert_id,
                           quantity: quantity.to_i,
-                          price: concert_price,
                           subtotal: subtotal)
     end
   end
