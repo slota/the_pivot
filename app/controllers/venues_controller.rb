@@ -32,7 +32,7 @@ class VenuesController < ApplicationController
     venue = Venue.find_by(id: params[:venue])
     if venue.update(update_params)
       flash[:success] = "#{venue.name} Updated!"
-      redirect_to venues_path
+      redirect
     else
       flash[:error] = @venue.errors.full_messages.join(", ")
       render :edit
@@ -40,6 +40,14 @@ class VenuesController < ApplicationController
   end
 
   private
+
+  def redirect
+    if platform_admin?
+      redirect_to admin_venues_path
+    else
+      redirect_to venues_path
+    end
+  end
 
   def venue_params
     params.require(:venue).permit(:name, :image, :city, :state, :address, :description)
