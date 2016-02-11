@@ -198,7 +198,7 @@ class GuestAddsConcertToCartTest < ActionDispatch::IntegrationTest
 
     assert page.has_content?("Successfully removed")
 
-    assert_equal root_path, current_path
+    assert_equal cart_path, current_path
   end
 
    test "can't add concert to cart if quantity zero" do
