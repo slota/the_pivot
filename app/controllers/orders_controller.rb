@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
   def show
     @venue = Venue.find(params[:format])
     @order = Order.find(params[:id])
-    @concert_orders = @venue.concert_orders
+    @concert_orders = @venue.concert_orders.where(order_id: @order.id)
   end
 
   def new
