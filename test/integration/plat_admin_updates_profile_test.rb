@@ -18,7 +18,6 @@ class PlatAdminUpdatesProfileTest < ActionDispatch::IntegrationTest
     end
 
     assert_equal admin_user_path(user), current_path
-    save_and_open_page
 
     assert page.has_content?("Logged in as #{user.username}")
     assert page.has_content?(user.username)

@@ -105,8 +105,6 @@ class RegisteredUserAuthorizationTest < ActionDispatch::IntegrationTest
       click_on("Create Account")
     end
 
-    save_and_open_page
-
     fill_in "user[username]", with: user.username
     fill_in "user[password]", with: user.password
 

@@ -151,5 +151,4 @@ class BusAdminManagesVenueTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Name can't be blank, Url can't be blank")
   end
 
-
 end
