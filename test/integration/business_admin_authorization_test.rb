@@ -143,7 +143,6 @@ class BusinessAdminAuthorizationTest < ActionDispatch::IntegrationTest
 
   test "business admin adds manager" do
     setup_factories
-    # business_admin_visitor = create(:user, role: 1)
     manager = create(:user, role: 0)
 
     visit root_path

@@ -99,10 +99,9 @@ class ManagersTest < ActionDispatch::IntegrationTest
     plat_admin = create(:user, role: 2)
     user = create(:user, role: 0)
 
-    # manager, user = create_list(:user, 2, role: 0)
     venue = create(:venue, users:[plat_admin])
     ApplicationController.any_instance.stubs(:current_user).returns(plat_admin)
-    # binding.pry
+
     assert_equal venue.users.count, 1
     visit admin_venue_path(venue.url)
     fill_in "new_manager", with: user.username

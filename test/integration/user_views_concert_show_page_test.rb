@@ -14,7 +14,6 @@ class UserViewsConcertTest < ActionDispatch::IntegrationTest
     assert page.has_content?(concert.venue.name)
     assert page.has_content?(concert.price)
     assert page.has_content?("Quantity")
-    # save_and_open_page
-    # assert page.has_content?(category.description)
+
   end
 end

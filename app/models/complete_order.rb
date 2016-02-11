@@ -10,8 +10,6 @@ class CompleteOrder
     if @order.save
       create_concert_order
       clear_cart
-    else
-      # something else
     end
   end
 

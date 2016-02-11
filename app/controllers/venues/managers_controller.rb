@@ -14,14 +14,6 @@ class Venues::ManagersController < ApplicationController
 
   private
 
-  # def find_venue
-  #   if platform_admin? || business_admin?
-  #     venue = Venue.find_by(url: params[:venue])
-  #   else
-  #     venue = current_user.venues.find_by(url:params[:venue])
-  #   end
-  # end
-
   def check_user(user)
     if user.nil?
       flash[:error] = "Please enter a valid registered user"
