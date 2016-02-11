@@ -1,16 +1,19 @@
 <div class="container">
-  <h2>Edit Concert</h2>
-  <%= form_for @concert do |f| %>
-    <%= f.label :date %>
-    <%= f.date_field :date %>
-    <%= f.label :band %>
-    <%= f.text_field :band %>
-    <%= f.label :logo %>
-    <%= f.file_field :logo %>
-    <%= f.label :price %>
-    <%= f.number_field :price %>
-    <%= f.label :genre %>
-    <%= f.text_field :genre %>
-    <%= f.submit %>
-  <% end %>
+  <h2 class="center">Edit Concert</h2>
+  <div class="opaque-background" style="padding:20px 100px;">
+    <%= form_for @concert do |f| %>
+      <%= f.label :date %>
+      <%= f.date_field :date %>
+      <%= f.label :band %>
+      <%= f.text_field :band %>
+      <%= f.label :price %>
+      <%= f.number_field :price %>
+      <%= f.label :genre %>
+      <%= f.text_field :genre %>
+      <%= f.label :logo %><br><br>
+      <%= f.file_field :logo %><br><br>
+      <%= f.submit "Update Concert", class: "form-submit" %>
+    <% end %>
+    <br>
+  </div>
 </div>
