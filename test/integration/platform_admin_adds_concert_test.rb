@@ -111,7 +111,7 @@ class PlatformAdminAddsConcertTest < ActionDispatch::IntegrationTest
     assert page.has_content?(order.total_price)
     assert page.has_content?(order.address)
 
-    click_on("View Details")
+    click_on("View Order Details")
   end
 
 end
