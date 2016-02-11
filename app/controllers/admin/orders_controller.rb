@@ -1,7 +1,7 @@
 class Admin::OrdersController < Admin::BaseController
   def index
     @order_status = params[:scope]
-    @orders = Order.scope_action(@order_status).desc_by_date
+    @orders = Order.scope_action(@order_status).desc_by_date #.paginate(page: params[:page], per_page: 10)
   end
 
   def update

@@ -4,7 +4,7 @@ class PlatformAdminAddsConcertTest < ActionDispatch::IntegrationTest
   test 'platform admin logs in and adds a concert to venue' do
     category = create(:category, description: 'rock')
     user = create(:user, role: 2)
-    venue = create(:venue)
+    venue = create(:venue, user_id: user.id)
 
     visit root_path
     within ".right" do
@@ -19,11 +19,9 @@ class PlatformAdminAddsConcertTest < ActionDispatch::IntegrationTest
 
     click_on("Manage Venues")
 
-    assert page.has_content?(venue.name)
-
     assert current_path, admin_venues_path
 
-    click_on("Manage")
+    click_on("Manage Venue")
 
     assert current_path, admin_venue_path(venue)
 
