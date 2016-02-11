@@ -6,4 +6,14 @@ class PagesController < ApplicationController
 
   def about
   end
+
+  def search
+    @concerts = Concert.active_venues
+                       .band(params[:search][:Band])
+                       .date(params[:search][:Date])
+                       .city(params[:search][:City])
+                       .genre(params[:search][:Genre])
+                       .paginate(page: params[:page], per_page: 8)
+    render :home
+  end
 end

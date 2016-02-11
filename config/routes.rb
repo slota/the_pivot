@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
 
   get '/about', to: 'pages#about'
+  post '/search', to: 'pages#search'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
@@ -41,7 +42,6 @@ Rails.application.routes.draw do
   get '/cart', to: 'cart_concerts#index'
   # get '/:slug', to: 'oils#show'
   # get '/:slug', to: redirect('/oils/%{slug}'), as: "oil_name"
-
 
   get '/:venue/edit', to: 'venues#edit', as: :edit_venue
 

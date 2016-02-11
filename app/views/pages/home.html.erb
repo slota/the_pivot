@@ -1,11 +1,15 @@
 
 <div class="animatedParent">
-  <div class="row valign-wrapper animated fadeInUp" >
-    <%= form_for :session, html: {class: "col s12 search-bar"} do |f| %>
+  <div class="row valign-wrapper animated fadeInUp" > <!-- style="height:500px;background-image:url(http://www.darindaymusic.co.uk/wp-content/uploads/disco.jpg);margin-top:30px;padding-left:70px;padding-right:70px;background-size:cover"> -->
+    <%= form_for :search, url:'/search', html: {class: "col s12 search-bar"} do |f| %>
     <%= f.text_field "City" , placeholder: "City", class:"col s3", id:"city-search"%>
-    <%= f.text_field "Performer" , placeholder: "Band", class:"col s3", id:"city-search" %>
+    <%= f.text_field "Band" , placeholder: "Band", class:"col s3", id:"city-search" %>
     <%= f.date_field "Date" , placeholder: "Date", class:"col s3", id:"city-search" %>
     <%= f.text_field "Genre" , placeholder: "Genre", class:"col s3", id:"city-search" %>
+    <%#= f.text_field "Genre" , placeholder: "Genre", class:"col s3", id:"city-search" %>
+    <%#= select_tag "Specialties", options_from_collection_for_select(all_specialties, "id", "name"), value: current_developer.specialty.name, id: "form-value"%>
+    <%#= select_tag( :category_id, options_from_collection_for_select(Category.all, "id", "description", '7'), placeholder: 'Genre', value: 'bob', class:"col s3",id: "form-value")%>
+    <%= f.submit "bob", style:"visibility:hidden", id:'search' %>
     <% end %>
   </div>
 </div>
@@ -18,6 +22,7 @@
           <th data-field="Date">Date</th>
           <th data-field="Logo">Logo</th>
           <th data-field="Performer">Performer</th>
+          <th data-field="Genre">Genre</th>
           <th data-field="Venue">Venue</th>
           <th data-field="Tickets">Tickets</th>
 
@@ -31,6 +36,7 @@
           <td> <%= concert.date %> </td>
           <td> <%= image_tag concert.logo %> </td>
           <td> <%= link_to concert.band, venue_concert_path(concert.venue.url, concert.url) %></td>
+          <td> <%= concert.category.description.capitalize %></td>
           <td> <%= link_to concert.venue.name, venue_path(concert.venue.url) %></td>
           <td> <%= link_to "Get Tickets!", venue_concert_path(concert.venue.url, concert.url) %></td>
         </tr>

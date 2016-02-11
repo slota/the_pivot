@@ -20,8 +20,8 @@ class CartModelTest < ActionDispatch::IntegrationTest
   test 'cart_concerts' do
     assert_equal "2", cart.cart_concerts.first.quantity
     assert_equal concert.id, cart.cart_concerts.first.id
-    assert_equal concert.url, "2016-02-04-john-slota-band"
-    assert_equal concert.band, "John Slota Band"
+    assert_equal concert.url, cart.cart_concerts.first.url
+    assert_equal concert.band, cart.cart_concerts.first.band
     assert_equal concert.price, cart.cart_concerts.first.price
   end
 
