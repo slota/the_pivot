@@ -1,4 +1,6 @@
 source "https://rubygems.org"
+
+gem 'aws-sdk', '~> 1.6'
 gem 'barby'
 gem 'responders'
 gem 'will_paginate',           '~> 3.0.6'
