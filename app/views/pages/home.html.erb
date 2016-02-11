@@ -9,7 +9,7 @@
     <%#= f.text_field "Genre" , placeholder: "Genre", class:"col s3", id:"city-search" %>
     <%#= select_tag "Specialties", options_from_collection_for_select(all_specialties, "id", "name"), value: current_developer.specialty.name, id: "form-value"%>
     <%#= select_tag( :category_id, options_from_collection_for_select(Category.all, "id", "description", '7'), placeholder: 'Genre', value: 'bob', class:"col s3",id: "form-value")%>
-    <%= f.submit "bob", style:"visibility:hidden" %>
+    <%= f.submit "bob", style:"visibility:hidden", id:'search' %>
     <% end %>
   </div>
 </div>

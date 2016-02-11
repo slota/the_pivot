@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     @user = current_user
     if @user.update(user_params)
       flash.notice = "Your Account Has Been Updated!"
-      redirect_to user_path(current_user)
+      check_for_redirect
     else
       flash[:error] = @user.errors.full_messages.join(", ")
       render :edit
@@ -38,6 +38,14 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def check_for_redirect
+    if platform_admin?
+      redirect_to admin_user_path(current_user)
+    else
+      redirect_to user_path(current_user)
+    end
+  end
 
   def user_params
     params.require(:user).permit(:username, :password, :image)

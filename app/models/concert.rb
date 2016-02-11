@@ -5,35 +5,18 @@ class Concert < ActiveRecord::Base
   has_many :orders, through: :concert_orders
   belongs_to :category
 
-  scope :band, ->(params) {
-    band = params[:search][:Band]
-    where("band LIKE '%#{band}%'")
+  scope :band, ->(band) { where("band LIKE '%#{band}%'") }
+
+  scope :date, ->(text_date) {
+    text_date.empty? ? all : where(date: Date.strptime(text_date, "%Y-%m-%d"))
   }
-  scope :date, ->(params) {
-    text_date = params[:search][:Date]
-      # where(date: Date.strptime(text_date, "%Y-%m-%d")) unless text_date.empty?
-    if text_date.empty?
-      all
-    else
-      date = Date.strptime(text_date, "%Y-%m-%d")
-      where(date: date)
-    end
+
+  scope :city, ->(city) {
+    city.empty? ? all : where(venue_id: Venue.where(city: city))
   }
-  scope :city, ->(params) {
-    city = params[:search][:City]
-    if city.empty?
-      all
-    else
-      where(venue_id: Venue.where(city: city))
-    end
-  }
-  scope :genre, ->(params) {
-    genre = params[:search][:Genre]
-    if genre.empty?
-      all
-    else
-      where(category_id: Category.find_by(description: genre))
-    end
+
+  scope :genre, ->(genre) {
+    genre.empty? ? all : where(category_id: Category.find_by(description:genre.downcase))
   }
 
   validates_with AttachmentSizeValidator, attributes: :logo, less_than: 1.megabytes
@@ -44,41 +27,7 @@ class Concert < ActiveRecord::Base
     self.url = "#{date}-#{band.parameterize}"
   end
 
-
-
-  def self.filter_band(params)
-    band = params
-    # band = params[:search][:Band]
-    if band
-      relation.where("band LIKE '%#{band}%'")
-    else
-      relation
-    end
-  end
-
-  def self.filter_date(params)
-    text_date = params[:search][:Date]
-    date = Date.strptime(text_date, "%Y-%m-%d")
-    if date
-      # relation.where("date LIKE '%#{date}%'")
-      relation.where(date: date)
-      # binding.pry
-    else
-      relation
-    end
-  end
-
-  def self.filter_city(params)
-    city = params[:search][:City]
-    if city == 99
-      relation.where("band LIKE '%#{city}%'")
-    else
-      relation
-    end
-  end
-
   def self.active_venues
     relation.where(venue_id: Venue.where(status: 1))
   end
-
 end
