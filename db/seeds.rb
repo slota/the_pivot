@@ -148,7 +148,7 @@ class Seed
     end
 
     def self.generate_concert_orders
-      20.times do |i|
+      1500.times do |i|
         quantity = rand(1..6)
         concert = Concert.offset(rand(Concert.count-1)).first
         ConcertOrder.create(
@@ -162,7 +162,7 @@ class Seed
     end
 
     def self.generate_orders
-      1000.times do |i|
+      700.times do |i|
         Order.create(
           user: User.offset(rand(User.count-1)).first,
           status: "Purchased",

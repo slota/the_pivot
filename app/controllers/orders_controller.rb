@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
 
   def index
     @venue  = Venue.find_by(id: params[:format])
-    @orders = @venue.orders
+    @orders = @venue.orders.order(id: :desc)
   end
 
   def show
