@@ -1,5 +1,7 @@
 <tr>
   <td><%= order.id %></td>
   <td><%= order.created_at.strftime("%B %d, %Y") %></td>
+  <td><%= order.total_price%></td>
+  <td><%= order.address%></td>
   <td><%= link_to "View Order Details", order_path(order)%></td>
 </tr>
