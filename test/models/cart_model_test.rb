@@ -13,8 +13,7 @@ class CartModelTest < ActionDispatch::IntegrationTest
   end
 
   test 'clear' do
-    @cart.contents.clear
-    assert @cart.contents.empty?
+    assert @cart.clear.empty?
   end
 
   test 'cart_concerts' do
