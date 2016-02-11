@@ -10,7 +10,7 @@ class SearchBarFilterResultsTest < ActionDispatch::IntegrationTest
     venue.concerts << [concert_1, concert_2]
 
     visit root_path
-    # save_and_open_page
+
     assert page.has_content? concert_1.band
     assert page.has_content? genre_1.description.capitalize
     assert page.has_content? concert_2.band
@@ -19,8 +19,8 @@ class SearchBarFilterResultsTest < ActionDispatch::IntegrationTest
     fill_in 'search[Genre]', with: genre_1.description
     find("#search",:visible=>false).click
 
-    assert_equal search_path, current_path
-    # save_and_open_page
+    assert_equal root_path, current_path
+
     assert page.has_content? concert_1.band
     assert page.has_content? genre_1.description.capitalize
     refute page.has_content? concert_2.band
@@ -41,7 +41,7 @@ class SearchBarFilterResultsTest < ActionDispatch::IntegrationTest
     fill_in 'search[City]', with: venue_1.city
     find("#search",:visible=>false).click
 
-    assert_equal search_path, current_path
+    assert_equal root_path, current_path
 
     assert page.has_content? concert_1.band
     refute page.has_content? concert_2.band
@@ -60,7 +60,7 @@ class SearchBarFilterResultsTest < ActionDispatch::IntegrationTest
     fill_in 'search[Date]', with: concert_1.date
     find("#search",:visible=>false).click
 
-    assert_equal search_path, current_path
+    assert_equal root_path, current_path
 
     assert page.has_content? concert_1.band
     refute page.has_content? concert_2.band
@@ -79,7 +79,7 @@ class SearchBarFilterResultsTest < ActionDispatch::IntegrationTest
     fill_in 'search[Band]', with: concert_1.band
     find("#search",:visible=>false).click
 
-    assert_equal search_path, current_path
+    assert_equal root_path, current_path
 
     assert page.has_content? concert_1.band
     refute page.has_content? concert_2.band
@@ -100,7 +100,7 @@ class SearchBarFilterResultsTest < ActionDispatch::IntegrationTest
     fill_in 'search[Band]', with: concert_1.band
     find("#search",:visible=>false).click
 
-    assert_equal search_path, current_path
+    assert_equal root_path, current_path
 
     assert page.has_content? concert_1.band
     refute page.has_content? concert_2.band
@@ -121,7 +121,7 @@ class SearchBarFilterResultsTest < ActionDispatch::IntegrationTest
     fill_in 'search[Band]', with: concert_1.band
     find("#search",:visible=>false).click
 
-    assert_equal search_path, current_path
+    assert_equal root_path, current_path
 
     assert page.has_content? concert_1.band
     refute page.has_content? concert_2.band
@@ -142,7 +142,7 @@ class SearchBarFilterResultsTest < ActionDispatch::IntegrationTest
     fill_in 'search[Band]', with: concert_1.band
     find("#search",:visible=>false).click
 
-    assert_equal search_path, current_path
+    assert_equal root_path, current_path
 
     assert page.has_content? concert_1.band
     refute page.has_content? concert_2.band
@@ -166,7 +166,7 @@ class SearchBarFilterResultsTest < ActionDispatch::IntegrationTest
     fill_in 'search[City]', with: concert_1.venue.city
     find("#search",:visible=>false).click
 
-    assert_equal search_path, current_path
+    assert_equal root_path, current_path
 
     assert page.has_content? concert_1.band
     refute page.has_content? concert_2.band
