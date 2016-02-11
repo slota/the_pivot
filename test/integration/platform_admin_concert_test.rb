@@ -4,7 +4,7 @@ class PlatformAdminConcertTest < ActionDispatch::IntegrationTest
   test 'platform admin logs in and adds a concert to venue' do
     category = create(:category, description: 'rock')
     user = create(:user, role: 2)
-    venue = create(:venue)
+    venue = create(:venue, user_id: user.id)
 
     visit root_path
     within ".right" do
@@ -23,7 +23,7 @@ class PlatformAdminConcertTest < ActionDispatch::IntegrationTest
 
     assert current_path, admin_venues_path
 
-    click_on("Manage")
+    click_on("Manage Venue")
 
     assert current_path, admin_venue_path(venue)
 
@@ -64,7 +64,7 @@ class PlatformAdminConcertTest < ActionDispatch::IntegrationTest
 
   test 'platform admin can edit concert' do
     user = create(:user, role: 2)
-    venue = create(:venue)
+    venue = create(:venue, user_id: user.id)
     concert = create(:concert, venue_id: venue.id)
 
     visit root_path
@@ -80,19 +80,21 @@ class PlatformAdminConcertTest < ActionDispatch::IntegrationTest
 
     click_on("Manage Venues")
 
-    assert page.has_content?(venue.name)
-
     assert current_path, admin_venues_path
 
-    click_on("Manage")
+    click_on("Manage Venue")
 
-    assert_equal current_path, admin_venue_path(venue.url)
+    assert_equal venue_path(venue.url), current_path
 
-    click_on("edit")
-
+    click_on("Edit")
     assert_equal current_path, edit_concert_path(concert.url)
+
+    fill_in "concert[band]", with: "gibberish"
+    fill_in "concert[genre]", with: "spanish"
+
     click_on("Update Concert")
 
     assert_equal current_path, admin_venue_path(venue.url)
+    assert page.has_content?("gibberish")
   end
 end

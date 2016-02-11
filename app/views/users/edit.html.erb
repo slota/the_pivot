@@ -1,14 +1,20 @@
 <div class="container">
-  <h2> Edit User Profile for <%= @user.username %></h2>
-  <%= form_for @user do |f| %>
-    <%= f.label :username %>
-    <%= f.text_field :username%>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-    <%= f.label :image  %>
-    <br>
-    <%= f.file_field :image %>
-    <br><br>
-    <%= f.submit "Update Account" %> 
-  <% end %>
+  <h2 class="center">Edit Profile</h2>
+  <div class="opaque-background">
+    <div style="padding:20px 100px;">
+      <h2 class="center"><%= @user.username %></h2>
+      <%= form_for @user do |f| %>
+        <%= f.label :username %>
+        <%= f.text_field :username%>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+        <%= f.label :image  %>
+        <br>
+        <%= f.file_field :image %>
+        <br><br>
+        <%= f.submit "Update Account", class: "form-submit" %>
+      <% end %>
+    </div>
+  </div>
+  <br>
 </div>

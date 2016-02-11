@@ -21,6 +21,7 @@
       <tr><td>No orders of this type</td></tr>
     <% else %>
       <%= render @orders %>
+      <%#= will_paginate @orders %> 
     <% end %>
   </tbody>
 </table>

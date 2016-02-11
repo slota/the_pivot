@@ -1,10 +1,14 @@
-<div class="login">
-  <h2>Login</h2>
-  <%= form_for :session, url: login_path do |f| %>
-    <%= f.label :username %>
-    <%= f.text_field :username%>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-    <%= f.submit "Login" %>
-  <% end %>
+<div class="container">
+  <h2 class="center">Login</h2>
+  <div class="opaque-background">
+    <div class="login" style="padding:20px 100px;">
+      <%= form_for :session, url: login_path do |f| %>
+        <%= f.label :username %>
+        <%= f.text_field :username%>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+        <%= f.submit "Login", class: "form-submit" %>
+      <% end %>
+    </div>
+  </div>
 </div>

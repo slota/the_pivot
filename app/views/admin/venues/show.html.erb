@@ -6,9 +6,9 @@
         <span class="card-title satisfy-font" style="font-size:3em;text-shadow:1px 1px black;"> <%= @venue.name %></span>
       </div>
       <div class="card-content center venue-card">
-        <p class="satisfy-font"> <%=  @venue.address %>, <%= @venue.city %>, <%= @venue.state %></p>
+        <p class="satisfy-font"> <%= @venue.address %>, <%= @venue.city %>, <%= @venue.state %></p>
         <hr>
-        <p class="satisfy-font"> <%=   @venue.name%></p>
+        <p class="satisfy-font"> <%= @venue.name%></p>
 
       </div>
     </div>
@@ -24,7 +24,6 @@
     <thead>
       <tr>
         <th data-field="Username">Username</th>
-        <!-- <th data-field="Edit">Edit</th> -->
         <th data-field="Remove">Action</th>
       </tr>
     </thead>
@@ -44,7 +43,7 @@
   <h5 class="center"><%= link_to "Add a concert", venue_new_concert_path(@venue.url) %></h5>
 </div>
 
-<div class="container" style="opacity:0.8; background-color: black; color:white;">
+<div class="container opaque-background">
   <table class="bordered highlight responsive-table">
     <thead>
       <tr>
