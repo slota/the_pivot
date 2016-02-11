@@ -165,14 +165,14 @@ h2 {
 }
 
 .user-profile {
-  height: 200px;
-  width: auto;
+  max-height: 300px;
+  max-width: 300px;;
   opacity: 0.90;
 }
 
 .venue-profile {
-  height: 200px;
-  width: auto;
+  max-height: 500px;
+  max-width: 500px;
   opacity: 0.90;
 }
 

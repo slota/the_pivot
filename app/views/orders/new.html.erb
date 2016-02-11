@@ -3,7 +3,7 @@
   <div class="opaque-background center">
     <%= form_for @order do |f| %>
       <%= f.label "Please enter an email address for your electronic tickets" %>
-      <%= f.text_field :address, style:"font-size:1.5em; color:white" %>
+      <%= f.text_field :address, required: true, style:"font-size:1.5em; color:white" %>
       <%= f.hidden_field :total_price, value: @total%>
       <br>  
       <%= f.submit "Checkout", class: "form-submit" %>

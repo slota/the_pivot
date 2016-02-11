@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :venues, only: [:index, :new, :create]
 
   get '/about', to: 'pages#about'
-  post '/search', to: 'pages#search'
+  post '/', to: 'pages#home'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
