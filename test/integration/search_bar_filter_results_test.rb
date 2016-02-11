@@ -149,8 +149,8 @@ class SearchBarFilterResultsTest < ActionDispatch::IntegrationTest
   end
 
   test "guest can filter by band and city" do
-    venue_1 = create(:venue, status: 1, city: 'Alicante')
-    venue_2 = create(:venue, status: 1, city: 'Denver')
+    venue_1 = create(:venue, status: 1, city: 'alicante')
+    venue_2 = create(:venue, status: 1, city: 'denver')
 
     concert_1 = create(:concert, venue: venue_1, band: "Slota and the Big Blues Band")
     concert_2 = create(:concert, venue: venue_1)

@@ -17,7 +17,7 @@ class PlatformAdminApprovesVenueTest < ActionDispatch::IntegrationTest
 
     assert current_path, edit_admin_venue_path(venue)
 
-    check('Approved')
+    page.choose('Approved')
     click_on("Update Venue")
 
     assert current_path, admin_venues_path

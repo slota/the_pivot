@@ -23,11 +23,11 @@
 
       <%= f.label :status %>
       <br>
-      <%= check_box_tag(:approved) %>
-      <%= label_tag(:approved, "Approved/Online") %>
+      <%= f.radio_button(:status, 'Approved') %>
+      <%= f.label :status, 'Approved', value:'Approved', checked: @venue.Approved? %>
       <br>
-      <%= check_box_tag(:declined) %>
-      <%= label_tag(:declined, "Declined/Offline") %>
+      <%= f.radio_button(:status, 'Declined') %>
+      <%= f.label :status, 'Declined', value:'Declined', checked: @venue.Declined?  %>
       <br>
       <%= f.submit class: "btn" %>
   <% end %>

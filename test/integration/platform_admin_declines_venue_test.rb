@@ -17,7 +17,7 @@ class PlatformAdminDeclinesVenueTest < ActionDispatch::IntegrationTest
 
     assert current_path, edit_admin_venue_path(venue)
 
-    check('Decline')
+    page.choose('Decline')
     click_on("Update Venue")
 
     assert current_path, admin_venues_path
