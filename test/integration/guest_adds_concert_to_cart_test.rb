@@ -16,6 +16,7 @@ class GuestAddsConcertToCartTest < ActionDispatch::IntegrationTest
     assert page.has_content?(concert.venue.name)
     assert page.has_content?(concert.price)
     assert page.has_content?("Quantity")
+    assert page.has_content?(concert.category.description.capitalize)
 
     fill_in "order[quantity]", with: 2
 
