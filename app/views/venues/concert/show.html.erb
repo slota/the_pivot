@@ -17,13 +17,13 @@
   <table class="bordered highlight responsive-table">
     <thead>
       <tr>
-          <th data-field="Date">Date</th>
-          <th data-field="Logo">Logo</th>
-          <th data-field="Performer">Performer</th>
-          <th data-field="Venue">Venue</th>
-          <th data-field="Price">Price</th>
-          <th data-field="Quantity">Quantity</th>
-          <th data-field=""></th>
+        <th data-field="Date">Date</th>
+        <th data-field="Logo">Logo</th>
+        <th data-field="Performer">Performer</th>
+        <th data-field="Venue">Venue</th>
+        <th data-field="Price">Price</th>
+        <th data-field="Quantity">Quantity</th>
+        <th data-field=""></th>
       </tr>
     </thead>
 
@@ -35,16 +35,12 @@
         <td><%= link_to(@concert.venue.name, venue_path(@concert.venue.url)) %></td>
         <td>$<%= @concert.price %></td>
         <td><%= form_for(:order, url: cart_concerts_path(@concert.url)) do |f| %>
-              <%= number_field(:order, :quantity, min: 1) %>
-              <% if @concert.venue.status == "Approved" %>
-                <%= f.submit "Add to Cart", style: 'color:black'%></td>
-              <% end %>
-            <% end %>
-      </tr>
-    </tbody>
-  </table>
-<!--   <h5 class="cart-totals"><i class="material-icons">shopping_cart</i> <%#= link_to("Add to Cart", cart_path)%></h5> -->
-
-<!-- <p><center><%#= button_to "Add to Cart", cart_concerts_path(@concert.url, quantity: :quantity), class: "btn"%></center></p> -->
-
-</div>
+          <%= number_field(:order, :quantity) %>
+          <% if @concert.venue.status == "Approved" %>
+          <%= f.submit "Add to Cart", style: 'color:black'%></td>
+          <% end %>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>

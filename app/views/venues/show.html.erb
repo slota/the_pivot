@@ -16,6 +16,9 @@
 
 <% if current_user == @venue.user || @venue.users.include?(current_user) %>
 
+<div class="row">
+  <h5 class="center">  <%= link_to "View Orders", orders_path(@venue) %></h5>
+</div>
   <div class="container opaque-background">
     <table class="bordered highlight responsive-table">
       <thead>
@@ -75,6 +78,7 @@
 </div>
 </div>
 <br>
+
 <div class="pagination center">
     <%= will_paginate @concerts %>
 </div>
