@@ -28,4 +28,5 @@ class PlatformAdminCreatesVenueTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Milwaukee!!!")
     assert page.has_content?("123 street")
   end
+
 end

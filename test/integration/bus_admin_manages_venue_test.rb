@@ -78,4 +78,42 @@ class BusAdminManagesVenueTest < ActionDispatch::IntegrationTest
     assert page.has_content?(order.address)
   end
 
+  test 'business admin tries to create same venue twice' do
+    business_user = create(:user, role: 1)
+    ApplicationController.any_instance.stubs(:current_user).returns(business_user)
+
+    visit user_path(business_user.id)
+
+    click_on("Manage Venues")
+
+    assert_equal venues_path, current_path
+
+    click_on("Add a Venue")
+
+    assert_equal new_venue_path, current_path
+
+    fill_in "venue[name]", with: "Steve's Venue"
+    fill_in "venue[city]", with: "Milwaukee!!!"
+    fill_in "venue[state]", with: "Wisconsin"
+    fill_in "venue[address]", with: "123 street"
+    fill_in "venue[description]", with: "Steve's Venue"
+
+    click_on("Create Venue")
+
+    click_on("Add a Venue")
+
+    assert_equal new_venue_path, current_path
+
+    fill_in "venue[name]", with: "Steve's Venue"
+    fill_in "venue[city]", with: "Milwaukee!!!"
+    fill_in "venue[state]", with: "Wisconsin"
+    fill_in "venue[address]", with: "123 street"
+    fill_in "venue[description]", with: "Steve's Venue"
+
+    click_on("Create Venue")
+
+    assert_equal current_path, venues_path
+    assert page.has_content? ("Url has already been taken")
+  end
+
 end

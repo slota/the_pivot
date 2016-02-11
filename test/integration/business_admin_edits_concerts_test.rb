@@ -2,7 +2,7 @@ require 'test_helper'
 
 class BusinessAdminEditsConcertsTest < ActionDispatch::IntegrationTest
 
-  test "business admin adds concerts" do
+  test "business admin edits concerts" do
     user = create(:user, role:1)
     venue = create(:venue)
     concert = create(:concert)
@@ -22,4 +22,6 @@ class BusinessAdminEditsConcertsTest < ActionDispatch::IntegrationTest
 
     assert page.has_content? 'Gigatron'
   end
+
+
 end
