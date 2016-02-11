@@ -2,6 +2,7 @@ require 'test_helper'
 
 class PlatformAdminConcertTest < ActionDispatch::IntegrationTest
   test 'platform admin logs in and adds a concert to venue' do
+    category = create(:category, description: 'rock')
     user = create(:user, role: 2)
     venue = create(:venue)
 

@@ -52,6 +52,7 @@
         <th data-field="Date">Date</th>
         <th data-field="Logo">Logo</th>
         <th data-field="Performer">Performer</th>
+        <th data-field="Genre">Genre</th>
         <th data-field="Venue">Venue</th>
         <% if current_user == @venue.user %>
           <th data-field="Edit">Edit</th>
@@ -66,6 +67,7 @@
         <td> <%= concert.date %> </td>
         <td> <%= image_tag concert.logo %> </td>
         <td> <%= link_to concert.band, venue_concert_path(concert.venue.url, concert.url) %></td>
+        <td> <%= concert.category.description.capitalize %></td>
         <td> <%= link_to concert.venue.name, venue_path(concert.venue.url) %></td>
         <% if current_user == @venue.user %>
           <td><%= link_to "Edit", edit_concert_path(concert.url) %></td>
