@@ -13,6 +13,7 @@
       <th data-field="Price">Price</th>
       <th data-field="Quantity">Quantity</th>
       <th data-field="Subtotal">Subtotal</th>
+      <th data-field="Remove">Remove</th>
     </tr>
   </thead>
 
@@ -26,6 +27,7 @@
       <td>$<%= concert.price %></td>
       <td><%= concert.quantity %></td>
       <td>$<%= concert.subtotal %></td>
+      <td><%= link_to("remove", cart_concert_path(concert.url), method: :delete) %></td>
     </tr>
     <% end %>
   </tbody>
