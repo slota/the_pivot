@@ -1,6 +1,7 @@
 class ConcertOrder < ActiveRecord::Base
   belongs_to :concert
   belongs_to :order
+  belongs_to :venue
 
   def self.create_concert_order(order, cart)
     cart.contents.each do |concert_id, quantity|
