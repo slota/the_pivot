@@ -1,6 +1,9 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+config.paperclip_defaults = {
+  :storage => :s3,
+  :bucket => 'ticket-maestro'
+}
   # Code is not reloaded between requests.
   config.cache_classes = true
 
