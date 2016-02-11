@@ -11,7 +11,7 @@ class Seed
     end
 
     def self.generate_categories
-      categories = %w(rock blues ska metal pop rap country indie hip-hop electronic`)
+      categories = %w(Rock Blues Ska Metal Pop Rap Country Indie Jazz Electronic`)
       categories.each do |genre|
         Category.create(
           description: genre
@@ -58,9 +58,10 @@ class Seed
           status: rand(0..1),
           city: cities.sample,
           state: Faker::Address.state,
-          image: "http://cdn.partyearth.com/photos/7cfff5c7cccaf6b2d795f9fa9cb161b1/luz-de-gas_s345x230.jpg?1375050702",
-          description: " #{i}",
-          user: User.find_by(username: "ba").venues.sample,
+          image: "http://www.rantlifestyle.com/wp-content/uploads/2014/04/Center-Stage.jpg",
+          description: "The Performance Space seats 1200 persons and is equipped with a raised stage and a separate sound room.",
+          user: User.find_by(username: "ba"),
+          users: [User.find_by(username: "andrew@turing.io")]
         )
         puts "Venue #{i} created"
       end

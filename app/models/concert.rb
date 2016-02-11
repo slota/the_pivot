@@ -16,7 +16,7 @@ class Concert < ActiveRecord::Base
   }
 
   scope :genre, ->(genre) {
-    genre.empty? ? all : where(category_id: Category.find_by(description:genre.downcase))
+    genre.empty? ? all : where(category_id: Category.find_by(description:genre))
   }
 
   validates_with AttachmentSizeValidator, attributes: :logo, less_than: 1.megabytes
