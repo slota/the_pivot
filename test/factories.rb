@@ -15,7 +15,6 @@ FactoryGirl.define do
     order nil
     quantity 1
     subtotal 1.5
-    price 1.5
   end
 
   factory :order do
