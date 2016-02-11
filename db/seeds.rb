@@ -134,7 +134,8 @@ class Seed
       10.times do |i|
         Order.create(
           user: User.offset(rand(User.count-1)).first,
-          status: "Purchased"
+          status: "Purchased",
+          address: Faker::Internet.email
         )
         puts "Order #{i} created"
       end

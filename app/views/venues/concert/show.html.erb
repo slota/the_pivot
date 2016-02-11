@@ -17,13 +17,13 @@
   <table class="bordered highlight responsive-table">
     <thead>
       <tr>
-          <th data-field="Date">Date</th>
-          <th data-field="Logo">Logo</th>
-          <th data-field="Performer">Performer</th>
-          <th data-field="Venue">Venue</th>
-          <th data-field="Price">Price</th>
-          <th data-field="Quantity">Quantity</th>
-          <th data-field=""></th>
+        <th data-field="Date">Date</th>
+        <th data-field="Logo">Logo</th>
+        <th data-field="Performer">Performer</th>
+        <th data-field="Venue">Venue</th>
+        <th data-field="Price">Price</th>
+        <th data-field="Quantity">Quantity</th>
+        <th data-field=""></th>
       </tr>
     </thead>
 
@@ -34,11 +34,11 @@
         <td><%= link_to(@concert.band, venue_concert_path(@concert.venue.url, @concert.url)) %></td>
         <td><%= link_to(@concert.venue.name, venue_path(@concert.venue.url)) %></td>
         <td>$<%= @concert.price %></td>
-        <td style="max-width: 30px; text-align: center;" >
+        <td style="max-width: 30px; text-align: center;">
           <%= form_for(:order, url: cart_concerts_path(@concert.url)) do |f| %>
-            <%= number_field(:order, :quantity, min: 1) %>
             <% if @concert.venue.status == "Approved" %>
-              <%= f.submit "Add to Cart", style: 'color:black'%>
+              <%= number_field(:order, :quantity) %>
+              <%= f.submit "Add to Cart", style: 'color:black'%></td>
             <% end %>
           <% end %>
         </td>
@@ -46,3 +46,4 @@
     </tbody>
   </table>
 </div>
+
