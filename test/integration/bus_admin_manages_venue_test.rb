@@ -52,4 +52,30 @@ class BusAdminManagesVenueTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Steve's Venue Updated!")
     assert page.has_content?("Steve's Venue")
   end
+
+  test 'business admin can view orders' do
+    venue_1 = create(:venue)
+    business_user = create(:user, role: 1)
+    venue_1.update_attributes(user_id: business_user.id)
+    concert = create(:concert, venue: venue_1)
+    order = create(:order, user: business_user)
+    concert_order = create(:concert_order, concert: concert, order: order )
+    venue_1.reload
+    ApplicationController.any_instance.stubs(:current_user).returns(business_user)
+    visit venues_path
+
+    assert_equal venues_path, current_path
+
+    assert page.has_content?(venue_1.name)
+
+    click_on("Manage Venue")
+    assert_equal current_path, venue_path(venue_1.url)
+
+    click_on("View Orders")
+
+    assert page.has_content?(order.id)
+    assert page.has_content?(order.total_price)
+    assert page.has_content?(order.address)
+  end
+
 end

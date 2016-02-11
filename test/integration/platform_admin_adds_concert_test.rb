@@ -61,4 +61,30 @@ class PlatformAdminAddsConcertTest < ActionDispatch::IntegrationTest
     refute page.has_content?(concert.date)
   end
 
+  test 'platform admin can view orders' do
+    venue_1 = create(:venue)
+    platform_user = create(:user, role: 2)
+    venue_1.update_attributes(user_id: platform_user.id)
+    concert = create(:concert, venue: venue_1)
+    order = create(:order, user: platform_user)
+    concert_order = create(:concert_order, concert: concert, order: order )
+    venue_1.reload
+    ApplicationController.any_instance.stubs(:current_user).returns(platform_user)
+
+    visit admin_venues_path
+
+    assert_equal admin_venues_path, current_path
+
+    assert page.has_content?(venue_1.name)
+
+    click_on("Manage")
+    assert_equal current_path, admin_venue_path(venue_1.url)
+
+    click_on("View Orders")
+
+    assert page.has_content?(order.id)
+    assert page.has_content?(order.total_price)
+    assert page.has_content?(order.address)
+  end
+
 end
