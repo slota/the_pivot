@@ -19,7 +19,7 @@ class PlatformAdminCreatesVenueTest < ActionDispatch::IntegrationTest
     fill_in "venue[state]", with: "Wisconsin"
     fill_in "venue[address]", with: "123 street"
     fill_in "venue[description]", with: "Steve's Venue"
-    click_on("Submit")
+    click_on("Create Venue")
 
     assert current_path, admin_venues_path
 
