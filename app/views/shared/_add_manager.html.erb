@@ -1,7 +1,7 @@
 <tr>
   <%= form_tag controller:"venues/managers", action: 'create' do %>
     <td> <%= text_field_tag :new_manager %> </td>
-    <td> <%= submit_tag "Add as manager" %> </td>
+    <td> <%= submit_tag "Add as manager", style:"color:black;" %> </td>
     <%= hidden_field_tag(:venue, "#{@venue.url}") %>
   <% end %>
 </tr>
