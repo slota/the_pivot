@@ -3,12 +3,14 @@ class OrdersController < ApplicationController
   before_action :require_current_user
 
   def index
-    @user = current_user
-    @orders = @user.orders.all
+    @venue  = Venue.find_by(id: params[:format])
+    @orders = @venue.orders
   end
 
   def show
+    @venue = Venue.find(params[:format])
     @order = Order.find(params[:id])
+    @concert_orders = @venue.concert_orders
   end
 
   def new

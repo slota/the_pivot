@@ -5,6 +5,8 @@ class Venue < ActiveRecord::Base
   has_many :concerts
   belongs_to :user
   enum status: %w(Pending Approved Declined)
+  has_many :orders, through: :concerts
+  has_many :concert_orders, through: :concerts
 
   validates :name, presence: true
   validates :url, presence: true, uniqueness: true
