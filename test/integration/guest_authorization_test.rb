@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class GuestAuthorizationTest < ActionDispatch::IntegrationTest
-  test "guest can login" do 
+  test "guest can login" do
     venue = create(:venue)
     concert = create(:concert)
     venue.concerts << concert
@@ -22,9 +22,9 @@ class GuestAuthorizationTest < ActionDispatch::IntegrationTest
 
     refute page.has_content?("Manage Venues")
     refute page.has_content?("Manage Orders")
-  end 
+  end
 
-  test "guest views homepage" do 
+  test "guest views homepage" do
     venue = create(:venue, status: 1)
     concert = create(:concert)
     venue.concerts << concert
@@ -35,7 +35,7 @@ class GuestAuthorizationTest < ActionDispatch::IntegrationTest
     assert page.has_content?(concert.band)
   end
 
-  test "guest views venue show page" do 
+  test "guest views venue show page" do
     user = create(:user, role: 1)
     venue = create(:venue, status: 1, user_id: user.id)
     concert = create(:concert, venue: venue)
@@ -49,9 +49,9 @@ class GuestAuthorizationTest < ActionDispatch::IntegrationTest
     refute page.has_content?("Remove")
     refute page.has_content?("Add an Admin")
 
-  end 
+  end
 
-  test "guest views venue_concert show page" do 
+  test "guest views venue_concert show page" do
     venue = create(:venue)
     concert = create(:concert, venue: venue)
     venue.concerts << concert
@@ -63,5 +63,5 @@ class GuestAuthorizationTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Quantity")
     refute page.has_content?("Edit")
     refute page.has_content?("Remove")
-  end 
+  end
 end
