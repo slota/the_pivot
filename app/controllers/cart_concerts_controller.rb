@@ -17,7 +17,7 @@ class CartConcertsController < ApplicationController
     concert = Concert.find_by(url: params[:id])
     @cart.remove_concert(concert)
     flash[:notice] = "Successfully removed #{view_context.link_to(concert.band, venue_concert_path(concert.venue.url, concert.url))} from your cart."
-    redirect_to root_path
+    redirect_to cart_path
   end
 
 end
