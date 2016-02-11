@@ -164,6 +164,53 @@ class GuestAddsConcertToCartTest < ActionDispatch::IntegrationTest
     assert page.has_content?(venue.name)
   end
 
+  test "platform admin receives email confirmation" do
+    platform_admin = create(:user, role: 2)
+    user = create(:user)
+    venue = create(:venue, user_id: user.id)
+    concert = create(:concert, venue: venue)
+    ApplicationController.any_instance.stubs(:current_user).returns(platform_admin)
+
+    visit venue_concert_path(concert.venue.url, concert.url)
+    assert_equal venue_concert_path(concert.venue.url, concert.url), current_path
+
+    assert page.has_content?(concert.date)
+    assert page.has_content?("Logo")
+    assert page.has_content?(concert.band)
+    assert page.has_content?(concert.venue.name)
+    assert page.has_content?(concert.price)
+    assert page.has_content?("Quantity")
+
+    fill_in "quantity", with: 2
+    click_button("Add to Cart")
+
+    assert_equal cart_path, current_path
+
+    assert page.has_content?(concert.date)
+    assert page.has_content?("Logo")
+    assert page.has_content?(concert.band)
+    assert page.has_content?(concert.venue.name)
+    assert page.has_content?(concert.price)
+    assert page.has_content?("Quantity")
+    assert page.has_content?(concert.price)
+
+    assert page.has_content?("2")
+    assert page.has_content?("#{concert.price * 2}")
+    assert page.has_content?("Checkout!")
+
+    click_link ("Checkout!")
+    assert_equal current_path, new_order_path
+
+    assert page.has_content?("Checkout")
+    assert page.has_content?("Please enter an email address for your electronic tickets")
+    fill_in "order[address]", with: patform_admin.username
+    click_button("Checkout")
+
+    assert page.has_content?("Thank you for your purchase!")
+    assert admin_user_path(platform_admin.id), current_path
+
+  end
+
   test "registered user removes concert from cart" do
     venue = create(:venue, status: 1)
     concert = create(:concert, venue: venue)
