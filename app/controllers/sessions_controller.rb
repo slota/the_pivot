@@ -7,11 +7,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
       flash[:notice] = "Logged in as #{@user.username}"
-      if current_user.platform_admin?
-        redirect_to admin_user_path(@user)
-      else
-        redirect_to user_path(@user)
-      end
+      redirect
     else
       flash.now[:error] = "Invalid Login. Try Again."
       render :new
@@ -22,5 +18,15 @@ class SessionsController < ApplicationController
     flash[:notice] = "#{current_user.username} successfully logged out"
     session.clear
     redirect_to root_path
+  end
+end
+
+private
+
+def redirect
+  if current_user.platform_admin?
+    redirect_to admin_user_path(@user)
+  else
+    redirect_to user_path(@user)
   end
 end
