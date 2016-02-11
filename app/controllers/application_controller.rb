@@ -19,10 +19,6 @@ class ApplicationController < ActionController::Base
     @cart = Cart.new(session[:cart])
   end
 
-  def oils
-    Oil.all
-  end
-
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end

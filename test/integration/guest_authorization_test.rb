@@ -64,4 +64,25 @@ class GuestAuthorizationTest < ActionDispatch::IntegrationTest
     refute page.has_content?("Edit")
     refute page.has_content?("Remove")
   end
+
+  test "unknown guest can't log in" do
+    venue = create(:venue)
+    concert = create(:concert, venue: venue)
+    venue.concerts << concert
+
+    visit root_path
+
+    within (".right") do
+      click_on("Login")
+    end
+
+    fill_in "session[username]", with: "SteveAustin316@hotmail.com"
+    fill_in "session[password]", with: "316"
+
+    within (".login") do
+      click_on("Login")
+    end
+
+    assert page.has_content?("Invalid Login. Try Again.")
+  end
 end

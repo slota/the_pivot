@@ -77,4 +77,18 @@ class RegisteredUserAuthorizationTest < ActionDispatch::IntegrationTest
     refute page.has_content?("Edit")
     refute page.has_content?("Remove")
   end
+
+  test "registered user cannot access platform admin page" do
+    reg_user = create(:user, role: 0)
+    venue = create(:venue, user: reg_user, status: 1)
+    concert = create(:concert)
+    venue.concerts << concert
+
+    ApplicationController.any_instance.stubs(:current_user).returns(reg_user)
+
+    visit admin_user_path(reg_user)
+    assert page.has_content?("Access denied, sucker!")
+    assert current_path, root_path
+
+  end
 end
