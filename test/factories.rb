@@ -27,13 +27,14 @@ FactoryGirl.define do
 
 
   factory :concert do
-    date "2016-02-04"
-    band "John Slota Band"
+    # date "2016-02-04"
+    date { Faker::Date.forward(300)}
+    band { Faker::Internet.user_name }
     price { rand(1..100) }
     venue nil
     logo nil
-    genre "MyString"
     url "MyString"
+    category
   end
 
   factory :user do
@@ -44,8 +45,8 @@ FactoryGirl.define do
   factory :venue do
     name { Faker::Company.name }
     address "101 Super Sweet Place"
-    city "Denver"
-    state "Colorado"
+    city {Faker::Address.city}
+    state {Faker::Address.state.downcase}
     image nil
     description "If you haven't been here you are wrong"
   end
