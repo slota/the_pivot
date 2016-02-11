@@ -5,7 +5,7 @@ class VenuesController < ApplicationController
   end
 
   def index
-    @venues = current_user.venues + current_user.managed_venues
+    @venues = (current_user.venues + current_user.managed_venues).uniq
   end
 
   def new
