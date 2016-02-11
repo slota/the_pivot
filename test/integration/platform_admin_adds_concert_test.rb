@@ -21,7 +21,7 @@ class PlatformAdminAddsConcertTest < ActionDispatch::IntegrationTest
 
     assert current_path, admin_venues_path
 
-    click_on("Manage Venue")
+    click_on("Manage")
 
     assert current_path, admin_venue_path(venue)
 
