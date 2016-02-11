@@ -23,7 +23,7 @@ class PlatformAdminConcertTest < ActionDispatch::IntegrationTest
 
     assert current_path, admin_venues_path
 
-    click_on("Manage Venue")
+    click_on("Manage")
 
     assert current_path, admin_venue_path(venue)
 
@@ -82,11 +82,11 @@ class PlatformAdminConcertTest < ActionDispatch::IntegrationTest
 
     assert current_path, admin_venues_path
 
-    click_on("Manage Venue")
+    click_on("Manage")
 
-    assert_equal venue_path(venue.url), current_path
+    assert_equal admin_venue_path(venue.url), current_path
 
-    click_on("Edit")
+    click_on("edit")
     assert_equal current_path, edit_concert_path(concert.url)
 
     fill_in "concert[band]", with: "gibberish"
