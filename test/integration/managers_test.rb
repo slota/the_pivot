@@ -94,4 +94,22 @@ class ManagersTest < ActionDispatch::IntegrationTest
     assert_equal venue.users.count, 0
     assert page.has_content?("Please enter a valid registered user")
   end
+
+  test 'platform admin can add manager' do
+    plat_admin = create(:user, role: 2)
+    user = create(:user, role: 0)
+
+    # manager, user = create_list(:user, 2, role: 0)
+    venue = create(:venue, users:[plat_admin])
+    ApplicationController.any_instance.stubs(:current_user).returns(plat_admin)
+    # binding.pry
+    assert_equal venue.users.count, 1
+    visit admin_venue_path(venue.url)
+    fill_in "new_manager", with: user.username
+    click_on "Add as manager"
+
+    assert_equal admin_venue_path(venue.url), current_path
+    assert page.has_content?(plat_admin.username)
+    assert_equal venue.users.count, 2
+  end
 end
