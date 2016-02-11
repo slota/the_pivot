@@ -162,4 +162,63 @@ class GuestAddsConcertToCartTest < ActionDispatch::IntegrationTest
     assert page.has_content?("1")
     assert page.has_content?(venue.name)
   end
+
+  test "registered user removes concert from cart" do
+    venue = create(:venue, status: 1)
+    concert = create(:concert, venue: venue)
+    registered_user = create(:user, role: 0)
+    ApplicationController.any_instance.stubs(:current_user).returns(registered_user)
+
+    visit venue_concert_path(concert.venue.url, concert.url)
+    assert_equal venue_concert_path(concert.venue.url, concert.url), current_path
+
+    assert page.has_content?(concert.date)
+    assert page.has_content?("Logo")
+    assert page.has_content?(concert.band)
+    assert page.has_content?(concert.venue.name)
+    assert page.has_content?(concert.price)
+    assert page.has_content?("Quantity")
+
+    fill_in "order[quantity]", with: 2
+
+    click_button("Add to Cart")
+
+    assert_equal cart_path, current_path
+
+    assert page.has_content?(concert.date)
+    assert page.has_content?("Logo")
+    assert page.has_content?(concert.band)
+    assert page.has_content?(concert.venue.name)
+    assert page.has_content?(concert.price)
+    assert page.has_content?("Quantity")
+    assert page.has_content?(concert.price)
+
+    click_on("remove")
+
+    assert page.has_content?("Successfully removed")
+
+    assert_equal root_path, current_path
+  end
+
+   test "can't add concert to cart if quantity zero" do
+    venue = create(:venue, status: 1)
+    concert = create(:concert, venue: venue)
+    registered_user = create(:user, role: 0)
+    ApplicationController.any_instance.stubs(:current_user).returns(registered_user)
+
+    visit venue_concert_path(concert.venue.url, concert.url)
+    assert_equal venue_concert_path(concert.venue.url, concert.url), current_path
+
+    assert page.has_content?(concert.date)
+    assert page.has_content?("Logo")
+    assert page.has_content?(concert.band)
+    assert page.has_content?(concert.venue.name)
+    assert page.has_content?(concert.price)
+    assert page.has_content?("Quantity")
+
+    fill_in "order[quantity]", with: 0
+
+    click_on("Add to Cart")
+    assert_equal cart_path, current_path
+  end
 end

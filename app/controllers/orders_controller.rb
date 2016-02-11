@@ -12,8 +12,13 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order = Order.new
-    @total = @cart.total
+    if @cart.contents.empty?
+      flash[:error] = "Cart cannot be empty at checkout."
+      redirect_to root_path
+    else
+      @order = Order.new
+      @total = @cart.total
+    end
   end
 
   def create
@@ -25,8 +30,8 @@ class OrdersController < ApplicationController
       flash[:notice] = "Order was successfully placed"
       redirect_to notification_path(address: params[:order][:address])
     else
-      flash[:error] = "Cart cannot be empty."
-      redirect_to cart_concerts_path
+      flash[:notice] = "There was an error with your order, please try agin"
+      redirect_to root_path
     end
   end
 end
