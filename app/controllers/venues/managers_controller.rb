@@ -6,7 +6,7 @@ class Venues::ManagersController < ApplicationController
   end
 
   def destroy
-    venue = find_venue
+    venue = Venue.find_by(url: params[:venue])
     manager = User.find(params[:id])
     venue.users.delete(manager)
     redirect_to venue_path(venue.url)
@@ -15,7 +15,7 @@ class Venues::ManagersController < ApplicationController
   private
 
   def find_venue
-    if platform_admin?
+    if platform_admin? || business_admin?
       venue = Venue.find_by(url: params[:venue])
     else
       venue = current_user.venues.find_by(url:params[:venue])

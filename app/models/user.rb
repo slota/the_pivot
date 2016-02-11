@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
                     foreign_key: "venue_id",
                     source: :venue
   has_many :orders
+  has_many :orders
   has_many :venues
 
   validates :username, presence: true,
