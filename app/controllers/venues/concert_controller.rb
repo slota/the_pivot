@@ -9,11 +9,18 @@ class Venues::ConcertController < ApplicationController
 
   def create
     venue = Venue.find_by(url: params[:venue])
-    venue.concerts << Concert.create(concert_params)
-    if platform_admin?
-      redirect_to admin_venue_path(venue.url)
+    if category = Category.find_by(description: params[:concert][:genre].downcase)
+      concert =  Concert.create(concert_params)
+      concert.update(category: category)
+      venue.concerts << concert
+      if platform_admin?
+        redirect_to admin_venue_path(venue.url)
+      else
+        redirect_to venue_path(venue.url)
+      end
     else
-      redirect_to venue_path(venue.url)
+      flash[:error] = 'Introduce a valid genre'
+      redirect_to venue_new_concert_path(venue.url)
     end
   end
 
@@ -31,6 +38,6 @@ class Venues::ConcertController < ApplicationController
   private
 
   def concert_params
-    params.require(:concert).permit(:date, :band, :logo, :price, :genre)
+    params.require(:concert).permit(:date, :band, :logo, :price)
   end
 end

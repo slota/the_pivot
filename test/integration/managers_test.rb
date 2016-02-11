@@ -52,6 +52,7 @@ class ManagersTest < ActionDispatch::IntegrationTest
   end
 
   test "managers can add other concerts" do
+    category = create(:category)
     manager = create(:user, role: 1)
     venue = create(:venue, users:[manager])
     ApplicationController.any_instance.stubs(:current_user).returns(manager)
@@ -62,6 +63,7 @@ class ManagersTest < ActionDispatch::IntegrationTest
     assert_equal venue_new_concert_path(venue.url), current_path
     # save_and_open_page
     fill_in "concert[band]", with: "Gigatron"
+    fill_in "concert[genre]", with: category.description
     click_on "Create Concert"
 
     assert_equal venue_path(venue.url), current_path

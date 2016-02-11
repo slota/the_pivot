@@ -1,27 +1,29 @@
 <h2>Order <%= @order.id %> Details</h2>
 
-<div class="row">
-  <div class="order_status col m6">
-    <h5> Ordered: <%= @order.created_at.strftime("%B %d, %Y") %><br /></h5>
-    User's Name: <%= User.find(@order.user_id).username %><br />
-    Status: <%= @order.status %><br />
-    Updated At: <%= @order.updated_at.strftime("%B %d, %Y") %><br />
-    Address: <%= @order.address %><br />
-    <div class="order_total">
-      Order Total: <%= number_to_currency @order.total_price %>
-    </div>
-  </div>
+<div class="container opaque-background">
+  <table class="bordered highlight responsive-table">
+    <thead>
+      <tr>
+        <th data-field="Concert Date">Concert Date</th>
+        <th data-field="Band">Band</th>
+        <th data-field="Venue">Venue</th>
+        <th data-field="Quantity">Quantity</th>
+        <th data-field="Price">Price</th>
+        <th data-field="Total">Total</th>
+      </tr>
+    </thead>
 
-  <div class="chips_ordered col m6">
-    <h5>Chips Ordered</h5>
-    <% @order.chips.each_with_index do |chip, i| %>
-      <span class="<%=chip.slug%>">
-        <%= i + 1 %>. <%= chip.name %> (<em><%= chip.status %></em>)<br />
-        <%= link_to "View Chip", chip_path(chip.slug) %><br>
-        <% chip_order = @order.chip_orders.find_by(order_id: @order.id) %><br />
-        Number of Chips: <%= chip_order.quantity %><br />
-        Subtotal: <%= number_to_currency chip_order.subtotal %><br />
-      </span>
+    <tbody>
+      <% @concert_orders.each do |concert_order| %>
+      <tr>
+        <td><%= concert_order.concert.date %></td>
+        <td><%= concert_order.concert.band %></td>
+        <td><%= link_to concert_order.concert.venue.name, venue_concert_path(concert_order.concert.venue.url,concert_order.concert.url) %></td>
+        <td><%= concert_order.quantity %> </td>
+        <td>$<%= concert_order.price %> </td>
+        <td>$<%= concert_order.subtotal %></td>
+      </tr>
       <% end %>
-    </div>
-</div><br><br>
+    </tbody>
+  </table>
+</div>
