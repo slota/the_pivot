@@ -66,6 +66,7 @@ main {
   opacity:0.8;
   background-color: black;
   color:white;
+  border-radius: 10px;
 }
 
 tbody tr:hover {
@@ -96,6 +97,11 @@ font-family: 'Satisfy', cursive;
   }
 }
 
+.search-item {
+  font-size: 5em;
+  text-align: center;
+
+}
 .pagination {
   background-color: black;
   color: white;
