@@ -91,4 +91,60 @@ class RegisteredUserAuthorizationTest < ActionDispatch::IntegrationTest
     assert current_path, root_path
 
   end
+
+  test "registered user cannot make two of the same accounts" do
+    user = create(:user)
+    venue = create(:venue)
+    concert = create(:concert)
+    venue.concerts << concert
+
+    visit root_path
+    assert_equal current_path, root_path
+
+    within('.right') do
+      click_on("Create Account")
+    end
+
+    fill_in "user[username]", with: user.username
+    fill_in "user[password]", with: user.password
+
+    within('.new_user') do
+      click_on("Create Account")
+    end
+
+    assert page.has_content?("Username has already been taken")
+  end
+
+  test "registered user cannot update username with nothing" do
+    user = create(:user)
+    venue = create(:venue)
+    concert = create(:concert)
+    venue.concerts << concert
+
+    visit login_path
+    assert_equal login_path, current_path
+
+    fill_in "session[username]", with: user.username
+    fill_in "session[password]", with: user.password
+
+    within('form') do
+      click_on("Login")
+    end
+
+    assert_equal user_path(user), current_path
+
+    assert page.has_content?("Logged in as #{user.username}")
+    assert page.has_content?(user.username)
+    assert page.has_content?("Completed Orders")
+    refute page.has_content?("Manage Venues")
+    refute page.has_content?("Manage Orders")
+
+    click_on("Edit Profile")
+
+    fill_in "user[username]", with: nil
+
+    click_on("Update Account")
+
+    assert page.has_content?("Username can't be blank")
+  end
 end
