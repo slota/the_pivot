@@ -165,13 +165,18 @@ h2 {
 }
 
 .user-profile {
-  max-height: 700px;
-  height: auto;
+  height: 200px;
+  width: auto;
   opacity: 0.90;
 }
 
 .venue-profile {
-  max-height: 700px;
-  height: auto;
+  height: 200px;
+  width: auto;
   opacity: 0.90;
+}
+
+#order_address {
+  text-align: center;
+  max-width: 50%;
 }

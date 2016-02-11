@@ -1,10 +1,13 @@
 <div class="container">
-  <h2>Checkout</h2>
-
-  <%= form_for @order do |f| %>
-    <%= f.label "Please enter an email address for your electronic tickets" %>
-    <%= f.text_field :address, style:"font-size:1.5em; color:white" %>
-    <%= f.hidden_field :total_price, value: @total%>
-    <%= f.submit "Checkout", class: "btn" %>
-   <% end %>
+  <h2 class="center">Checkout</h2>
+  <div class="opaque-background center">
+    <%= form_for @order do |f| %>
+      <%= f.label "Please enter an email address for your electronic tickets" %>
+      <%= f.text_field :address, style:"font-size:1.5em; color:white" %>
+      <%= f.hidden_field :total_price, value: @total%>
+      <br>  
+      <%= f.submit "Checkout", style:"color:black; font-size:1.5em" %>
+     <% end %>
+      <br>
+  </div>
 </div>
