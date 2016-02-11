@@ -35,12 +35,14 @@
         <td><%= link_to(@concert.venue.name, venue_path(@concert.venue.url)) %></td>
         <td>$<%= @concert.price %></td>
         <td><%= @concert.category.description.capitalize %></td>
-        <td><%= form_for(:order, url: cart_concerts_path(@concert.url)) do |f| %>
-          <% if @concert.venue.status == "Approved" %>
+         <td style="max-width: 30px; text-align: center;">
+            <%= form_for(:order, url: cart_concerts_path(@concert.url)) do |f| %>
+              <% if @concert.venue.status == "Approved" %>
               <%= number_field(:order, :quantity) %>
-                <%= f.submit "Add to Cart", style: 'color:black'%></td>
-              <% end %>
+              <%= f.submit "Add to Cart", style: 'color:black'%></td>
             <% end %>
+          <% end %>
+        </td>
       </tr>
     </tbody>
   </table>
