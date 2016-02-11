@@ -222,7 +222,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aws-sdk (~> 1.6)
+  aws-sdk (< 2.0)
   barby
   bcrypt (~> 3.1.7)
   byebug
