@@ -1,7 +1,7 @@
 == README
 
 #[Ticket Mastro:](https://sleepy-caverns-70728.herokuapp.com/)
-- **[John Slota](https://github.com/slotaj), [Steve Pentler](https://github.com/stevepentler), [Hector Huertas](https://github.com/hectorhuertas)**
+**[John Slota](https://github.com/slotaj), [Steve Pentler](https://github.com/stevepentler), [Hector Huertas](https://github.com/hectorhuertas)**
 --- 
   - Multitenancy platform that enables concert venues to sell tickets.
   - Incorporates SendGrid email service, Paperclip images and Amazon Web Services S3, CSS3 Animate, Pagination, etc.
