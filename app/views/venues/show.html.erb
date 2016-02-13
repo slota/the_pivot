@@ -55,7 +55,6 @@
         <th data-field="Venue">Venue</th>
         <% if current_user == @venue.user || @venue.users.include?(current_user) %>
           <th data-field="Edit">Edit</th>
-          <th data-field="Remove">Remove</th>
         <% end %>
       </tr>
     </thead>
@@ -70,7 +69,6 @@
         <td> <%= link_to concert.venue.name, venue_path(concert.venue.url) %></td>
         <% if current_user == @venue.user || @venue.users.include?(current_user) %>
           <td><%= link_to "Edit", edit_concert_path(concert.url) %></td>
-          <td><%= link_to("Remove", venue_concert_path(concert.venue.url, concert.url), method: :delete) %></td>
         <% end %>
       </tr>
       <% end %>
