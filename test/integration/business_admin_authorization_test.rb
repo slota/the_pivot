@@ -51,7 +51,6 @@ class BusinessAdminAuthorizationTest < ActionDispatch::IntegrationTest
     assert page.has_content?(venue.name)
     assert page.has_content?(concert.band)
     assert page.has_content?("Edit")
-    assert page.has_content?("Remove")
     refute page.has_content?("Add an Admin")
   end
 
@@ -77,7 +76,6 @@ class BusinessAdminAuthorizationTest < ActionDispatch::IntegrationTest
     assert page.has_content?(venue.name)
     assert page.has_content?(concert.band)
     assert page.has_content?("Edit")
-    assert page.has_content?("Remove")
     within('.concert-venue') do
       click_on("Edit")
     end
@@ -91,27 +89,27 @@ class BusinessAdminAuthorizationTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Ja Rule")
   end
 
-  test "business admin can remove concert" do
-    setup_factories
-
-    ApplicationController.any_instance.stubs(:current_user).returns(business_admin)
-
-    visit venue_path(venue.url)
-
-    assert page.has_content?(venue.name)
-    assert page.has_content?(concert.band)
-    assert page.has_content?("Edit")
-    assert page.has_content?("Remove")
-
-    within('.concert-venue') do
-      click_on("Remove")
-    end
-
-    assert_equal venue_path(venue.url), current_path
-    refute page.has_content?(concert.band)
-    refute page.has_content?(concert.date)
-    refute page.has_content?(concert.logo)
-  end
+  # test "business admin can remove concert" do
+  #   setup_factories
+  #
+  #   ApplicationController.any_instance.stubs(:current_user).returns(business_admin)
+  #
+  #   visit venue_path(venue.url)
+  #
+  #   assert page.has_content?(venue.name)
+  #   assert page.has_content?(concert.band)
+  #   assert page.has_content?("Edit")
+  #   assert page.has_content?("Remove")
+  #
+  #   within('.concert-venue') do
+  #     click_on("Remove")
+  #   end
+  #
+  #   assert_equal venue_path(venue.url), current_path
+  #   refute page.has_content?(concert.band)
+  #   refute page.has_content?(concert.date)
+  #   refute page.has_content?(concert.logo)
+  # end
 
   test "business admin can only manage venues they own" do
     setup_factories
